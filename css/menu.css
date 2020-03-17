@@ -1,0 +1,226 @@
+body 	{
+	font-family: 		fantasy, cursive, sans-serif;
+	text-decoration: 	none;
+	/* background-image:	url(https://images.wallpaperscraft.ru/image/warhammer_40000_alfa_legion_igra_risunok_95746_2048x1152.jpg); */
+	/* background-image:	url(http://www.script-tutorials.com/demos/360/images/stars.png); */
+	/* https://images6.alphacoders.com/680/thumb-1920-680963.jpg */
+	/* background-image: 	url(http://www.script-tutorials.com/demos/360/images/stars.png); */
+	/* https://cdn.suwalls.com/wallpapers/games/warhammer-40-000-30296-1920x1200.jpg */
+	/* https://images.wallpaperscraft.ru/image/warhammer_40000_alfa_legion_igra_risunok_95746_2048x1152.jpg */
+	background-attachment:	fixed;
+	background-size:		cover;
+	background-color:	rgb(108, 108, 129);
+	margin:				0;
+	padding:			0;
+	align-content:		center;
+}
+#entrance_shell	{
+	margin-top:			20vh;
+	display:			flex;
+	justify-content:	center;
+	align-items:		center;
+}
+#entrance_form	{
+	display:			flex;
+	width:				300px;
+	justify-content:	center;
+	align-items:		center;
+	padding: 			10px;
+	background-color: rgb(36, 34, 41);
+	box-shadow: 		0 0 6px rgb(255, 255, 255);
+	border-radius: 		20px;
+}
+#entrance_form input		{
+	font-family: 		fantasy, cursive, sans-serif;
+	font-size:			15px;
+	width: 				250px;
+	border: 			none;
+	padding: 			5px 0px 0px 25px;
+	box-shadow: 		inset 2px 2px 5px 0 rgb(108, 85, 238);
+	border-radius: 		2px;
+	
+}
+.menu_text			{
+	color:		rgb(200, 200, 200);
+}
+.menu_prompt		{
+	color:		rgb(200, 200, 200);
+}
+.menu_text:hover	{
+	color:		rgb(177, 52, 83);
+}
+a		{
+	text-decoration: 	none;
+}
+#menu_button	{
+	width:		100%;
+	margin:		6px 0px 0px 12px;
+}
+#menu_button:hover	{
+	background-color: rgb(172, 161, 201);
+}
+#left_text_block	{
+	height:				30px;
+	float:				left;
+	margin:				0 0 0 0;
+}
+#right_text_block	{
+	height:				30px;
+	float:				right;
+	margin:				0 0 0 0;
+}
+#lobby_shell	{
+	margin-top:			10vh;
+	display:			flex;
+	justify-content:	center;
+	align-items:		center;
+}
+#lobby_block	{
+	display:			block;
+	position:			relative;
+	width:				90%;
+	height:				80vh;
+	justify-content:	center;
+	align-items:		center;
+	margin:				0 0 0 0;
+	padding:			0 0 0 0;
+	/* box-shadow: 		0 0 6px rgb(255, 255, 255);
+	border-radius: 		20px; */
+	border:				0;
+}
+#lobby_block input		{
+	font-family: 		fantasy, cursive, sans-serif;
+	font-size:			15px;
+	width: 				250px;
+	border: 			none;
+	padding: 			5px 0px 0px 25px;
+	box-shadow: 		inset 2px 2px 5px 0 rgb(108, 85, 238);
+	border-radius: 		2px;
+	
+}
+#chat			{
+	display:			flex;
+	width:				100%;
+	height:				25%;
+	position:			absolute;
+	bottom:				43px;
+	margin:				0 0 0 0;
+	padding:			0 0 0 0;		
+	justify-content:	center;
+	align-items:		center;
+	background-color: rgba(180, 180, 180, 0.600);
+	box-shadow: 		0 0 12px rgba(200, 200, 200, 0.900);
+	border-radius: 		20px;
+}
+#speak			{
+	display:			flex;
+	position:			absolute;
+	align-self:			center;
+	bottom:				0;
+	margin:				0 0 0 0;
+	padding:			0 0 0 0;
+	width:				100%;
+	height:				43px;
+	border: 			0;
+	justify-content:	center;
+	align-items:		center;
+}
+#lobby_menu			{
+	display:			block;
+	width:				100%;
+	height:				70%;
+	justify-content:	center;
+	align-items:		center;
+	box-shadow: 		0 0 6px rgb(255, 255, 255);
+	border-radius: 		20px;
+}
+#lobby_control_panel	{
+	position:			absolute;
+	top:				10px;
+	left:				40px;
+}
+#add_lobby				{
+	position:			absolute;
+	top:				10px;
+	left:				130px;
+}
+#login_block			{
+	position:			absolute;
+	top:				10px;
+	left:				300px;
+}
+.lobby_menu_font	{
+	font-weight: 		bold;
+	font-size:			20px;
+	padding:			20 20 20 20;
+	color:				rgb(200, 200, 200);
+	text-shadow:		3px, 5px, 0px black;
+}
+.lobby_menu_href	{
+	font-weight: 		bold;
+	font-size:			20px;
+	color:				rgb(200, 200, 200);
+	text-shadow:		3px, 5px, 0px black;
+}
+.lobby_menu_href:hover	{
+	color:			rgb(177, 52, 83);
+}
+.lobby_box		{
+	display:			block;
+	margin-top:			0px;
+	margin-bottom:		4px;
+	padding-top:		0px;
+	padding-bottom:		0px;
+	background-color: rgba(112, 89, 214, 0.6);
+	box-shadow: 		0 0 12px rgba(200, 200, 200, 0.900);
+	border-radius: 		20px;
+	width:				100%;
+	height:				40px;
+}
+.delete	{
+	display: 		flex;
+	vertical-align: top;
+	position:		absolute;
+	right:			10vw;
+	margin: 		9px;
+	background-image: url('../img/cross.png');
+	background-size:100%;
+	height: 		20px;
+	width: 			20px;
+	border: 		0;
+}
+.join	{
+	display: 		flex;
+	vertical-align: top;
+	position:		absolute;
+	right:			10vw;
+	margin: 		9px;
+	background-image: url('../img/join.png');
+	background-size:100%;
+	height: 		20px;
+	width: 			20px;
+	border: 		0;
+}
+.go_gaming	{
+	display: 		flex;
+	vertical-align: top;
+	position:		absolute;
+	right:			15vw;
+	margin: 		9px;
+	background-image: url('../img/go.png');
+	background-size:100%;
+	height: 		20px;
+	width: 			20px;
+	border: 		0;
+}
+.lobby_user_box	{
+	display:			flex;
+	position:			absolute;
+	left:				10vw;
+	margin:				6px;
+}
+.lobby_box_font	{
+	font-weight: 		bold;
+	font-size:			20px;
+	color:				rgb(200, 200, 200);
+}

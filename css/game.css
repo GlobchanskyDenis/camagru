@@ -1,0 +1,198 @@
+body 	{
+	font-family: 			fantasy, cursive, sans-serif;
+	text-decoration: 		none;
+	background-image:		url(http://www.script-tutorials.com/demos/360/images/stars.png);
+	background-attachment:	fixed;
+	background-size:		cover;
+	background-color:		rgb(22, 22, 35);
+	margin:					0;
+	padding:				0;
+	align-content:			center;
+}
+a		{
+	text-decoration: 	none;
+}
+.font_menu	{
+	font-weight: 		bold;
+	font-size:			20px;
+	color:				rgb(200, 200, 200);
+}
+.font_link	{
+	font-weight: 		bold;
+	font-size:			20px;
+	color:				rgb(200, 200, 200);
+}
+.font_link:hover	{
+	color:				rgb(177, 52, 83);
+}
+#pool_shell	{
+	margin-top:			20vh;
+	display:			flex;
+	justify-content:	center;
+	align-items:		center;
+}
+#pool_menu	{
+	display:			flex;
+	position:			relative;
+	width:				470px;
+	height:				220px;
+	justify-content:	center;
+	align-items:		center;
+	padding: 			10px;
+	background-color: rgba(36, 34, 41, 0.6);
+	box-shadow: 		0 0 6px rgb(255, 255, 255);
+	border-radius: 		20px;
+}
+#pool_menu_sub	{
+	display:			flex;
+	position: 			absolute;
+	bottom:				10px;
+	justify-content:	center;
+	align-items:		center;
+	padding: 			0;
+	/* box-shadow: 		0 0 6px rgb(255, 255, 255); */
+	border-radius: 		10px;
+}
+#pool_menu_header	{
+	display:			flex;
+	position:			absolute;
+	top:				10px;
+}
+#logout_panel	{
+	position:			absolute;
+	display: 			flex;	
+	/* border-radius: 		8px; */
+	/* background-color: rgba(36, 34, 41, 0.2); */
+	top:				10px;
+	left:				40px;
+	/* padding:			3px 10px 0px 10px; */
+}
+#login_block			{
+	position:			absolute;
+	/* border-radius: 		8px; */
+	/* background-color: rgba(36, 34, 41, 0.2); */
+	top:				10px;
+	left:				280px;
+	/* padding:			3px 10px 0px 10px; */
+}
+#arena					{
+	display:			block;
+	position:			relative;
+	margin-top:			50px;
+	margin-left:		5vw;
+	width:				90vw;
+	height: 			80.3vh;
+	box-shadow: 		0 0 6px rgb(255, 255, 255);
+	border-radius: 		8px;
+	padding:			0px;
+}
+.row_block				{
+	display:			block;
+	position:			relative;
+	width:				100%;
+	height:				0.8vh;
+	margin: 			0px;
+	padding:			0px;
+	/* box-shadow: 		0 0 1px rgb(150, 0, 0); */
+}
+.obstacle_block			{
+	display:			inline-block;
+	position:			relative;
+	background:			rgba(70, 70, 70, 0.8);
+	width:				0.6vw;
+	height:				0.8vh;
+	border-radius: 		2px;
+	margin: 			0px;
+	padding:			0px;
+}
+.red_block			{
+	display:			inline-block;
+	position:			relative;
+	background:			rgba(200, 100, 100, 0.8);
+	width:				0.6vw;
+	height:				0.8vh;
+	border-radius: 		2px;
+	margin: 			0px;
+	padding:			0px;
+}
+.invisible_block			{
+	display:			inline-block;
+	position:			relative;
+	width:				0.6vw;
+	height:				0.8vh;
+	border-radius: 		2px;
+	margin: 			0px;
+	padding:			0px;
+}
+
+/* ===================================== */
+#control {
+    position: absolute;
+    bottom: 220px;
+}
+.button {
+    position: absolute;
+    background-color: Transparent;
+    border: none;
+    outline: none;
+}
+.button.up {
+    top: 0;
+    left: 50px;
+    transform: scale(0.2);
+}
+.button.right {
+    top: 30px;
+    left: 90px;
+    transform: scale(0.2) rotate(90deg);
+}
+.button.down {
+    top: 60px;
+    left: 50px;
+    transform: scale(0.2) rotate(180deg);
+}
+.button.left {
+    top: 30px;
+    left: 10px;
+    transform: scale(0.2) rotate(270deg);
+}
+.button.fire {
+    top: 30px;
+    left: 150px;
+    transform: scale(0.2);
+}
+.menu_elem {
+    border-radius:      8px;
+    background-color:   rgba(92, 91, 93, 0.5);
+    padding:            3px 10px 0px 10px;
+    float: right;    /* чтобы враги добавлялись по очереди вправо*/
+    margin-right: 20px;         /* отступ для врагов*/
+}
+.menu_race_img {
+    height: 30px;
+    background-color: Transparent;
+    border: none;
+    outline: none;
+    margin-bottom: -11px;
+}
+.menu_player_box {
+    margin-left: 4px;
+    margin-top: 2px;
+    float: right;
+    height: 25px;
+    width: 25px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+#endgame_block {
+    position: absolute;
+    top: 10px;
+    left: 150px;
+}
+.enemies {
+    position: absolute;
+    left: 300px;
+    top: 10px;
+    margin-left: 200px;
+}

@@ -1,0 +1,95 @@
+body 	{
+	font-family: 		fantasy, cursive, sans-serif;
+	text-decoration: 	none;
+	background-image:	url(https://cdn.suwalls.com/wallpapers/games/warhammer-40-000-30296-1920x1200.jpg);
+	/* background-image: 	url(http://www.script-tutorials.com/demos/360/images/stars.png); */
+	/* https://cdn.suwalls.com/wallpapers/games/warhammer-40-000-30296-1920x1200.jpg */
+	/* https://images.wallpaperscraft.ru/image/warhammer_40000_alfa_legion_igra_risunok_95746_2048x1152.jpg */
+	background-attachment:	fixed;
+	background-size:		cover;
+	background-color:	rgb(22, 22, 35);
+	margin:				0;
+	padding:			0;
+	align-content:		center;
+}
+a		{
+	text-decoration: 	none;
+}
+.font_menu	{
+	font-weight: 		bold;
+	font-size:			20px;
+	color:				rgb(200, 200, 200);
+}
+.font_link	{
+	font-weight: 		bold;
+	font-size:			20px;
+	color:				rgb(200, 200, 200);
+}
+.font_link:hover	{
+	color:				rgb(177, 52, 83);
+}
+#pool_shell	{
+	margin-top:			20vh;
+	display:			flex;
+	justify-content:	center;
+	align-items:		center;
+}
+#pool_menu	{
+	display:			flex;
+	position:			relative;
+	width:				470px;
+	height:				220px;
+	justify-content:	center;
+	align-items:		center;
+	padding: 			10px;
+	background-color: rgba(36, 34, 41, 0.6);
+	box-shadow: 		0 0 6px rgb(255, 255, 255);
+	border-radius: 		20px;
+}
+#pool_menu_sub	{
+	display:			flex;
+	position: 			absolute;
+	bottom:				10px;
+	justify-content:	center;
+	align-items:		center;
+	padding: 			0;
+	/* box-shadow: 		0 0 6px rgb(255, 255, 255); */
+	border-radius: 		10px;
+}
+#pool_menu_header	{
+	display:			flex;
+	position:			absolute;
+	top:				10px;
+}
+#logout_panel	{
+	position:			absolute;
+	display: 			flex;	
+	border-radius: 		8px;
+	background-color: rgba(36, 34, 41, 0.2);
+	top:				10px;
+	left:				40px;
+	padding:			3px 10px 0px 10px;
+}
+#login_block			{
+	position:			absolute;
+	border-radius: 		8px;
+	background-color: rgba(36, 34, 41, 0.2);
+	top:				10px;
+	left:				150px;
+	padding:			3px 10px 0px 10px;
+}
+#ork					{
+	width:				110px;
+	height:				150px;
+	padding:			0px 0px 0px 0px;
+}
+#human					{
+	width:				250px;
+	height:				140px;
+	padding:			0px 0px 0px 0px;
+}
+#eldar					{
+	width:				110px;
+	height:				150px;
+	padding:			0px 0px 0px 0px;
+}
