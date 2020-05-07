@@ -1,5 +1,0 @@
-
-===========script registration.php start===========
-2020:03:16 13:03:31	login roger1 passwd 1>
-2020:03:16 13:03:31	Invalid password
-2020:03:16 13:03:31	Redirect to registration.html
