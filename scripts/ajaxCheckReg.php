@@ -71,6 +71,7 @@ if ( checkEmailInDB( $connectDB, $_REQUEST['email'] ) ) {
 	exit;
 }
 
+$errors['request'] = $_COOKIE[session_name()];
 echo json_encode($errors);
 
 ?>

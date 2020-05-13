@@ -15,7 +15,7 @@
 <body>
 	<div id="wrapper">
 
-		<?php require("scripts/header.php");
+		<?php require("view/header.php");
 		?>
 
 		<div class="categoryTitle">Autentication</div>
@@ -36,7 +36,7 @@
 		<div style="height: 25px; width: 100%"></div> <!-- НЕ УДАЛЯТЬ!!! ЭТО ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ ПОДВАЛА -->
 	</div>
 
-	<?php require("scripts/footer.php");
+	<?php require("view/footer.php");
 	?>
 
 </body>
