@@ -1,0 +1,658 @@
+exuberant-ctags - build tag file indexes of source code definitions
+libapache2-mod-php - server-side, HTML-embedded scripting language (Apache 2 module) (default)
+libapache2-mod-php7.4 - server-side, HTML-embedded scripting language (Apache 2 module)
+libct4 - libraries for connecting to MS SQL and Sybase SQL servers
+libcups2-dev - Common UNIX Printing System(tm) - Development files CUPS library
+libgtksourceview-4-common - common files for the GTK+ syntax highlighting widget
+libnet-libidn-perl - Perl bindings for GNU Libidn
+php - server-side, HTML-embedded scripting language (default)
+php-all-dev - package depending on all supported PHP development packages
+php-cgi - server-side, HTML-embedded scripting language (CGI binary) (default)
+php-cli - command-line interpreter for the PHP scripting language (default)
+php-common - Common files for PHP packages
+php-curl - CURL module for PHP [default]
+php-dev - Files for PHP module development (default)
+php-gd - GD module for PHP [default]
+php-gmp - GMP module for PHP [default]
+php-ldap - LDAP module for PHP [default]
+php-mysql - MySQL module for PHP [default]
+php-odbc - ODBC module for PHP [default]
+php-pear - PEAR Base System
+php-pgsql - PostgreSQL module for PHP [default]
+php-pspell - pspell module for PHP [default]
+php-snmp - SNMP module for PHP [default]
+php-sqlite3 - SQLite3 module for PHP [default]
+php-tidy - tidy module for PHP [default]
+php-xml - DOM, SimpleXML, WDDX, XML, and XSL module for PHP [default]
+php-xmlrpc - XMLRPC-EPI module for PHP [default]
+php7.4 - server-side, HTML-embedded scripting language (metapackage)
+php7.4-cgi - server-side, HTML-embedded scripting language (CGI binary)
+php7.4-cli - command-line interpreter for the PHP scripting language
+php7.4-common - documentation, examples and common module for PHP
+php7.4-curl - CURL module for PHP
+php7.4-dev - Files for PHP7.4 module development
+php7.4-gd - GD module for PHP
+php7.4-gmp - GMP module for PHP
+php7.4-json - JSON module for PHP
+php7.4-ldap - LDAP module for PHP
+php7.4-mysql - MySQL module for PHP
+php7.4-odbc - ODBC module for PHP
+php7.4-opcache - Zend OpCache module for PHP
+php7.4-pgsql - PostgreSQL module for PHP
+php7.4-pspell - pspell module for PHP
+php7.4-readline - readline module for PHP
+php7.4-snmp - SNMP module for PHP
+php7.4-sqlite3 - SQLite3 module for PHP
+php7.4-tidy - tidy module for PHP
+php7.4-xml - DOM, SimpleXML, XML, and XSL module for PHP
+php7.4-xmlrpc - XMLRPC-EPI module for PHP
+pkg-php-tools - various packaging tools and scripts for PHP packages
+adminer - Web-based database administration tool
+air-quality-sensor - user space driver for AppliedSensor's Indoor Air Monitor
+apertium - Shallow-transfer machine translation engine
+bandwidthd - Tracks usage of TCP/IP and builds html files with graphs
+bandwidthd-pgsql - Tracks usage of TCP/IP and builds html files with graphs
+bluefish - advanced Gtk+ text editor for web and software development
+cacti - web interface for graphing of monitoring systems
+cacti-spine - Multi-Threading poller for cacti
+cakephp - rapid application development framework for PHP
+cakephp-scripts - rapid application development framework for PHP (scripts)
+chameleon-cursor-theme - modern but not gaudy X11 mouse theme
+codelite - Powerful and lightweight IDE
+codelite-plugins - Powerful and lightweight IDE - plugins
+coderay - Helper programs for CodeRay Ruby lib for syntax highlighting
+coffeescript - interpreter and compiler for the CoffeeScript language
+collada-urdf-tools - ROS collada_urdf tools
+composer - dependency manager for PHP
+davical - PHP CalDAV and CardDAV Server
+davical-doc - PHP CalDAV and CardDAV Server - technical documentation
+debpear - automatically builds and installs PEAR package as Debian packages
+dh-linktree - Create symlink trees within a Debian package
+dh-php - debhelper add-on to handle PHP PECL extensions
+dia2code - a dia-UML code generator
+direnv - Utility to set directory specific environment variables
+doxygen - Documentation system for C, C++, Java, Python and other languages
+doxygen-doc - Documentation for doxygen
+doxygen-doxyparse - multi-language source code parser based on Doxygen
+doxygen-gui - GUI configuration tool for doxygen
+doxygen-latex - Documentation system for C, C++, Java, Python and other languages
+elpa-php-mode - PHP Mode for GNU Emacs
+elpa-web-mode - major emacs mode for editing web templates
+elpa-yasnippet-snippets - Andrea Crotti's official YASnippet snippets
+erlang-cowboy - Cowboy is a small, fast and modular HTTP server written in Erlang
+erlang-cowboy-doc - Documentation files for erlang-cowboy
+erlang-cowboy-examples - Examples for erlang-cowboy
+flatbuffers-compiler - efficient cross platform serialization library - compiler
+flatbuffers-compiler-dev - efficient cross platform serialization library - cmake files
+freeplane - Java program for working with Mind Maps
+fusiondirectory-smarty3-acl-render - Provide FusionDirectory ACL based rendering for Smarty3
+gambas3-gb-clipper - Gambas Clipper component
+ganglia-webfrontend - cluster monitoring toolkit - web front-end
+garagemq - AMQP message broker implemented with golang
+geany - fast and lightweight IDE
+geany-common - fast and lightweight IDE -- common files
+gir1.2-isocodes-1.2 - access of iso-codes data and translations - GObject introspection
+golang-github-gedex-inflector-dev - Go library that pluralizes and singularizes English nouns
+golang-github-knqyf263-go-dep-parser-dev - Golang library for dependency parser
+golang-github-phpdave11-gofpdi-dev - Go Free PDF Document Importer
+golang-github-unknwon-cae-dev - PHP-like Compression and Archive Extensions in Go
+golang-github-yuin-goldmark-dev - CommonMark compliant and extensible Markdown parser written in Go
+gosa-plugin-phpgw - phpgw plugin for GOsa²
+gosa-plugin-phpgw-schema - LDAP schema for GOsa² phpgw plugin
+gosa-plugin-phpscheduleit - phpscheduleit plugin for GOsa²
+gosa-plugin-phpscheduleit-schema - LDAP schema for GOsa² phpscheduleit plugin
+grub-imageboot - boot iso, harddisk and floppy images with grub2 and syslinux memdisk
+gulp - streaming build system to automate painful or time-consuming tasks
+haserl - CGI scripting program for embedded environments
+hashcat - World's fastest and most advanced password recovery utility
+hxtools - Collection of tools and scripts
+ibus-table-yong - ibus-table input method: YongMa
+icingaweb2-module-ipl - PHP library for icingaweb2 modules
+irssi-scripts - collection of scripts for irssi
+jed - editor for programmers (textmode version)
+jkmeter - horizontal or vertical bargraph audio level meter for Jack Audio Connection Kit
+jsonlint - validating parser of JSON data structures
+kdevelop - integrated development environment for C/C++ and other languages
+kdevelop-php - PHP plugin for KDevelop
+kdevelop-php-l10n - localization files for KDevelop PHP plugin
+klone - embedded web application development framework
+kopano-webapp-apache2 - WebApp for the Kopano Collaboration Platform - Apache2
+kopano-webapp-common - WebApp for the Kopano Collaboration Platform - common files
+kopano-webapp-lighttpd - WebApp for the Kopano Collaboration Platform - Lighttpd
+kopano-webapp-nginx - WebApp for the Kopano Collaboration Platform - Nginx
+libapache2-mod-auth-tkt - lightweight single-sign-on authentication module for Apache
+libapache2-mod-authn-yubikey - Yubikey authentication provider for Apache
+libapache2-mod-watchcat - Process monitoring Apache module
+libapache2-mod-xsendfile - Serve large static files efficiently from web applications
+libawl-php - Andrew's Web Libraries - PHP Utility Libraries
+libcgi-session-serialize-yaml-perl - YAML and YAML::Syck support for CGI::Session's serializers
+libcgi-struct-xs-perl - Perl module to build structures from CGI data, XS version
+libcode-tidyall-perl - your all-in-one code tidier and validator
+libcollada-urdf-dev - Development files for ROS collada_urdf library
+libcollada-urdf1d - ROS collada_urdf library
+libflatbuffers-dev - efficient cross platform serialization library - development files
+libflatbuffers1 - efficient cross platform serialization library - shared library
+libghc-highlighting-kate-dev - syntax highlighting library based on Kate syntax descriptions
+libghc-highlighting-kate-doc - library documentation for highlighting-kate; documentation
+libghc-highlighting-kate-prof - highlighting-kate library with profiling enabled; profiling libraries
+libgtksourceview-3.0-common - common files for the GTK+ syntax highlighting widget
+libgtksourceview2.0-common - common files for the GTK+ syntax highlighting widget
+libgv-php7 - PHP7 bindings for graphviz
+libhtml-defang-perl - cleans HTML and CSS of scripting, executable contents and XSS attacks
+libhtml-escape-perl - provides extremely fast HTML escaping
+libhtml-wikiconverter-phpwiki-perl - HTML to wiki markup converter - PhpWiki dialect
+libisocodes-dev - access of iso-codes data and translations - development files
+libisocodes1 - access of iso-codes data and translations
+libjs-edit-area - a free javascript editor for source code
+libjs-jquery-file-upload - file upload widget for jQuery
+libjs-jquery-jush - jQuery Syntax Highlighter
+libmarkdown-php - PHP library for rendering Markdown data
+libmdb2 - Core library for accessing JET / MS Access (MDB) files
+libmediawiki-bot-perl - high-level bot framework for interacting with MediaWiki wikis
+libnusoap-php - SOAP toolkit for PHP
+libow-php7 - Dallas 1-wire support: PHP5 bindings
+libownet-php - Dallas 1-wire support: PHP OWNet library
+libphp-adodb - ADOdb is a PHP database abstraction layer library
+libphp-embed - HTML-embedded scripting language (Embedded SAPI library) (default)
+libphp-jabber - Object-oriented PHP interface for the Jabber/XMPP protocol
+libphp-jpgraph - Object oriented graph library for php
+libphp-jpgraph-examples - Object oriented graph library for php (examples)
+libphp-magpierss - provides an XML-based RSS parser in PHP
+libphp-phpmailer - full featured email transfer class for PHP
+libphp-predis - Flexible and feature-complete PHP client library for the Redis key-value store
+libphp-serialization-perl - Perl module to manipulate serialized PHP data structures
+libphp-simplepie - RSS and Atom feed parsing in PHP
+libphp-snoopy - Snoopy is a PHP class that simulates a web browser
+libphp-swiftmailer - transitional dummy package
+libphp7.4-embed - HTML-embedded scripting language (Embedded SAPI library)
+libphutil - Shared library for Arcanist and Phabricator
+librinci-perl - module that provides a language-neutral metadata for your code
+libsox-fmt-alsa - SoX alsa format I/O library
+libsparkline-php - sparkline graphing library for php
+libstring-koremutake-perl - Convert to/from Koremutake Memorable Random Strings
+libtext-mediawikiformat-perl - module that converts Mediawiki markup into other text formats
+libtntnet-dev - Tntnet library development headers
+libtntnet12v5 - Tntnet libraries
+libwcat1 - Process monitoring library
+libwcat1-dev - Process monitoring library
+libweasel-perl - PHP's Mink inspired multi-protocol web-testing library for Perl
+libwebinject-perl - Perl Module for testing web services
+libwulf-dev - development environment for wulfware
+libwulf2 - shared libraries for running wulfware programs
+libwww-facebook-api-perl - Facebook API implementation
+libykclient-dev - Yubikey client library development files
+libykclient3 - Yubikey client library runtime
+llgal - Command-line online gallery generator
+mlmmj-php-web - web interface for mlmmj, written in php
+mlmmj-php-web-admin - administrative web interface for mlmmj, written in php
+modsecurity-crs - OWASP ModSecurity Core Rule Set
+movim - decentralised social network fully based on XMPP
+nagios-plugins-contrib - Plugins for nagios compatible monitoring systems
+navit - Car navigation system with routing engine
+netbeans - Extensible Java IDE
+nordugrid-arc-monitor - ARC LDAP monitor web application
+nzbget - command-line based binary newsgrabber for nzb files
+pandoc - general markup converter
+pdepend - design quality metrics for PHP packages
+pear-channels - PEAR channels for various projects
+pgtap - Unit testing framework for PostgreSQL - metapackage
+pgtap-doc - Unit testing framework for PostgreSQL - documentation
+phamm - PHP front-end to manage virtual services on LDAP - main package
+phamm-ldap - PHP front-end to manage virtual services on LDAP - back-end files
+phamm-ldap-amavis - PHP front-end to manage virtual services on LDAP - back-end files
+phamm-ldap-vacation - PHP front-end to manage virtual services on LDAP - back-end files
+phing - PHP5 project build system based on Apache Ant
+php-amqp - AMQP extension for PHP
+php-amqplib - pure PHP implementation of the AMQP protocol
+php-apcu - APC User Cache for PHP
+php-apcu-bc - APCu Backwards Compatibility Module
+php-ast - AST extension for PHP 7
+php-auth-sasl - Abstraction of various SASL mechanism responses
+php-bcmath - Bcmath module for PHP [default]
+php-bz2 - bzip2 module for PHP [default]
+php-cache-integration-tests - Integration tests for PSR-6 and PSR-16 cache implementations
+php-cache-lite - Fast and Safe little cache system
+php-cache-tag-interop - Framework interoperable interfaces for tags
+php-cas - Central Authentication Service client library in php
+php-cboden-ratchet - PHP WebSocket library
+php-cocur-slugify - Converts a string to a slug for PHP
+php-codecoverage - collection, processing, and rendering for code coverage
+php-codesniffer - PHP, CSS and JavaScript coding standard analyzer and checker
+php-composer-ca-bundle - utility library to find a path to the system CA bundle
+php-composer-semver - utilities, version constraint parsing and validation
+php-composer-spdx-licenses - SPDX licenses list and validation library
+php-composer-xdebug-handler - Restarts a process without Xdebug
+php-console-commandline - A full featured command line options and arguments parser
+php-console-table - Library that makes it easy to build console style tables
+php-constant-time - Constant-time Implementations of RFC 4648 Encoding (Base-64, Base-32, Base-16)
+php-date - Generic date/time handling class for PEAR
+php-db - Database Abstraction Layer
+php-db-dataobject - PHP PEAR module for object based SQL query building
+php-deepcopy - create deep copies (clones) of objects
+php-defuse-php-encryption - Simple Encryption in PHP
+php-dflydev-fig-cookies - FIG Cookies for PHP
+php-directory-scanner - recursive directory scanner and filter
+php-doctrine-annotations - Docblock Annotations Parser - Doctrine component
+php-doctrine-bundle - bundle library - Doctrine component
+php-doctrine-cache - cache library - Doctrine component
+php-doctrine-collections - Collections Abstraction library - Doctrine component
+php-doctrine-common - common extensions for Doctrine
+php-doctrine-data-fixtures - Data Fixtures for all Doctrine Object Managers
+php-doctrine-dbal - database abstraction layer for Doctrine
+php-doctrine-event-manager - Doctrine Event Manager component
+php-doctrine-inflector - string manipulations library - Doctrine component
+php-doctrine-instantiator - lightweight utility to instantiate objects in PHP
+php-doctrine-lexer - base lexer library - Doctrine component
+php-doctrine-orm - tool for object-relational mapping
+php-doctrine-persistence - Doctrine Persistence abstractions
+php-doctrine-reflection - Doctrine Reflection component
+php-dompdf - HTML to PDF converter
+php-ds - PHP extension providing efficient data structures for PHP 7
+php-easyrdf - PHP library to consume and produce RDF
+php-email-validator - A library for validating emails against several RFCs
+php-embed - Get info from any web service or page
+php-enchant - Enchant module for PHP [default]
+php-evenement - Very simple event dispatching library for PHP
+php-excimer - PHP extension that provides a non-static, non-global profiler
+php-fabiang-sasl - PHP SASL2 Authentication Library
+php-fdomdocument - extension to PHP's standard DOM
+php-fig-link-util - Common utility implementations for HTTP links
+php-file-iterator - FilterIterator implementation for PHP
+php-finder-facade - convenience wrapper for Symfony's Finder component
+php-finder-facade-doc - convenience wrapper for Symfony's Finder component - documentation
+php-font-lib - read, parse, export and make subsets of different fonts
+php-fpdf - PHP class to generate PDF files
+php-fpm - server-side, HTML-embedded scripting language (FPM-CGI binary) (default)
+php-fxsl - XSL wrapper and extension to XSLTProcessor
+php-gearman - PHP wrapper to libgearman
+php-geoip - GeoIP module for PHP
+php-geos - GEOS bindings for PHP
+php-geshi - Generic Syntax Highlighter
+php-getid3 - scripts to extract information from multimedia files
+php-gmagick - Provides a wrapper to the GraphicsMagick library
+php-gnupg - PHP wrapper around the gpgme library
+php-google-recaptcha - reCAPTCHA PHP client library
+php-guestfs - guest disk image management system - PHP bindings
+php-guzzlehttp-promises - Guzzle promises library
+php-guzzlehttp-psr7 - PSR-7 message implementation that also provides common utility methods
+php-hamcrest - This is the PHP port of Hamcrest Matchers
+php-htmlawed - htmLawed PHP code to purify & filter HTML
+php-htmlpurifier - Standards-compliant HTML filter
+php-http - PECL HTTP module for PHP Extended HTTP Support
+php-http-httplug - HTTPlug, the HTTP client abstraction for PHP
+php-http-message-factory - Factory interfaces for PSR-7 HTTP Message
+php-http-promise - Promise used for asynchronous HTTP requests
+php-http-psr7-integration-tests - Test suite for PSR7
+php-http-request - Provides an easy way to perform HTTP requests
+php-http-request2 - Provides an easy way to perform HTTP requests
+php-http-webdav-server - WebDAV Server Baseclass
+php-httpful - A Readable, Chainable, REST friendly, PHP HTTP Client
+php-icinga - PHP library to communicate with and use Icinga
+php-igbinary - igbinary PHP serializer
+php-illuminate-container - Illuminate Database, Container component
+php-illuminate-contracts - Illuminate Database, Contracts component
+php-illuminate-database - Illuminate Database
+php-illuminate-support - Illuminate Database, Support component
+php-image-text - Image_Text - Advanced text maipulations in images
+php-imagick - Provides a wrapper to the ImageMagick library
+php-imap - IMAP module for PHP [default]
+php-interbase - Interbase module for PHP [default]
+php-intl - Internationalisation module for PHP [default]
+php-invoker - Invoke callables with a timeout
+php-json - JSON module for PHP [default]
+php-json-schema - implementation of JSON schema
+php-klogger - simple logging class
+php-league-commonmark - Markdown parser based on the CommonMark JS reference implementation
+php-league-html-to-markdown - An HTML-to-markdown conversion helper for PHP
+php-letodms-core - Document management system
+php-libvirt-php - libvirt bindings for PHP
+php-log - Logging Framework
+php-lorenzo-pinky - A Foundation for Emails (Inky) template transpiler
+php-lua - PHP Embedded lua interpreter
+php-luasandbox - PHP extension that provides a sandboxed Lua environment
+php-mail - Class that provides multiple interfaces for sending emails
+php-mail-mime - PHP PEAR module for creating MIME messages
+php-mailparse - Email message manipulation for PHP
+php-mapi - Complete and feature rich groupware solution - PHP MAPI bindings
+php-mapscript - php-cgi module for MapServer
+php-mapscript-ng - PHP MapServer module (SWIG)
+php-markdown - PHP library for rendering Markdown data
+php-masterminds-html5 - An HTML5 parser and serializer
+php-mbstring - MBSTRING module for PHP [default]
+php-mdb2 - database abstraction layer
+php-mdb2-driver-mysql - mysql MDB2 driver
+php-mdb2-driver-pgsql - pgsql MDB2 driver
+php-memcache - memcache extension module for PHP
+php-memcached - memcached extension module for PHP, uses libmemcached
+php-mf2 - Microformats2 is the simplest way to markup structured information in HTML
+php-mikey179-vfsstream - Virtual file system to mock the real file system in unit tests
+php-mime-type - Utility class for dealing with MIME types
+php-mockery - mock object framework for PHPUnit and other testing framework
+php-mockery-doc - mock object framework for PHPUnit - documentation
+php-mongodb - MongoDB driver for PHP
+php-monolog - send logs to various destination and web services
+php-msgpack - PHP extension for interfacing with MessagePack
+php-nesbot-carbon - simple PHP API extension for DateTime
+php-net-dime - The Net_DIME package implements DIME encoding and decoding
+php-net-dns2 - PHP5 Resolver library used to communicate with a DNS server
+php-net-ftp - Net_FTP provides an OO interface to the PHP FTP functions plus some additions
+php-net-idna2 - PHP Pear module for handling international domain names
+php-net-imap - Provides an implementation of the IMAP protocol
+php-net-ipv6 - Check and validate IPv6 addresses
+php-net-ldap2 - Object oriented interface for searching and manipulating LDAP-entries
+php-net-ldap3 - Object oriented interface for searching and manipulating LDAP entries
+php-net-nntp - NNTP implementation
+php-net-publicsuffix - PHP module for detecting registered domains and public suffixes
+php-net-sieve - Handles talking to a sieve server
+php-net-smtp - PHP PEAR module implementing SMTP protocol
+php-net-socket - Network Socket Interface
+php-net-url - Easy parsing of Urls
+php-net-url2 - Class for parsing and handling URL
+php-net-whois - PHP PEAR module for querying whois services
+php-netscape-bookmark-parser - generic Netscape bookmark parser
+php-nikic-fast-route - Fast request router for PHP
+php-nrk-predis - Flexible and feature-complete PHP client library for the Redis key-value store
+php-nyholm-psr7 - A fast PHP7 implementation of PSR-7
+php-oauth - OAuth 1.0 consumer and provider extension
+php-parsedown - Parser for Markdown
+php-parser - convert PHP code into abstract syntax tree
+php-patchwork-utf8 - UTF-8 strings handling for PHP
+php-pclzip - ZIP archive manager class for PHP
+php-pcov - Code coverage driver
+php-pecl-http - pecl_http module for PHP Extended HTTP Support [dummy]
+php-pecl-http-dev - pecl_http module for PHP Extended HTTP Support [dummy]
+php-phar-io-manifest - reading phar.io manifest information from a PHP Archive (Phar)
+php-phar-io-version - handling version information and constraint
+php-phpdbg - server-side, HTML-embedded scripting language (PHPDBG binary) (default)
+php-phpdocumentor-reflection-common - Common reflection classes - phpDocumentor component
+php-phpdocumentor-reflection-docblock - DocBlock parser - phpDocumentor component
+php-phpdocumentor-type-resolver - TypeResolver and FqsenResolver - phpDocumentor component
+php-phpmyadmin-motranslator - translation API for PHP using Gettext MO files
+php-phpmyadmin-shapefile - translation API for PHP using Gettext MO files
+php-phpmyadmin-sql-parser - validating SQL lexer and parser
+php-phpseclib - implementations of an arbitrary-precision integer arithmetic library
+php-phpspec-prophecy - object mocking framework - phpspec component
+php-pimple - simple dependency injection container -- class
+php-pinba - Pinba module for PHP
+php-propro - propro module for PHP
+php-propro-dev - propro module for PHP development headers [dummy]
+php-proxy-manager - library providing utilities to operate with Object Proxies
+php-ps - ps module for PHP
+php-psr - PSR interfaces for PHP
+php-psr-cache - Common interface for caching libraries
+php-psr-container - Common Container Interface (PHP FIG PSR-11)
+php-psr-event-dispatcher - Standard interfaces for event handling
+php-psr-http-client - Common interface for HTTP clients
+php-psr-http-factory - Common interfaces for PSR-7 HTTP message factories
+php-psr-http-message - Common interface for HTTP messages
+php-psr-link - Common interfaces for HTTP links
+php-psr-log - common interface for logging libraries
+php-psr-simple-cache - Common interfaces for simple caching
+php-pubsubhubbub-publisher - WebSub publisher library for PHP
+php-radius - radius client library for PHP
+php-raintpl - “the easiest” Template Engine for PHP
+php-random-compat - PHP 5.x polyfill for random_bytes() and random_int() from PHP 7
+php-raphf - raphf module for PHP
+php-raphf-dev - raphf module for PHP development headers [dummy]
+php-ratchet-pawl - Asynchronous WebSocket client for RatchetPHP
+php-ratchet-rfc6455 - Implementation of the WebSocket protocol for PHP
+php-react-cache - Async, promise-based cache component for ReactPHP
+php-react-child-process - Event-driven library for executing child processes with ReactPHP
+php-react-dns - Asynchronous DNS resolver for ReactPHP
+php-react-event-loop - ReactPHP's core reactor event loop for evented I/O
+php-react-http - Event-driven, streaming HTTP/HTTPS server for ReactPHP
+php-react-promise - lightweight implementation of CommonJS Promises/A for PHP
+php-react-promise-stream - Link between promises and streams in ReactPHP
+php-react-promise-timer - Trivial implementation of timeouts for promises on top of ReactPHP
+php-react-socket - Asynchronous client and server socket connections for ReactPHP
+php-react-stream - Event-driven streams for non-blocking I/O in ReactPHP
+php-readline - readline module for PHP [default]
+php-redis - PHP extension for interfacing with Redis
+php-remctl - PECL module for Kerberos-authenticated command execution
+php-respect-validation - PHP validation engine
+php-robmorgan-phinx - Simple PHP Database Migrations
+php-rrd - PHP bindings to rrd tool system
+php-sabre-vobject - library to parse and manipulate iCalendar and vCard objects
+php-sass - PHP bindings to libsass - fast, native Sass parsing in PHP
+php-seclib - implementations of an arbitrary-precision integer arithmetic library
+php-services-json - PHP implementaion of json_encode/decode
+php-services-weather - This class acts as an interface to various online weather-services
+php-shellcommand - An object oriented interface to shell commands
+php-soap - SOAP module for PHP [default]
+php-solr - PHP extension for communicating with Apache Solr server
+php-sql-formatter - a PHP SQL highlighting library
+php-ssh2 - Bindings for the libssh2 library
+php-stomp - Streaming Text Oriented Messaging Protocol (STOMP) client module for PHP
+php-swiftmailer - Swiftmailer, free feature-rich PHP mailer
+php-sybase - Sybase module for PHP [default]
+php-symfony - set of reusable components and framework for web projects
+php-symfony-amazon-mailer - Symfony Amazon Mailer Bridge
+php-symfony-asset - manage asset URLs
+php-symfony-browser-kit - simulate the behavior of a web browser
+php-symfony-cache - Symfony Cache component with PSR-6, PSR-16, and tags
+php-symfony-cache-contracts - Generic abstractions related to caching
+php-symfony-config - load configurations from different data sources
+php-symfony-console - run tasks from the command line
+php-symfony-contracts - A set of abstractions extracted out of the Symfony components
+php-symfony-css-selector - convert CSS selectors to XPath expressions
+php-symfony-debug - tools to make debugging of PHP code easier
+php-symfony-debug-bundle - debugging tools for the Symfony framework
+php-symfony-dependency-injection - standardize and centralize construction of objects
+php-symfony-doctrine-bridge - integration for Doctrine with Symfony Components
+php-symfony-dom-crawler - ease DOM navigation for HTML and XML documents
+php-symfony-dotenv - .env files parser to make environment variables accessible
+php-symfony-event-dispatcher - dispatch events and listen to them
+php-symfony-event-dispatcher-contracts - Generic abstractions related to dispatching event
+php-symfony-expression-language - compile and evaluate expressions
+php-symfony-filesystem - basic filesystem utilities
+php-symfony-finder - find files and directories
+php-symfony-form - create HTML forms and process request data
+php-symfony-framework-bundle - basic, robust and flexible MVC framework
+php-symfony-google-mailer - Symfony Google Mailer Bridge
+php-symfony-http-client - methods to fetch HTTP resources synchronously or asynchronously
+php-symfony-http-client-contracts - Generic abstractions related to HTTP clients
+php-symfony-http-foundation - object-oriented layer for the HTTP specification
+php-symfony-http-kernel - building blocks for flexible and fast HTTP-based frameworks
+php-symfony-inflector - words conversion between their singular and plural forms
+php-symfony-intl - limited replacement layer for the PHP extension intl
+php-symfony-ldap - abstraction layer for the PHP LDAP module
+php-symfony-lock - create and manage locks
+php-symfony-mailchimp-mailer - Symfony Mailchimp Mailer Bridge
+php-symfony-mailer - help sending emails
+php-symfony-mailgun-mailer - Symfony Mailgun Mailer Bridge
+php-symfony-messenger - send and receive messages
+php-symfony-mime - A library to manipulate MIME messages
+php-symfony-monolog-bridge - integration for Monolog with Symfony Components
+php-symfony-options-resolver - configure objects with option arrays
+php-symfony-phpunit-bridge - integration for PHPUnit with Symfony Components
+php-symfony-postmark-mailer - Symfony Postmark Mailer Bridge
+php-symfony-process - execute commands in sub-processes
+php-symfony-property-access - read from and write to an object or array
+php-symfony-property-info - extract information about properties of PHP classes
+php-symfony-proxy-manager-bridge - integration for ProxyManager with Symfony Components
+php-symfony-routing - associate a request with code that generates a response
+php-symfony-security - infrastructure for sophisticated authorization systems
+php-symfony-security-acl - Symfony Security Component - ACL (Access Control List)
+php-symfony-security-bundle - configurable security system for the Symfony framework
+php-symfony-security-core - infrastructure for authorization systems - common features
+php-symfony-security-csrf - infrastructure for authorization systems - CSRF protection
+php-symfony-security-guard - infrastructure for authorization systems - Guard features
+php-symfony-security-http - infrastructure for authorization systems - HTTP integration
+php-symfony-sendgrid-mailer - Symfony Sendgrid Mailer Bridge
+php-symfony-serializer - convert PHP objects into specific formats and vice versa
+php-symfony-service-contracts - Generic abstractions related to writing services
+php-symfony-stopwatch - profile PHP code
+php-symfony-templating - tools needed to build a template system
+php-symfony-translation - tools to internationalize an application
+php-symfony-translation-contracts - Generic abstractions related to translation
+php-symfony-twig-bridge - integration for Twig with Symfony Components
+php-symfony-twig-bundle - configurable integration of Twig with the Symfony framework
+php-symfony-validator - tools to validate classes
+php-symfony-var-dumper - Symfony mechanism for exploring and dumping PHP variables
+php-symfony-var-exporter - export serializable PHP data structure to plain PHP code
+php-symfony-web-link - manage links between resources
+php-symfony-web-profiler-bundle - collect requests information for analysis and debugging
+php-symfony-web-server-bundle - provide commands for applications using the PHP built-in web server
+php-symfony-workflow - manage a workflow or finite state machine
+php-symfony-yaml - convert YAML to PHP arrays and the other way around
+php-tcpdf - PHP class for generating PDF files on-the-fly
+php-text-captcha - Generation of CAPTCHAs
+php-text-figlet - Engine for use FIGlet fonts to rendering text
+php-text-languagedetect - Language detection class
+php-text-password - Creating passwords with PHP
+php-text-template - Simple template engine
+php-text-wiki - transform Wiki and BBCode markup into XHTML, LaTeX or plain text markup
+php-thrift - PHP language support for Thrift
+php-tideways - Tideways PHP Profiler Extension
+php-tijsverkoyen-css-to-inline-styles - convert HTML into HTML with inline styles
+php-timer - Utility class for timing
+php-token-stream - Wrapper around PHP's tokenizer extension
+php-tokenizer - tokenized PHP source to XML converter
+php-twig - Flexible, fast, and secure template engine for PHP
+php-twig-cssinliner-extra - A Twig extension to allow inlining CSS
+php-twig-doc - Twig template engine documentation
+php-twig-extensions - extensions for the Twig template system
+php-twig-extra-bundle - A Symfony bundle for extra Twig extensions
+php-twig-html-extra - A Twig extension for HTML
+php-twig-inky-extra - A Twig extension for the inky email templating engine
+php-twig-intl-extra - A Twig extension for Intl
+php-twig-markdown-extra - A Twig extension for Markdown
+php-uploadprogress - file upload progress tracking extension for PHP
+php-uuid - PHP UUID extension
+php-validate - validation class
+php-webmozart-assert - Assertions to validate method input/output with nice error messages
+php-wikidiff2 - external diff engine for mediawiki
+php-wmerrors - PHP extension that enhances and customizes handling of PHP errors
+php-xajax - A library to develop Ajax applications
+php-xdebug - Xdebug Module for PHP
+php-xml-htmlsax3 - SAX parser for HTML and other badly formed XML documents
+php-xml-rpc2 - PHP XML-RPC client/server library
+php-xml-svg - XML_SVG API
+php-yac - YAC (Yet Another Cache) for PHP
+php-yaml - YAML-1.1 parser and emitter for PHP
+php-zend-code - Zend Framework - Code component
+php-zend-eventmanager - Zend Framework - EventManager component
+php-zend-stdlib - Zend Framework - Stdlib component
+php-zeroc-ice - PHP extension for Ice
+php-zeta-base - Zeta Components - Base package
+php-zeta-console-tools - Zeta Components - ConsoleTools package
+php-zeta-unit-test - Zeta Components - UnitTest package
+php-zip - Zip module for PHP [default]
+php-zmq - ZeroMQ messaging bindings for PHP
+php7.4-bcmath - Bcmath module for PHP
+php7.4-bz2 - bzip2 module for PHP
+php7.4-dba - DBA module for PHP
+php7.4-enchant - Enchant module for PHP
+php7.4-fpm - server-side, HTML-embedded scripting language (FPM-CGI binary)
+php7.4-imap - IMAP module for PHP
+php7.4-interbase - Interbase module for PHP
+php7.4-intl - Internationalisation module for PHP
+php7.4-mbstring - MBSTRING module for PHP
+php7.4-phpdbg - server-side, HTML-embedded scripting language (PHPDBG binary)
+php7.4-soap - SOAP module for PHP
+php7.4-sybase - Sybase module for PHP
+php7.4-xsl - XSL module for PHP (dummy)
+php7.4-zip - Zip module for PHP
+phpab - lightweight PHP namespace aware autoload generator
+phpcpd - copy and paste detector (CPD) for PHP code
+phpdox - documentation generation framework and tool
+phpldapadmin - web based interface for administering LDAP servers
+phpliteadmin - web-based SQLite database admin tool
+phpliteadmin-themes - web-based SQLite database admin tool - themes
+phploc - tool for quickly measuring the size of a PHP project
+phpmd - PHP Mess Detector
+phpmyadmin - MySQL web administration tool
+phppgadmin - web-based administration tool for PostgreSQL
+phpqrcode - PHP library for generating two-dimensional barcodes
+phpsysinfo - PHP based host information
+phpunit - Unit testing suite for PHP
+phpunit-code-unit-reverse-lookup - look up what a line of code belongs to - PHPUnit component
+phpunit-comparator - functionality to compare PHP values for equality - PHPUnit component
+phpunit-diff - diff implementation - stand-alone component from PHPUnit
+phpunit-environment - functionality to handle HHVM/PHP environments - PHPUnit component
+phpunit-exporter - export variables for visualization - PHPUnit component
+phpunit-git - Simple wrapper for Git
+phpunit-global-state - snapshotting of global state - PHPUnit component
+phpunit-object-enumerator - enumerate all referenced objects - PHPUnit component
+phpunit-object-reflector - reflection of object attributes - PHPUnit component
+phpunit-recursion-context - recursively process PHP variables - PHPUnit component
+phpunit-resource-operations - provide a list of PHP built-in functions that operate on resources
+phpunit-type - Collection of value objects that represent the types of the PHP type system
+phpunit-version - Library that helps with managing the version number of Git-hosted PHP projects
+phpwebcounter - simple and light web hit counter
+phpwebcounter-extra - extra graphical numbers to PHP Web Counter
+poppassd - password change server for Eudora and NUPOP
+postfixadmin - Virtual mail hosting interface for Postfix
+postgresql-12-pgtap - Unit testing framework extension for PostgreSQL 12
+prayer - standalone IMAP-based webmail server
+prayer-accountd - account management daemon for Prayer
+prayer-templates-dev - tools for compiling Prayer templates
+prayer-templates-src - templates for customizing Prayer Webmail
+python-cheetah - text-based template engine and Python code generator (Python 2)
+python-cheetah-doc - documentation for the Cheetah template engine
+python-htmltmpl - Templating engine for separation of code and HTML
+python-kid - simple Pythonic template language for XML based vocabularies
+python3-cheetah - text-based template engine and Python code generator (Python 3)
+python3-guzzle-sphinx-theme - Sphinx theme used by Guzzle
+python3-phply - PHP parser written in Python 3 using PLY
+python3-phpserialize - Python port of PHP serialize and unserialize functions (Python 3)
+python3-pysimplesoap - simple and lightweight SOAP Library (Python 3)
+python3-vatnumber - Python module to validate VAT numbers (implemented in Python 3)
+r-cran-brew - GNU R templating framework for report generation
+r-cran-nloptr - GNU R package for interface to NLopt
+r-cran-stringi - GNU R character string processing facilities
+rainloop - Simple, modern & fast web-based email client
+raintpl - easy and fast template engine for PHP
+rhythmbox-ampache - play audio streams from an Ampache server
+rss-bridge - web service generating ATOM feeds for websites that don't have them
+ruby-bluefeather - Extend Markdown Converter written in Ruby
+ruby-coderay - Ruby library for syntax highlighting
+ruby-erubis - fast and extensible eRuby implementation which supports multi-language
+ruby-haml-contrib - Elegant, structured XHTML/XML templating engine - addons
+ruby-thrift - Ruby bindings for Apache Thrift
+sbox-dtc - CGI chroot wrapper script for safer hosting environment
+scummvm - engine for several graphical adventure games
+scummvm-data - engine for several graphical adventure games (data files)
+simplesamlphp - Authentication and federation application supporting several protocols
+slbackup-php - Web-based administration tool for slbackup
+sloccount - programs for counting physical source lines of code (SLOC)
+smarty-gettext - Gettext plugin enabling internationalization in Smarty
+smarty-lexer - Smarty Lexer/Parser generator
+smarty-validate - Server-side form validation plugin for Smarty
+smarty3 - Smarty - the compiling PHP template engine
+splash - Visualisation tool for Smoothed Particle Hydrodynamics simulation
+sqlformat - SQL formatting utility
+srg - Fast, Flexible and Detailed log analysis for the Squid Proxy
+therion-doc - Documentation for Therion Cave surveying software
+tntnet - modular, multithreaded web application server for C++
+tntnet-demos - demo web applications for Tntnet
+tntnet-doc - documentation for Tntnet
+tsmarty2c - Smarty Gettext's translation string ripper
+tweeper - web scraper to convert supported websites like Twitter.com to RSS
+txt2regex - A Regular Expression "wizard", all written with bash2 builtins
+uphpmvault - upload recovery images to HP MediaVault2 via Ethernet
+uwsgi-plugin-php - PHP plugin for uWSGI
+velocity - Java-based template engine for web application
+vim-syntastic - Syntax checking hacks for vim
+vim-youcompleteme - fast, as-you-type, fuzzy-search code completion engine for Vim
+wapiti - web application vulnerability scanner
+watchcatd - Process monitoring daemon
+websocketd - Turn any program that uses STDIN/STDOUT into a WebSocket server
+weechat - Fast, light and extensible chat client (metapackage)
+weechat-curses - Fast, light and extensible chat client - console client
+weechat-headless - Fast, light and extensible chat client - headless client
+weechat-php - Fast, light and extensible chat client - PHP plugin
+weevely - Stealth tiny web shell
+wulf2html - filter for generating HTML logs from wulflogger data
+wulflogger - extract cluster node data from remote xmlsysd daemons
+wulfstat - curses based wulfware for monitoring cluster nodes
+wwwconfig-common - Debian web auto configuration
+xine-ui - the xine video player, user interface
+xjed - editor for programmers (x11 version)
+xmlsysd - wulfware daemon to extract data from cluster nodes
+yasat - simple stupid audit tool
+yrmcds - memcached compatible KVS with master/slave replication
+yubikey-server-c - Yubikey validation server
+zabbix-frontend-php - network monitoring solution - PHP front-end
+zoph - Web based digital image presentation and management system
+php-mythtv - PHP Bindings for MythTV

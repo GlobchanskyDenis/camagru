@@ -92,8 +92,8 @@
 				data = jQuery.parseJSON(data);
 				var message = document.getElementById("errorMessage");
 
-				if (data['other'] != '')
-					message.innerHTML = data['other'];
+				if (data['request'] != '')
+					message.innerHTML = data['request'];
 				else if (document.forms['signUpMenu']['login'].value != '' && data['login'] != '')
 					message.innerHTML = data['login'];
 				else if (document.forms['signUpMenu']['passwd'].value != '' && data['passwd'] != '')
@@ -102,8 +102,6 @@
 					message.innerHTML = data['passwdConfirm'];
 				else if (data['email'] != '' && document.forms['signUpMenu']['email'].value != '')
 					message.innerHTML = data['email'];
-				else if (data['request'] != '')
-					message.innerHTML = data['request'];
 				else
 					message.innerHTML = '';
 

@@ -1,25 +1,32 @@
 <?php
-//	A config/setup.php file, capable of creating or re-creating 
-//	the database schema, by using the info cintained in the file 
-//	config/database.php.
-echo "Пытаюсь отправить письмо" . PHP_EOL;
 
-$headers = array(
-    'From' => 'bsabre.cat@gmail.com',
-    'Reply-To' => 'bsabre.cat@gmail.com',
-    'X-Mailer' => 'PHP/' . phpversion()
-);
+if (!file_exists('database.php'))	{
+    echo 'No database file was found.'.PHP_EOL;
+    echo 'Maybe you forgot to change directory.'.PHP_EOL;
+	exit;
+}
 
-$header = "From: bsabre.cat@gmail.com\r\n";
+if (!include_once('database.php')) {
+	echo 'Cannot include database file.'.PHP_EOL;
+	exit;
+}
 
-$ret = mail("skinnyman23@yandex.ru", 'subject1', "Message for send!!!\nport 993");
+if (!include_once('../scripts/functions.php')) {
+    echo 'Cannot include functions file.'.PHP_EOL;
+	exit;
+}
 
-echo $ret . PHP_EOL;
+try {
+    $connectDB = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    $connectDB->query('DROP TABLE IF EXISTS users');
+    $connectDB->query('CREATE TABLE users (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, login VARCHAR(15) NOT NULL, passwd VARCHAR(35) NOT NULL, email VARCHAR(30) NOT NULL, status VARCHAR(15) NOT NULL )');
 
-// May  6 17:48:10 skinny-pc sendmail[15817]: 046EmAix015817: from=skinny, size=74, class=0, nrcpts=1, 
-//     msgid=<202005061448.046EmAix015817@skinny-pc.beeline>, relay=skinny@localhost
-// May  6 17:48:10 skinny-pc sendmail[15817]: 046EmAix015817: to=skinnyman23@yandex.ru, 
-//     ctladdr=skinny (1000/1000), delay=00:00:00, xdelay=00:00:00, mailer=relay, pri=30074, 
-//     relay=[127.0.0.1] [127.0.0.1], dsn=4.0.0, stat=Deferred: Connection refused by [127.0.0.1]
+    userRegisterDB($connectDB, 'admin', 'admin', 'globchansky.denis@gmail.com', 'superUser');
+    userRegisterDB($connectDB, 'bsabre', 'Den23@', 'skinnyman23@yandex.ru', 'user');
+    userRegisterDB($connectDB, 'simpleUser', 'User1!', 'skinnyman89@yandex.ru', 'user');
+} catch (PDOException $e) {
+	echo 'Cannot connect to Database'.PHP_EOL;
+	exit;
+}
 
 ?>

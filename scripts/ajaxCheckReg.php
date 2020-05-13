@@ -3,41 +3,54 @@
 session_start();
 
 $errors = [
-	'other' => '',
+	'request' => '',
 	'login' => '',
 	'passwd' => '',
 	'passwdConfirm' => '',
-	'email' => '',
-	'request' => ''
+	'email' => ''
 ];
 
 if (!include_once("functions.php")) {
-	$errors['other'] = 'Error: cannot run one of scripts';
+	$errors['request'] = 'Error: cannot run one of scripts';
 	echo json_encode($errors);
 	exit;
 }
 
 if ($_SESSION['loggued_on_user'] != '') {
-	$errors['other'] = 'You are already logged as ' . xmlDefense($_SESSION['loggued_on_user']);
+	$errors['request'] = 'You are already logged as ' . xmlDefense($_SESSION['loggued_on_user']);
 	echo json_encode($errors);
 	exit;
 }
 
 if (	!file_exists('../config') ||
 		!file_exists('../config/database.php'))	{
-	$errors['other'] = 'Config file not found';
+	$errors['request'] = 'Config file not found';
 	echo json_encode($errors);
 	exit;
 }
 
 if (!include_once('../config/database.php')) {
-	$errors['other'] = 'Error: cannot run one of scripts';
+	$errors['request'] = 'Error: cannot run one of scripts';
+	echo json_encode($errors);
+	exit;
+}
+
+try {
+	$connectDB = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+} catch (PDOException $e) {
+	$errors['request'] = 'Cannot connect to Database';
 	echo json_encode($errors);
 	exit;
 }
 
 if ( ($ret = checkRegLogin()) != '' )	{
 	$errors['login'] = $ret;
+}
+
+if ( checkLoginInDB( $connectDB, $_REQUEST['login'] ) ) {
+	$errors['login'] = 'This login is already taken';
+	echo json_encode($errors);
+	exit;
 }
 
 if ( ($ret = checkRegPasswd()) != '' )	{ 
@@ -52,24 +65,8 @@ if ( ($ret = checkRegEmail()) != '' )	{
 	$errors['email'] = $ret;
 }
 
-
-$database = mysqli_connect(
-	$DB_DSN, $DB_USER, $DB_PASSWORD, $DB_NAME);
-
-if (mysqli_connect_errno() || $database == null) {
-	$errors['request'] = 'Error ' . mysqli_connect_errno() . ' ' . mysqli_connect_error();
-	echo json_encode($errors);
-	exit;
-}
-
-if (!checkLoginInBD(	$database, $_REQUEST['login'] )) {
-	$errors['request'] = 'This login is already taken';
-	echo json_encode($errors);
-	exit;
-}
-
-if (!checkEmailInBD(	$database, $_REQUEST['email'] )) {
-	$errors['request'] = 'This email is already taken';
+if ( checkEmailInDB( $connectDB, $_REQUEST['email'] ) ) {
+	$errors['email'] = 'This email is already taken';
 	echo json_encode($errors);
 	exit;
 }

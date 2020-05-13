@@ -7,94 +7,142 @@ function xmlDefense($str) {
 	return $str;
 }
 
-function autorizeBD($database, $login, $passwd) : bool {
+function autorizeDB($connectDB, $login, $passwd) : bool {
 	$pass = md5($passwd);
-
-	$stmt = $database->prepare("SELECT login, passwd FROM users WHERE login = ? AND passwd = ?");
-	$stmt->bind_param("ss", $login, $pass);
-
-	if ($stmt->execute() && $stmt->fetch()) {
-		return true;
-	}
-	return false;
-}
-
-function checkUserStatusBD($database, $login, $passwd) : bool {
-	$pass = md5($passwd);
-
-	$stmt = $database->prepare("SELECT status FROM users WHERE login = ? AND passwd = ?");
-	$stmt->bind_param("ss", $login, $pass);
-
-	if (!$stmt->execute()) {
-		return false;
-	}
-	if ( ($answer = $stmt->get_result()) ) {
-		$answer->data_seek(0);
-		$line = $answer->fetch_assoc();
-		if ($line && ($line['status'] == 'user' || $line['status'] == 'admin' || $line['status'] == 'superuser')) {
+	$params = [
+		':login'	=> $login,
+		':passwd'	=> $pass,
+	];
+	$query = 'SELECT login, passwd FROM users WHERE login = :login AND passwd = :passwd';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results && $results['login'] == $login && $results['passwd'] == $pass) {
 			return true;
-		}	
+		}
+	}	catch (PDOException $e)	{
+		// echo 'Exception found!</br>autorizeDB</br>'.PHP_EOL;
+		// exit;
+		$_SESSION['last_error'] .= 'database connection error ';
+		return false;
 	}
 	return false;
 }
 
-function checkLoginInBD($database, $login) : bool {
-	$stmt = $database->prepare("SELECT login FROM users WHERE login = ?");
-	$stmt->bind_param("s", $login);
-
-	if ($stmt->execute() && $stmt->fetch()) {
-		return false;
-	}
-	return true;
-}
-
-function checkEmailInBD($database, $email) : bool {
-	$stmt = $database->prepare("SELECT email FROM users WHERE email = ?");
-	$stmt->bind_param("s", $email);
-
-	if ($stmt->execute() && $stmt->fetch()) {
-		return false;
-	}
-	return true;
-}
-
-function userRegisterBD($database, $login, $passwd, $email, $status) : bool {
+function checkUserStatusDB($connectDB, $login, $passwd) : bool {
 	$pass = md5($passwd);
+	$params = [
+		':login'	=> $login,
+		':passwd'	=> $pass,
+	];
+	$query = 'SELECT status FROM users WHERE login = :login AND passwd = :passwd';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results && ($results['status'] == 'user' || $results['status'] == 'admin' || $results['status'] == 'superUser')) {
+			return true;
+		}
+	} catch (PDOException $e) {
+		// echo 'Exception found!</br>checkUserStatusDB</br>'.PHP_EOL;
+		// exit;
+		$_SESSION['last_error'] .= 'database connection error ';
+		return false;
+	}
+	return false;
+}
 
-	$stmt = $database->prepare("INSERT INTO users (login, passwd, email, status) VALUES (?, ?, ?, ?)");
-	$stmt->bind_param("ssss", $login, $pass, $email, $status);
+function checkLoginInDB($connectDB, $login) : bool {
+	$params = [
+		':login'	=> $login,
+	];
+	$query = 'SELECT login FROM users WHERE login = :login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results && $results['login'] == $login) {
+			return true;
+		}
+	} catch(PDOException $e) {
+		// echo 'Exception found!</br>checkLoginInDB</br>'.PHP_EOL;
+		// exit;
+		$_SESSION['last_error'] .= 'database connection error ';
+		return false;
+	}
+	return false;
+}
 
-	if ($stmt->execute() && $stmt->fetch()) {
+function checkEmailInDB($connectDB, $email) : bool {
+	$params = [
+		':email'	=> $email,
+	];
+	$query = 'SELECT email FROM users WHERE email = :email';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results && $results['email'] == $email) {
+			return true;
+		}
+	} catch(PDOException $e) {
+		// echo 'Exception found!</br>checkEmailInDB</br>'.PHP_EOL;
+		// exit;
+		$_SESSION['last_error'] .= 'database connection error ';
+		return false;
+	}
+	return false;
+}
+
+function userRegisterDB($connectDB, $login, $passwd, $email, $status) : bool {
+	$pass = md5($passwd);
+	$params = [
+		':login'	=> $login,
+		':passwd'	=> $pass,
+		':email'	=> $email,
+		':status'	=> $status,
+	];
+	$query = 'INSERT INTO users (login, passwd, email, status) VALUES (:login, :passwd, :email, :status)';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
 		return true;
+	} catch(PDOException $e) {
+		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
+		// exit;
+		$_SESSION['last_error'] .= 'database connection error ';
+		return false;
 	}
 	return false;
 }
 
 function checkAuthRequest() : bool {
-	$ret = true;
 	if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 		$_SESSION['last_error'] .= 'Wrong request method ';
-        $ret = false;
+        return false;
 	}
 	if (!array_key_exists('login', $_REQUEST)) {
 		$_SESSION['last_error'] .= 'Login not existed ';
-        $ret = false;
-	} elseif ($_REQUEST['login'] === '') {
+        return false;
+	}
+	if ($_REQUEST['login'] === '') {
 		$_SESSION['last_error'] .= 'Login is empty ';
-		$ret = false;
+		return false;
 	}
 	if (!array_key_exists('passwd', $_REQUEST)) {
 		$_SESSION['last_error'] .= 'Password not exist ';
-        $ret = false;
-	} elseif ($_REQUEST['passwd'] === '') {
+        return false;
+	}
+	if ($_REQUEST['passwd'] === '') {
 		$_SESSION['last_error'] .= 'Password is empty ';
-		$ret = false;
+		return false;
 	}
 	if ($_REQUEST['submit'] !== 'signIn') {
 		$_SESSION['last_error'] .= 'You didnt push submit ';
-        $ret = false;
+        return false;
 	}
-    return $ret;
+    return true;
 }
 
 function checkRegLogin() : string {
