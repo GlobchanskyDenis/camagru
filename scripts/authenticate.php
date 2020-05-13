@@ -29,6 +29,11 @@ if (!autorizeDB($connectDB, $_REQUEST['login'], $_REQUEST['passwd'])) {
 	exit;
 }
 
+if (!updateUserTime($connectDB, $_REQUEST['login'])) {
+	header($prevLocation);
+	exit;
+}
+
 if (!checkUserStatusDB($connectDB, $_REQUEST['login'], $_REQUEST['passwd'])) {
 	$_SESSION['last_error'] = 'Please confirm your e-mail';
 	header($prevLocation);
@@ -37,5 +42,5 @@ if (!checkUserStatusDB($connectDB, $_REQUEST['login'], $_REQUEST['passwd'])) {
 }
 
 $_SESSION['loggued_on_user'] = $_REQUEST['login'];
-header($prevLocation);
+header('Location: ../gallery.php');
 ?>

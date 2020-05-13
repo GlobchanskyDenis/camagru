@@ -118,6 +118,24 @@ function userRegisterDB($connectDB, $login, $passwd, $email, $status) : bool {
 	return false;
 }
 
+function updateUserTime($connectDB, $login) : bool {
+	$params = [
+		':login'	=> $login,
+	];
+	$query = 'UPDATE users SET lastVisited=NOW() WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
+		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
+		// exit;
+		$_SESSION['last_error'] .= 'database connection error ';
+		return false;
+	}
+	return false;
+}
+
 function checkAuthRequest() : bool {
 	if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 		$_SESSION['last_error'] .= 'Wrong request method ';
