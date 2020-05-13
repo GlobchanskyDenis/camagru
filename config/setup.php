@@ -19,11 +19,22 @@ if (!include_once('../scripts/functions.php')) {
 try {
     $connectDB = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     $connectDB->query('DROP TABLE IF EXISTS users');
-    $connectDB->query('CREATE TABLE users (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, login VARCHAR(15) NOT NULL, passwd VARCHAR(35) NOT NULL, email VARCHAR(30) NOT NULL, status VARCHAR(15) NOT NULL )');
+    $connectDB->query('CREATE TABLE users ( id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+                                            login VARCHAR(15) NOT NULL, 
+                                            passwd VARCHAR(35) NOT NULL, 
+                                            email VARCHAR(30) NOT NULL, 
+                                            status VARCHAR(15) NOT NULL,
+                                            notifications BOOL DEFAULT TRUE,
+                                            registrationDate TIMESTAMP,
+                                            lastVisited TIMESTAMP )');
 
     userRegisterDB($connectDB, 'admin', 'admin', 'globchansky.denis@gmail.com', 'superUser');
     userRegisterDB($connectDB, 'bsabre', 'Den23@', 'skinnyman23@yandex.ru', 'user');
     userRegisterDB($connectDB, 'simpleUser', 'User1!', 'skinnyman89@yandex.ru', 'user');
+    // $date = date("Y-m-d");
+    // echo $date.PHP_EOL;
+    $date = new DateTime();
+    echo $date->getTimestamp().PHP_EOL;
 } catch (PDOException $e) {
 	echo 'Cannot connect to Database'.PHP_EOL;
 	exit;

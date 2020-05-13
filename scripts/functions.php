@@ -103,7 +103,8 @@ function userRegisterDB($connectDB, $login, $passwd, $email, $status) : bool {
 		':email'	=> $email,
 		':status'	=> $status,
 	];
-	$query = 'INSERT INTO users (login, passwd, email, status) VALUES (:login, :passwd, :email, :status)';
+	$query = 'INSERT INTO users (login, passwd, email, status, registrationDate, lastVisited) 
+						VALUES (:login, :passwd, :email, :status, NOW(), NOW())';
 	try {
 		$stmt = $connectDB->prepare($query);
 		$stmt->execute($params);
