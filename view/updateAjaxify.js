@@ -94,4 +94,43 @@ function ajaxCheckReg() {
 	})
 }
 
+function updateNotifications() {
+	// var checkBox = document.querySelector(".notificationsCheckbox");
+	// var data;
+	// if (checkBox.hasAttribute('checked', true)) {
+	// 	data = "data=1";
+	// } else {
+	// 	data = "data=0";
+	// }
+	// console.log(checkBox.hasAttribute('checked', true));
+	$.ajax({
+		method: "POST",
+		url:    "scripts/ajaxUpdateNotifications.php",
+		data:   '' //data
+	})
+}
+
+$(document).ready(function(){
+	var checkBox = document.querySelector(".notificationsCheckbox");
+	function callbackFunc(data) {
+		var checkBox = document.querySelector(".notificationsCheckbox");
+		// console.log("before: "+data);
+		data = jQuery.parseJSON(data);
+		// console.log("after: "+data);
+		if (data) {
+			checkBox.setAttribute('checked', true);
+		}
+	}
+
+	$.ajax({
+		method: "POST",
+		url:    "scripts/ajaxGetNotifications.php",
+		data:   ''
+	})
+
+	.done(function (data) {
+		callbackFunc(data);
+	})
+})
+
 setInterval( ajaxCheckReg, 2000);

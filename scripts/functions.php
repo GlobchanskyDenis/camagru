@@ -187,9 +187,40 @@ function updatePasswd($connectDB, $login, $passwd) : bool {
 		$stmt->execute($params);
 		return true;
 	} catch(PDOException $e) {
-		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
-		// exit;
-		// $_SESSION['last_error'] .= 'database connection error ';
+		return false;
+	}
+	return false;
+}
+
+function getNotifications($connectDB, $login) : int {
+	$params = [
+		':login'	=> $login,
+	];
+	$query = 'SELECT notifications FROM users WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results) {
+			return $results['notifications'];
+		}
+	} catch(PDOException $e) {
+		return (-1);
+	}
+	return (-1);
+}
+
+function updateNotifications($connectDB, $login, $notif) : bool {
+	$params = [
+		':login'	=> $login,
+		':notif'	=> $notif,
+	];
+	$query = 'UPDATE users SET notifications=:notif WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
 		return false;
 	}
 	return false;

@@ -14,21 +14,12 @@ function ajaxCheckReg() {
 	if (document.forms['signUpMenu']['email'].value == '') 
 		emailMarker.style.opacity = 0;
 
-	// var login = document.forms['signUpMenu']['login'].value;
-	// var passwd = document.forms['signUpMenu']['passwd'].value;
-	// var passwdConfirm = document.forms['signUpMenu']['passwdConfirm'].value;
-	// var email = document.forms['signUpMenu']['email'].value;
+	
 
 	if ((	document.forms['signUpMenu']['login'].value == '' &&
 			document.forms['signUpMenu']['passwd'].value == '' &&
 			document.forms['signUpMenu']['passwdConfirm'].value == '' &&
 			document.forms['signUpMenu']['email'].value == ''))
-		// 	 ||
-		// (	login == document.forms['signUpMenu']['login'].value &&
-		// 	passwd == document.forms['signUpMenu']['passwd'].value &&
-		// 	passwdConfirm == document.forms['signUpMenu']['passwdConfirm'].value &&
-		// 	email == document.forms['signUpMenu']['email'].value
-		// ))
 	{
 		return;
 	}

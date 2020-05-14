@@ -15,25 +15,14 @@ if (!include_once('connectDB.php')) {
 	exit;
 }
 
-// $_REQUEST['login'] = $_REQUEST['newLogin'];
-if (($ret = checkRegLogin()) != '') {
-	$_SESSION['last_error'] = $ret;
-	header($prevLocation);
-	exit;
-}
+$notifications = 0;
 
-if (checkLoginInDB($connectDB, $_REQUEST['login'])) {
-	$_SESSION['last_error'] = 'User with same login already registered';
-	header($prevLocation);
-	exit;
-}
-
-if (!updateLogin($connectDB, $_SESSION['loggued_on_user'], $_REQUEST['login'])) {
+if (!updateNotifications($connectDB, $_SESSION['loggued_on_user'], $notifications)) {
 	$_SESSION['last_error'] = 'Something goes wrong';
 	header($prevLocation);
 	exit;
 } else {
-	$_SESSION['last_error'] = '<span style="color:green;">Login was updated</span>';
+	$_SESSION['last_error'] = 'Login was updated';
 	$_SESSION['loggued_on_user'] = $_REQUEST['login'];
 	header('Location: ../settings.php');
 }

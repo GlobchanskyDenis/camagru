@@ -33,7 +33,7 @@ if (!updateEmail($connectDB, $_SESSION['loggued_on_user'], $_REQUEST['email'])) 
 	header($prevLocation);
 	exit;
 } else {
-	$_SESSION['last_error'] = 'Email was updated';
+	$_SESSION['last_error'] = '<span style="color:green;">Email was updated</span>';
 	header('Location: ../settings.php');
 }
 

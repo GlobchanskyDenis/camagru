@@ -42,12 +42,10 @@
 					<div class="emailMarker"></div>
 					<input type="submit" class="submit" name="submit" value="Ok">
 				</form>
+
 				<form action="#" method="POST">
-					<input type="checkbox" class="notificationsCheckbox" checked>
+					<input type="checkbox" class="notificationsCheckbox" onchange="updateNotifications()">
 					<div id="notifications">Email Notifications OFF</div>
-					<!-- <input type="text" class="input" name="newEmail" placeholder="new e-mail">
-					<div class="emailMarker"></div>
-					<input type="submit" class="submit" name="submit" value="Ok"> -->
 				</form>
 			</div>
 			
