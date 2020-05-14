@@ -41,7 +41,9 @@ function checkUserStatusDB($connectDB, $login, $passwd) : bool {
 		$stmt = $connectDB->prepare($query);
 		$stmt->execute($params);
 		$results = $stmt->fetch(PDO::FETCH_ASSOC);
-		if ($results && ($results['status'] == 'user' || $results['status'] == 'admin' || $results['status'] == 'superUser')) {
+		if ($results && ($results['status'] == 'user' || 
+						$results['status'] == 'admin' || 
+						$results['status'] == 'superUser')) {
 			return true;
 		}
 	} catch (PDOException $e) {

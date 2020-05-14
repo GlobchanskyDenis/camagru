@@ -5,51 +5,27 @@
 	display:					block;
 }
 
-/* #errorMessage {
-	display:					block;
-	height:						20px;
-	margin:						5px;
+#settingsBody {
+	width:						350px;
+	/* height:						400px; */
 	text-align:					center;
-	color:						red;
-	font-size:					1.2em;
-	font-weight:				200;
-	font-style:					italic;
-} */
-
-#signInMenu	{
 	display:					block;
-	width:						350px;
-	height:						225px;
-	margin:						10px auto 10px auto;
-	/* border:						1px solid grey; */
-	/* border-radius:				5px; */
+	margin:						0 auto 0 auto;
 	background-color: 			rgb(235, 245, 255);
 	box-shadow:					0 0 10px rgba(0,0,0,0.4);
 	border:						1px solid rgb(150, 150, 150);
 	border-radius:				5px;
 }
 
-#signUpMenu	{
-	display:					block;
-	width:						350px;
-	height:						370px;
-	margin:						10px auto 10px auto;
-	/* border:						1px solid grey; */
-	/* border-radius:				5px; */
-	background-color: 			rgb(235, 245, 255);
-	box-shadow:					0 0 10px rgba(0,0,0,0.4);
-	border:						1px solid rgb(150, 150, 150);
-	border-radius:				5px;
-}
 
 .inputHeader	{
 	display:					block;
 	width:						300px;
-	margin:						10px auto 5px auto;
+	margin:						13px auto 5px auto;
 	height:						20px;
 	text-align:					center;
 	color:						rgb(70, 100, 120);
-	font-size:					1.7em;
+	font-size:					1.6em;
 	font-style:					normal;
 	font-weight:				100;
 	font-family:				'Pacifico', cursive;
@@ -69,6 +45,29 @@
 	box-shadow:					0 0 10px rgba(0,0,0,0.4);
 	border:						1px solid rgb(150, 150, 150);
 	border-radius:				5px;
+}
+
+.submit			{
+	display:					inline-block;
+	width:						150px;
+	height:						35px;
+	background-color:			white;
+	border:						1px solid rgb(132, 174, 200);
+	border-radius:				5px;
+	margin:						8px auto;
+	color:						rgb(70, 100, 120);
+	font-size:					1.6em;
+	font-style:					normal;
+	font-weight:				100;
+	font-family:				'Pacifico', cursive;
+}
+
+.submit:hover	{
+	background-color:			rgb(215, 235, 250);
+}
+
+.submit:active	{
+	background-color:			rgb(200, 220, 240);
 }
 
 .loginMarker	{
@@ -111,25 +110,22 @@
 	background-color:			red;
 }
 
-.submit			{
+.notificationsCheckbox {
+	width:						20px;
+	height:						20px;
 	display:					inline-block;
-	width:						150px;
-	height:						40px;
-	background-color:			white;
-	border:						1px solid rgb(132, 174, 200);
-	border-radius:				5px;
-	margin:						15px auto;
+	margin:						15px auto 15px 15px;
+}
+
+#notifications	{
+	display:					inline-block;
+	width:						230px;
+	margin:						15px auto 15px auto;
+	height:						20px;
+	text-align:					center;
 	color:						rgb(70, 100, 120);
 	font-size:					1.6em;
 	font-style:					normal;
 	font-weight:				100;
 	font-family:				'Pacifico', cursive;
-}
-
-.submit:hover	{
-	background-color:			rgb(215, 235, 250);
-}
-
-.submit:active	{
-	background-color:			rgb(200, 220, 240);
 }

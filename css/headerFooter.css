@@ -246,6 +246,17 @@ ul {
 	transition-timing-function: ease;
 }
 
+#errorMessage {
+	display:					block;
+	height:						20px;
+	margin:						5px;
+	text-align:					center;
+	color:						red;
+	font-size:					1.2em;
+	font-weight:				200;
+	font-style:					italic;
+}
+
 .categoryTitle {
 	display:					block;
 	color:						rgb(70, 100, 120);

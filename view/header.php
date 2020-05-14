@@ -17,8 +17,8 @@ if ($_SESSION['loggued_on_user']) {
 					<li class="barItem"><div onclick="window.location.href='gallery.php'">Gallery</div></li>
 					<li class="barItem"><div><?php echo $_SESSION['loggued_on_user'] ?></div>
 						<ul class="bar__drop">
-							<li class="bar__dropItem"><div>Settings</div></li>
-							<li class="bar__dropItem"><div>Profile</div></li>
+							<li class="bar__dropItem"><div onclick="window.location.href='settings.php'">Settings</div></li>
+							<li class="bar__dropItem"><div onclick="window.location.href='profile.php'">Profile</div></li>
 							<li class="bar__dropItem"><div onclick="window.location.href='scripts/logout.php'">Logout</div></li>
 						</ul>
 					</li>
