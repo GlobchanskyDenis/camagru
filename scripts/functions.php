@@ -138,6 +138,63 @@ function updateUserTime($connectDB, $login) : bool {
 	return false;
 }
 
+function updateLogin($connectDB, $login, $newLogin) : bool {
+	$params = [
+		':login'	=> $login,
+		':newLogin'	=> $newLogin,
+	];
+	$query = 'UPDATE users SET login=:newLogin WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
+		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
+		// exit;
+		// $_SESSION['last_error'] .= 'database connection error ';
+		return false;
+	}
+	return false;
+}
+
+function updateEmail($connectDB, $login, $newEmail) : bool {
+	$params = [
+		':login'	=> $login,
+		':newEmail'	=> $newEmail,
+	];
+	$query = 'UPDATE users SET email=:newEmail WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
+		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
+		// exit;
+		// $_SESSION['last_error'] .= 'database connection error ';
+		return false;
+	}
+	return false;
+}
+
+function updatePasswd($connectDB, $login, $passwd) : bool {
+	$params = [
+		':login'	=> $login,
+		':passwd'	=> md5($passwd),
+	];
+	$query = 'UPDATE users SET passwd=:passwd WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
+		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
+		// exit;
+		// $_SESSION['last_error'] .= 'database connection error ';
+		return false;
+	}
+	return false;
+}
+
 function checkAuthRequest() : bool {
 	if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 		$_SESSION['last_error'] .= 'Wrong request method ';
@@ -206,7 +263,7 @@ function checkRegPasswd() : string {
 	return '';
 }
 
-function checkRegPasswdConfirm() {
+function checkRegPasswdConfirm() : string {
 
 	if (!array_key_exists('passwdConfirm', $_REQUEST))		{ return 'Password confirm not exist'; }
 	if ($_REQUEST['passwd'] !== $_REQUEST['passwdConfirm'])	{ return 'Passwd and its confirm dont match'; }

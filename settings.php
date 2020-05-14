@@ -20,13 +20,13 @@
 			<div id="errorMessage"><?php echo $_SESSION['last_error']; $_SESSION['last_error'] = ''; ?></div>
 			
 			<div id="settingsBody">
-				<form action="#" method="POST">
+				<form action="scripts/updateLogin.php" method="POST">
 					<div class="inputHeader">Change Login</div>
-					<input type="text" class="input" name="newLogin" placeholder="new login">
+					<input type="text" class="input" name="login" placeholder="new login">
 					<div class="loginMarker"></div>
 					<input type="submit" class="submit" name="submit" value="Ok">
 				</form>
-				<form action="#" method="POST">
+				<form action="scripts/updatePasswd.php" method="POST">
 					<div class="inputHeader">Change Password</div>
 					<input type="password" class="input" name="passwd" placeholder="new password">
 					<div class="passwdMarker"></div>
@@ -34,9 +34,9 @@
 					<div class="passwdConfirmMarker"></div>
 					<input type="submit" class="submit" name="submit" value="Ok">
 				</form>
-				<form action="#" method="POST">
+				<form action="scripts/updateEmail.php" method="POST">
 					<div class="inputHeader">Change E-mail</div>
-					<input type="text" class="input" name="newEmail" placeholder="new e-mail">
+					<input type="text" class="input" name="email" placeholder="new e-mail">
 					<div class="emailMarker"></div>
 					<input type="submit" class="submit" name="submit" value="Ok">
 				</form>
