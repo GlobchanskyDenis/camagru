@@ -29,12 +29,12 @@ if (checkEmailInDB($connectDB, $_REQUEST['email'])) {
 }
 
 if (!updateEmail($connectDB, $_SESSION['loggued_on_user'], $_REQUEST['email'])) {
-	header('Location: ../gallery.php');
+	$_SESSION['last_error'] = 'Something goes wrong';
+	header($prevLocation);
 	exit;
 } else {
-	// $_SESSION['loggued_on_user'] = $_REQUEST['newLogin'];
-	header('Location: ../index.php');
-	exit;
+	$_SESSION['last_error'] = 'Email was updated';
+	header('Location: ../settings.php');
 }
 
 ?>

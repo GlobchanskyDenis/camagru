@@ -35,11 +35,12 @@ if (($ret = checkRegPasswdConfirm()) != '') {
 // }
 
 if (!updatePasswd($connectDB, $_SESSION['loggued_on_user'], $_REQUEST['passwd'])) {
-	header('Location: ../gallery.php');
+	$_SESSION['last_error'] = 'Something goes wrong';
+	header($prevLocation);
 	exit;
 } else {
-	// $_SESSION['loggued_on_user'] = $_REQUEST['newLogin'];
-	header('Location: ../index.php');
+	$_SESSION['last_error'] = 'Password was updated';
+	header('Location: ../settings.php');
 }
 
 ?>

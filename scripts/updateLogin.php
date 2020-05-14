@@ -29,10 +29,13 @@ if (checkLoginInDB($connectDB, $_REQUEST['login'])) {
 }
 
 if (!updateLogin($connectDB, $_SESSION['loggued_on_user'], $_REQUEST['login'])) {
+	$_SESSION['last_error'] = 'Something goes wrong';
+	header($prevLocation);
 	exit;
 } else {
-	$_SESSION['loggued_on_user'] = $_REQUEST['newLogin'];
-	header('Location: ../index.php');
+	$_SESSION['last_error'] = 'Login was updated';
+	$_SESSION['loggued_on_user'] = $_REQUEST['login'];
+	header('Location: ../settings.php');
 }
 
 ?>

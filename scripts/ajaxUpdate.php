@@ -16,11 +16,11 @@ if (!include_once("functions.php")) {
 	exit;
 }
 
-if ($_SESSION['loggued_on_user'] != '') {
-	$errors['request'] = 'You are already logged as ' . xmlDefense($_SESSION['loggued_on_user']);
-	echo json_encode($errors);
-	exit;
-}
+// if ($_SESSION['loggued_on_user'] != '') {
+// 	$errors['request'] = 'You are already logged as ' . xmlDefense($_SESSION['loggued_on_user']);
+// 	echo json_encode($errors);
+// 	exit;
+// }
 
 if (	!file_exists('../config') ||
 		!file_exists('../config/database.php'))	{

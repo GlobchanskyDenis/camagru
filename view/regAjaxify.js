@@ -104,4 +104,4 @@ function ajaxCheckReg() {
 	})
 }
 
-setInterval( ajaxCheckReg, 5000);
+setInterval( ajaxCheckReg, 2000);
