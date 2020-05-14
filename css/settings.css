@@ -7,10 +7,10 @@
 
 #settingsBody {
 	width:						350px;
-	/* height:						400px; */
 	text-align:					center;
 	display:					block;
 	margin:						0 auto 0 auto;
+	padding: 					10px 0px 20px 0px;
 	background-color: 			rgb(235, 245, 255);
 	box-shadow:					0 0 10px rgba(0,0,0,0.4);
 	border:						1px solid rgb(150, 150, 150);
@@ -21,7 +21,7 @@
 .inputHeader	{
 	display:					block;
 	width:						300px;
-	margin:						13px auto 5px auto;
+	margin:						8px auto 3px auto;
 	height:						20px;
 	text-align:					center;
 	color:						rgb(70, 100, 120);
@@ -114,13 +114,13 @@
 	width:						20px;
 	height:						20px;
 	display:					inline-block;
-	margin:						15px auto 15px 15px;
+	margin:						15px auto 0px 15px;
 }
 
 #notifications	{
 	display:					inline-block;
 	width:						230px;
-	margin:						15px auto 15px auto;
+	margin:						15px auto 0px auto;
 	height:						20px;
 	text-align:					center;
 	color:						rgb(70, 100, 120);

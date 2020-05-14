@@ -15,9 +15,15 @@ html {
 	font-family: 				'Montserrat', sans-serif;
 	letter-spacing: 			0.0em;
 	word-spacing: 				0.1em;
-	line-height: 				1.6em;	/* ?????????? */
+	line-height: 				1.6em;
 	margin: 0;
 	padding: 0;
+}
+
+@media (max-width: 400px) {
+	html {
+		font-size:				10px;
+	}
 }
 
 body {
@@ -33,9 +39,7 @@ body {
 	width:						100%;
 	min-height:					100vh;
 	padding:					0;
-	/* margin:						0; */
 	margin:						0 auto -25px 0;
-	/* border:						1px solid red; */
 }
 
 header {
@@ -44,6 +48,12 @@ header {
 	position: 					relative;
 	font-size: 					17px;
 	color:						white;
+}
+
+@media (max-width: 400px) {
+	header {
+		font-size:				15px;
+	}
 }
 
 ul {
@@ -56,16 +66,22 @@ ul {
 	position:					relative;
 	width:						100px;
 	height:						35px;
-	margin-right:				auto; 
+	margin-right:				auto;
 	margin-left:				auto;
+	opacity:					1;
 }
 
 @media (max-width: 930px) {
 	#camagru {
-		margin-left:				20px;
 		margin-right:				auto;
+		margin-left:				20px;
 	}
-	
+}
+
+@media (max-width: 530px) {
+	#camagru {
+		opacity:				0;
+	}
 }
 
 #camagru div {
@@ -285,4 +301,10 @@ footer div {
 	width:						25em;
 	margin-right:				0;
 	margin-left:				auto;
+}
+
+@media (max-width: 400px) {
+	footer div {
+		font-size:				14px;
+	}
 }
