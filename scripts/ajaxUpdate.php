@@ -10,6 +10,12 @@ $errors = [
 	'email' => ''
 ];
 
+if (!isset($_SESSION['loggued_on_user'])) {
+	$errors['request'] = 'You are not logged in';
+	echo json_encode($errors);
+	exit;
+}
+
 if (!include_once("functions.php")) {
 	$errors['request'] = 'Error: cannot run one of scripts';
 	echo json_encode($errors);
@@ -43,8 +49,6 @@ if ( ($ret = checkRegLogin()) != '' )	{
 
 if ( checkLoginInDB( $connectDB, $_REQUEST['login'] ) ) {
 	$errors['login'] .= ' This login is already taken';
-	// echo json_encode($errors);
-	// exit;
 }
 
 if ( ($ret = checkRegPasswd()) != '' )	{ 
@@ -61,8 +65,6 @@ if ( ($ret = checkRegEmail()) != '' )	{
 
 if ( checkEmailInDB( $connectDB, $_REQUEST['email'] ) ) {
 	$errors['email'] .= ' This email is already taken';
-	// echo json_encode($errors);
-	// exit;
 }
 
 echo json_encode($errors);

@@ -7,8 +7,23 @@ $requestAjax = [
 	'data'	=> '',
 ];
 
-if (!include_once('connectDB.php')) {
-	$requestAjax['error'] = 'Cannot find DB connection script';
+if (	!file_exists('../config') ||
+		!file_exists('../config/database.php'))	{
+	$requestAjax['error'] = 'Config file not found';
+	echo json_encode($requestAjax);
+	exit;
+}
+
+if (!include_once('../config/database.php')) {
+	$requestAjax['error'] = 'Error: cannot run one of scripts';
+	echo json_encode($requestAjax);
+	exit;
+}
+
+try {
+	$connectDB = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+} catch (PDOException $e) {
+	$requestAjax['error'] = 'Cannot connect to Database';
 	echo json_encode($requestAjax);
 	exit;
 }
