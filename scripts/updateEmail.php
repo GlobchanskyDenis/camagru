@@ -27,8 +27,13 @@ if (($ret = checkRegEmail()) != '') {
 	exit;
 }
 
-if (checkEmailInDB($connectDB, $_REQUEST['email'])) {
-	$_SESSION['last_error'] = 'User with this email already registered';
+$ret = checkEmailInDB(	$connectDB, $_REQUEST['email'] );
+if ($ret == 1) {
+	$_SESSION['last_error'] = 'This email is already taken';
+	header($prevLocation);
+	exit;
+} else if ($ret == -1) {
+	$_SESSION['last_error'] = 'Connection DB error';
 	header($prevLocation);
 	exit;
 }

@@ -28,14 +28,25 @@ if (!include_once('connectDB.php')) {
 	exit;
 }
 
-if (checkLoginInDB(	$connectDB, $_REQUEST['login'] )) {
+
+$ret = checkLoginInDB( $connectDB, $_REQUEST['login'] );
+if ( $ret == 1 ) {
 	$_SESSION['last_error'] = 'This login is already taken';
+	header($prevLocation);
+	exit;
+} else if ( $ret == -1 ) {
+	$_SESSION['last_error'] = 'Connection DB error';
 	header($prevLocation);
 	exit;
 }
 
-if (checkEmailInDB(	$connectDB, $_REQUEST['email'] )) {
+$ret = checkEmailInDB(	$connectDB, $_REQUEST['email'] );
+if ($ret == 1) {
 	$_SESSION['last_error'] = 'This email is already taken';
+	header($prevLocation);
+	exit;
+} else if ($ret == -1) {
+	$_SESSION['last_error'] = 'Connection DB error';
 	header($prevLocation);
 	exit;
 }

@@ -28,19 +28,30 @@ if (!include_once('connectDB.php')) {
 	exit;
 }
 
-if (!autorizeDB($connectDB, $_REQUEST['login'], $_REQUEST['passwd'])) {
+$ret = autorizeDB($connectDB, $_REQUEST['login'], $_REQUEST['passwd']);
+if ($ret == 0) {
 	$_SESSION['last_error'] = 'Autorization failed, wrong login or password';
+	header($prevLocation);
+	exit;
+} else if ($ret == -1) {
+	$_SESSION['last_error'] = 'Connection DB error';
 	header($prevLocation);
 	exit;
 }
 
+// !!!!!!!!!!!!!!!!!!!!!!! Нет возврата ошибки. Это норм?
 if (!updateUserTime($connectDB, $_REQUEST['login'])) {
 	header($prevLocation);
 	exit;
 }
 
-if (!checkUserStatusDB($connectDB, $_REQUEST['login'], $_REQUEST['passwd'])) {
+$ret = checkUserStatusDB($connectDB, $_REQUEST['login'], $_REQUEST['passwd']);
+if ($ret == 0) {
 	$_SESSION['last_error'] = 'Please confirm your e-mail';
+	header($prevLocation);
+	exit;
+} else if ($ret == -1) {
+	$_SESSION['last_error'] = 'Connection DB error';
 	header($prevLocation);
 	exit;
 }

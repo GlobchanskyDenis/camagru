@@ -48,12 +48,5 @@ if (!updateNotifications($connectDB, $_SESSION['loggued_on_user'], $notification
 	$requestAjax['error'] = 'Cannot connect to Database';
 }
 echo json_encode($requestAjax);
-// if (($ret = getNotifications($connectDB, $_SESSION['loggued_on_user'])) == -1) {
-// 	exit;
-// } else if ($ret == 0) {
-// 	updateNotifications($connectDB, $_SESSION['loggued_on_user'], 1);
-// } else {
-// 	updateNotifications($connectDB, $_SESSION['loggued_on_user'], 0);
-// }
 
 ?>

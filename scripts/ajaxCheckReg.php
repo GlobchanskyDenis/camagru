@@ -47,8 +47,11 @@ if ( ($ret = checkRegLogin()) != '' )	{
 	$errors['login'] = $ret;
 }
 
-if ( checkLoginInDB( $connectDB, $_REQUEST['login'] ) ) {
+$ret = checkLoginInDB( $connectDB, $_REQUEST['login'] );
+if ( $ret == 1 ) {
 	$errors['login'] = 'This login is already taken';
+} else if ( $ret == -1 ) {
+	$errors['request'] = 'Connection DB error';
 	echo json_encode($errors);
 	exit;
 }
@@ -65,8 +68,11 @@ if ( ($ret = checkRegEmail()) != '' )	{
 	$errors['email'] = $ret;
 }
 
-if ( checkEmailInDB( $connectDB, $_REQUEST['email'] ) ) {
-	$errors['email'] = 'This email is already taken';
+$ret = checkEmailInDB( $connectDB, $_REQUEST['email'] );
+if ( $ret == 1 ) {
+	$errors['email'] .= 'This email is already taken';
+} else if ( $ret == -1 ) {
+	$errors['request'] = 'Connection DB error';
 	echo json_encode($errors);
 	exit;
 }

@@ -8,7 +8,7 @@ function xmlDefense($str) {
 	return $str;
 }
 
-function autorizeDB($connectDB, $login, $passwd) : bool {
+function autorizeDB($connectDB, $login, $passwd) : int {
 	$pass = md5($passwd);
 	$params = [
 		':login'	=> $login,
@@ -20,15 +20,15 @@ function autorizeDB($connectDB, $login, $passwd) : bool {
 		$stmt->execute($params);
 		$results = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($results && $results['login'] == $login && $results['passwd'] == $pass) {
-			return true;
+			return 1;
 		}
 	}	catch (PDOException $e)	{
-		return false;
+		return -1;
 	}
-	return false;
+	return 0;
 }
 
-function checkUserStatusDB($connectDB, $login, $passwd) : bool {
+function checkUserStatusDB($connectDB, $login, $passwd) : int {
 	$pass = md5($passwd);
 	$params = [
 		':login'	=> $login,
@@ -42,15 +42,15 @@ function checkUserStatusDB($connectDB, $login, $passwd) : bool {
 		if ($results && ($results['status'] == 'user' || 
 						$results['status'] == 'admin' || 
 						$results['status'] == 'superUser')) {
-			return true;
+			return 1;
 		}
 	} catch (PDOException $e) {
-		return false;
+		return -1;
 	}
-	return false;
+	return 0;
 }
 
-function checkLoginInDB($connectDB, $login) : bool {
+function checkLoginInDB($connectDB, $login) : int {
 	$params = [
 		':login'	=> $login,
 	];
@@ -60,15 +60,15 @@ function checkLoginInDB($connectDB, $login) : bool {
 		$stmt->execute($params);
 		$results = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($results && $results['login'] == $login) {
-			return true;
+			return 1;
 		}
 	} catch(PDOException $e) {
-		return false;
+		return -1;
 	}
-	return false;
+	return 0;
 }
 
-function checkEmailInDB($connectDB, $email) : bool {
+function checkEmailInDB($connectDB, $email) : int {
 	$params = [
 		':email'	=> $email,
 	];
@@ -78,12 +78,12 @@ function checkEmailInDB($connectDB, $email) : bool {
 		$stmt->execute($params);
 		$results = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($results && $results['email'] == $email) {
-			return true;
+			return 1;
 		}
 	} catch(PDOException $e) {
-		return false;
+		return -1;
 	}
-	return false;
+	return 0;
 }
 
 function userRegisterDB($connectDB, $login, $passwd, $email, $status) : bool {

@@ -27,8 +27,13 @@ if (($ret = checkRegLogin()) != '') {
 	exit;
 }
 
-if (checkLoginInDB($connectDB, $_REQUEST['login'])) {
-	$_SESSION['last_error'] = 'User with same login already registered';
+$ret = checkLoginInDB( $connectDB, $_REQUEST['login'] );
+if ( $ret == 1 ) {
+	$_SESSION['last_error'] = 'This login is already taken';
+	header($prevLocation);
+	exit;
+} else if ( $ret == -1 ) {
+	$_SESSION['last_error'] = 'Connection DB error';
 	header($prevLocation);
 	exit;
 }
