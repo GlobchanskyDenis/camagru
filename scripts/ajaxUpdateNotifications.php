@@ -31,7 +31,7 @@ if ($_REQUEST['data'] == 0) {
 if (!updateNotifications($connectDB, $_SESSION['loggued_on_user'], $notification)) {
 	$requestAjax['error'] = 'Cannot connect to Database';
 }
-
+echo json_encode($requestAjax);
 // if (($ret = getNotifications($connectDB, $_SESSION['loggued_on_user'])) == -1) {
 // 	exit;
 // } else if ($ret == 0) {
