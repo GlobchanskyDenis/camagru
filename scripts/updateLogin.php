@@ -3,6 +3,12 @@
 session_start();
 $prevLocation = 'Location: ../settings.php';
 
+if (!isset($_SESSION['loggued_on_user'])) {
+	$_SESSION['last_error'] = 'You are not logged in';
+	header($prevLocation);
+	exit;
+}
+
 if (!include_once('functions.php')) {
 	$_SESSION['last_error'] = 'Cannot include functions file';
 	header($prevLocation);
@@ -15,7 +21,6 @@ if (!include_once('connectDB.php')) {
 	exit;
 }
 
-// $_REQUEST['login'] = $_REQUEST['newLogin'];
 if (($ret = checkRegLogin()) != '') {
 	$_SESSION['last_error'] = $ret;
 	header($prevLocation);

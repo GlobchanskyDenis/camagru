@@ -17,7 +17,7 @@
 
 		<div class="categoryTitle">User profile</div>
 		<div id="content">
-			<div id="errorMessage"><?php echo $_SESSION['last_error']; $_SESSION['last_error'] = ''; ?></div>
+			<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
 			
 		</div>
 

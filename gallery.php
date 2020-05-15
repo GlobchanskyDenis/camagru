@@ -16,6 +16,7 @@
 		?>
 
 		<div class="categoryTitle">The Gallery of Camagru</div>
+		<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
 		<section id="galery">
 			<div class="item">
 				<div class="itemHeader">Photo that I don't want to see</div>

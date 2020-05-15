@@ -19,7 +19,7 @@
 
 		<div class="categoryTitle">Personal settings</div>
 		<div id="content">
-			<div id="errorMessage"><?php echo $_SESSION['last_error']; $_SESSION['last_error'] = ''; ?></div>
+			<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
 			
 			<div id="settingsBody">
 				<form action="scripts/updateLogin.php" method="POST" id="updateLogin">

@@ -102,20 +102,42 @@ function updateNotifications() {
 	} else {
 		data = "data=1";
 	}
+
+	function callbackFunc(data) {
+		var message = document.getElementById("errorMessage");
+		// console.log("before: "+data);
+		data = jQuery.parseJSON(data);
+		// console.log("after: "+data);
+		if (data['error'] != '') {
+			message.innerHTML = data['error'];
+		}
+	}
+
 	// console.log(checkBox.checked);
 	$.ajax({
 		method: "POST",
 		url:    "scripts/ajaxUpdateNotifications.php",
 		data:   data
 	})
+
+	.done(function (data) {
+		callbackFunc(data);
+	})
 }
 
 $(document).ready(function(){
 	var checkBox = document.querySelector(".notificationsCheckbox");
+
 	function callbackFunc(data) {
 		var checkBox = document.querySelector(".notificationsCheckbox");
+		var message = document.getElementById("errorMessage");
+		// console.log("before: "+data);
 		data = jQuery.parseJSON(data);
-		if (data) {
+		// console.log("after: "+data);
+		if (data['error'] != '') {
+			message.innerHTML = data['error'];
+		}
+		if (data['data']) {
 			checkBox.setAttribute('checked', true);
 		}
 	}

@@ -1,4 +1,5 @@
 <?php
+
 function xmlDefense($str) {
 	if (!is_string($str))
 		return 'Sory, but bad string';
@@ -22,9 +23,6 @@ function autorizeDB($connectDB, $login, $passwd) : bool {
 			return true;
 		}
 	}	catch (PDOException $e)	{
-		// echo 'Exception found!</br>autorizeDB</br>'.PHP_EOL;
-		// exit;
-		$_SESSION['last_error'] .= 'database connection error ';
 		return false;
 	}
 	return false;
@@ -47,9 +45,6 @@ function checkUserStatusDB($connectDB, $login, $passwd) : bool {
 			return true;
 		}
 	} catch (PDOException $e) {
-		// echo 'Exception found!</br>checkUserStatusDB</br>'.PHP_EOL;
-		// exit;
-		$_SESSION['last_error'] .= 'database connection error ';
 		return false;
 	}
 	return false;
@@ -68,9 +63,6 @@ function checkLoginInDB($connectDB, $login) : bool {
 			return true;
 		}
 	} catch(PDOException $e) {
-		// echo 'Exception found!</br>checkLoginInDB</br>'.PHP_EOL;
-		// exit;
-		$_SESSION['last_error'] .= 'database connection error ';
 		return false;
 	}
 	return false;
@@ -89,9 +81,6 @@ function checkEmailInDB($connectDB, $email) : bool {
 			return true;
 		}
 	} catch(PDOException $e) {
-		// echo 'Exception found!</br>checkEmailInDB</br>'.PHP_EOL;
-		// exit;
-		$_SESSION['last_error'] .= 'database connection error ';
 		return false;
 	}
 	return false;
@@ -112,9 +101,6 @@ function userRegisterDB($connectDB, $login, $passwd, $email, $status) : bool {
 		$stmt->execute($params);
 		return true;
 	} catch(PDOException $e) {
-		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
-		// exit;
-		$_SESSION['last_error'] .= 'database connection error ';
 		return false;
 	}
 	return false;
@@ -130,9 +116,6 @@ function updateUserTime($connectDB, $login) : bool {
 		$stmt->execute($params);
 		return true;
 	} catch(PDOException $e) {
-		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
-		// exit;
-		$_SESSION['last_error'] .= 'database connection error ';
 		return false;
 	}
 	return false;
@@ -149,9 +132,6 @@ function updateLogin($connectDB, $login, $newLogin) : bool {
 		$stmt->execute($params);
 		return true;
 	} catch(PDOException $e) {
-		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
-		// exit;
-		// $_SESSION['last_error'] .= 'database connection error ';
 		return false;
 	}
 	return false;
@@ -168,9 +148,6 @@ function updateEmail($connectDB, $login, $newEmail) : bool {
 		$stmt->execute($params);
 		return true;
 	} catch(PDOException $e) {
-		// echo 'Exception found!</br>userRegisterDB</br>'.PHP_EOL;
-		// exit;
-		// $_SESSION['last_error'] .= 'database connection error ';
 		return false;
 	}
 	return false;
@@ -226,32 +203,14 @@ function updateNotifications($connectDB, $login, $notif) : bool {
 	return false;
 }
 
-function checkAuthRequest() : bool {
-	if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-		$_SESSION['last_error'] .= 'Wrong request method ';
-        return false;
-	}
-	if (!array_key_exists('login', $_REQUEST)) {
-		$_SESSION['last_error'] .= 'Login not existed ';
-        return false;
-	}
-	if ($_REQUEST['login'] === '') {
-		$_SESSION['last_error'] .= 'Login is empty ';
-		return false;
-	}
-	if (!array_key_exists('passwd', $_REQUEST)) {
-		$_SESSION['last_error'] .= 'Password not exist ';
-        return false;
-	}
-	if ($_REQUEST['passwd'] === '') {
-		$_SESSION['last_error'] .= 'Password is empty ';
-		return false;
-	}
-	if ($_REQUEST['submit'] !== 'signIn') {
-		$_SESSION['last_error'] .= 'You didnt push submit ';
-        return false;
-	}
-    return true;
+function checkAuthRequest() : string {
+	if ($_SERVER['REQUEST_METHOD'] != 'POST')	{ return 'Wrong request method'; }
+	if (!array_key_exists('login', $_REQUEST))	{ return 'Login not existed'; }
+	if ($_REQUEST['login'] === '')				{ return 'Login is empty'; }
+	if (!array_key_exists('passwd', $_REQUEST))	{ return 'Password not exist '; }
+	if ($_REQUEST['passwd'] === '')				{ return 'Password is empty'; }
+	if ($_REQUEST['submit'] !== 'signIn')		{ return 'You didnt push submit'; }
+    return '';
 }
 
 function checkRegLogin() : string {
@@ -264,7 +223,7 @@ function checkRegLogin() : string {
 	if (strlen($login) > LOGIN_MAX_LENGTH)		{ return 'Max login length '. LOGIN_MAX_LENGTH. ' symbols'; }
 	if (strlen($login) < LOGIN_MIN_LENGTH)		{ return 'Min login length '. LOGIN_MIN_LENGTH. ' symbols'; }
 	if (!ctype_alnum($login))					{ return 'Only letters and digits are available in login'; }
-	if ($login[0] >= '0' && $login[0] <= '9') { return 'First login symbol must be letter'; }
+	if ($login[0] >= '0' && $login[0] <= '9')	{ return 'First login symbol must be letter'; }
 
 	return '';
 }
@@ -289,7 +248,7 @@ function checkRegPasswd() : string {
 		if (($passwd[$i] >= '0' && $passwd[$i] <= '9'))	{ $isDigit = true; }
 	}
 	if ( !($isUpCase && $isLowCase && $isDigit && !ctype_alnum($passwd)) ) {
-		return 'Password must include UpCase, LowCase, Digit and other symbols';
+		return 'Password must include UpCase, LowCase, Digit and Special char';
 	}
 	return '';
 }
@@ -319,7 +278,7 @@ function checkRegEmail() {
 	$arr = explode('@', $email);
 	$domain = $arr[1];
 	if (substr_count ($domain , '.') != 1 || $domain[0] === '.' || $domain[strlen($domain) - 1] === '.') {
-		return 'Incorrect email';
+		return 'Incorrect email. Check domain';
 	}
 	
 	return '';

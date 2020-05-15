@@ -23,7 +23,7 @@
 		<div class="categoryTitle">Registration menu</div>
 
 		<div id="content">
-			<div id="errorMessage"><?php echo $_SESSION['last_error']; $_SESSION['last_error'] = '';?></div>
+			<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
 			<form id="signUpMenu" method="post" action="scripts/registration.php">
 				<div class="inputHeader">login</div>
 				<input type="text" class="input" name="login" placeholder="Type in your login">

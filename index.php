@@ -17,6 +17,7 @@
 
 		<div class="categoryTitle">What is Camagru?</div>
 		<div id="content">
+			<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
 			<p>Camagru is my own instagram. You can register here, make photo on webcam 
 				or simply upload them whith superposable images, browse gallery of a previous 
 				photo's, like and comment them.</p>

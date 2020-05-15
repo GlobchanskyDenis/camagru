@@ -16,12 +16,6 @@ if (!include_once("functions.php")) {
 	exit;
 }
 
-// if ($_SESSION['loggued_on_user'] != '') {
-// 	$errors['request'] = 'You are already logged as ' . xmlDefense($_SESSION['loggued_on_user']);
-// 	echo json_encode($errors);
-// 	exit;
-// }
-
 if (	!file_exists('../config') ||
 		!file_exists('../config/database.php'))	{
 	$errors['request'] = 'Config file not found';
@@ -48,9 +42,9 @@ if ( ($ret = checkRegLogin()) != '' )	{
 }
 
 if ( checkLoginInDB( $connectDB, $_REQUEST['login'] ) ) {
-	$errors['login'] = 'This login is already taken';
-	echo json_encode($errors);
-	exit;
+	$errors['login'] .= ' This login is already taken';
+	// echo json_encode($errors);
+	// exit;
 }
 
 if ( ($ret = checkRegPasswd()) != '' )	{ 
@@ -66,12 +60,11 @@ if ( ($ret = checkRegEmail()) != '' )	{
 }
 
 if ( checkEmailInDB( $connectDB, $_REQUEST['email'] ) ) {
-	$errors['email'] = 'This email is already taken';
-	echo json_encode($errors);
-	exit;
+	$errors['email'] .= ' This email is already taken';
+	// echo json_encode($errors);
+	// exit;
 }
 
-// $errors['request'] = $_COOKIE[session_name()];
 echo json_encode($errors);
 
 ?>

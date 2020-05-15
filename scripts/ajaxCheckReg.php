@@ -16,7 +16,7 @@ if (!include_once("functions.php")) {
 	exit;
 }
 
-if ($_SESSION['loggued_on_user'] != '') {
+if (isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user'] != '') {
 	$errors['request'] = 'You are already logged as ' . xmlDefense($_SESSION['loggued_on_user']);
 	echo json_encode($errors);
 	exit;
@@ -71,7 +71,6 @@ if ( checkEmailInDB( $connectDB, $_REQUEST['email'] ) ) {
 	exit;
 }
 
-// $errors['request'] = $_COOKIE[session_name()];
 echo json_encode($errors);
 
 ?>
