@@ -264,7 +264,7 @@ function checkRegLogin() : string {
 	if (strlen($login) > LOGIN_MAX_LENGTH)		{ return 'Max login length '. LOGIN_MAX_LENGTH. ' symbols'; }
 	if (strlen($login) < LOGIN_MIN_LENGTH)		{ return 'Min login length '. LOGIN_MIN_LENGTH. ' symbols'; }
 	if (!ctype_alnum($login))					{ return 'Only letters and digits are available in login'; }
-	if ($login[$i] >= '0' && $login[$i] <= '9') { return 'First login symbol must be letter'; }
+	if ($login[0] >= '0' && $login[0] <= '9') { return 'First login symbol must be letter'; }
 
 	return '';
 }
@@ -288,7 +288,7 @@ function checkRegPasswd() : string {
 		if (($passwd[$i] >= 'a' && $passwd[$i] <= 'z'))	{ $isLowCase = true; }
 		if (($passwd[$i] >= '0' && $passwd[$i] <= '9'))	{ $isDigit = true; }
 	}
-	if ( !($isUpCase && $isLowCase && $isDigit && !ctype_alnum($login)) ) {
+	if ( !($isUpCase && $isLowCase && $isDigit && !ctype_alnum($passwd)) ) {
 		return 'Password must include UpCase, LowCase, Digit and other symbols';
 	}
 	return '';
@@ -312,7 +312,7 @@ function checkRegEmail() {
 	if (strlen($email) > EMAIL_MAX_LENGTH)		{ return 'Max email length '.EMAIL_MAX_LENGTH.' symbols'; }
 	if (strlen($email) < EMAIL_MIN_LENGTH)		{ return 'Min email length '.EMAIL_MIN_LENGTH.' symbols'; }
 
-	if (substr_count ($email , '@') != 1 || $email[0] === '@' || $email[strlen[$email] - 1] === '@') {
+	if (substr_count ($email , '@') != 1 || $email[0] === '@' || $email[strlen($email) - 1] === '@') {
 		return 'Incorrect email - check @ symbol';
 	}
 

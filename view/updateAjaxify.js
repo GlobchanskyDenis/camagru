@@ -46,13 +46,13 @@ function ajaxCheckReg() {
 		else
 			message.innerHTML = '';
 
-		console.log( "rx: "+data['other']+' '+ 
-							data['login']+' '+
-							data['passwd']+' '+
-							data['passwdConfirm']+' '+
-							data['email']+' '+
-							data['request']
-					);
+		// console.log( "rx: "+data['other']+' '+ 
+		// 					data['login']+' '+
+		// 					data['passwd']+' '+
+		// 					data['passwdConfirm']+' '+
+		// 					data['email']+' '+
+		// 					data['request']
+		// 			);
 
 		if (document.forms['updateLogin']['login'].value != '' && data['login'] != '')
 			loginMarker.style.opacity = 1;
@@ -81,7 +81,7 @@ function ajaxCheckReg() {
 				'&passwd=' + document.forms['updatePasswd']['passwd'].value +
 				'&passwdConfirm=' + document.forms['updatePasswd']['passwdConfirm'].value +
 				'&email=' + document.forms['updateEmail']['email'].value;
-	console.log( "tx: " + newQuery );
+	// console.log( "tx: " + newQuery );
 
 	$.ajax({
 		method: "POST",
@@ -95,18 +95,18 @@ function ajaxCheckReg() {
 }
 
 function updateNotifications() {
-	// var checkBox = document.querySelector(".notificationsCheckbox");
-	// var data;
-	// if (checkBox.hasAttribute('checked', true)) {
-	// 	data = "data=1";
-	// } else {
-	// 	data = "data=0";
-	// }
-	// console.log(checkBox.hasAttribute('checked', true));
+	var checkBox = document.querySelector(".notificationsCheckbox");
+	var data;
+	if (checkBox.checked) {
+		data = "data=0";
+	} else {
+		data = "data=1";
+	}
+	// console.log(checkBox.checked);
 	$.ajax({
 		method: "POST",
 		url:    "scripts/ajaxUpdateNotifications.php",
-		data:   '' //data
+		data:   data
 	})
 }
 
@@ -114,9 +114,7 @@ $(document).ready(function(){
 	var checkBox = document.querySelector(".notificationsCheckbox");
 	function callbackFunc(data) {
 		var checkBox = document.querySelector(".notificationsCheckbox");
-		// console.log("before: "+data);
 		data = jQuery.parseJSON(data);
-		// console.log("after: "+data);
 		if (data) {
 			checkBox.setAttribute('checked', true);
 		}
