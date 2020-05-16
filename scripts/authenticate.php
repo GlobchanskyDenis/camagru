@@ -39,16 +39,17 @@ if ($ret == 0) {
 	exit;
 }
 
-// !!!!!!!!!!!!!!!!!!!!!!! Нет возврата ошибки. Это норм?
 if (!updateUserTime($connectDB, $_REQUEST['login'])) {
+	$_SESSION['last_error'] = 'Connection DB error';
 	header($prevLocation);
 	exit;
 }
 
 $ret = checkUserStatusDB($connectDB, $_REQUEST['login'], $_REQUEST['passwd']);
 if ($ret == 0) {
-	$_SESSION['last_error'] = 'Please confirm your e-mail';
-	header($prevLocation);
+	$_SESSION['last_error'] = '<span style="color: green;">Please confirm your e-mail</span>';
+	$_SESSION['to_confirm'] = $_REQUEST['login'];
+	header('Location: ../mailConfirm.php');
 	exit;
 } else if ($ret == -1) {
 	$_SESSION['last_error'] = 'Connection DB error';
@@ -57,5 +58,5 @@ if ($ret == 0) {
 }
 
 $_SESSION['loggued_on_user'] = $_REQUEST['login'];
-header('Location: ../gallery.php');
+header('Location: ../profile.php');
 ?>

@@ -35,7 +35,7 @@ if ( $ret == 1 ) {
 	header($prevLocation);
 	exit;
 } else if ( $ret == -1 ) {
-	$_SESSION['last_error'] = 'Connection DB error';
+	$_SESSION['last_error'] = 'Connection DB error on check login';
 	header($prevLocation);
 	exit;
 }
@@ -46,7 +46,7 @@ if ($ret == 1) {
 	header($prevLocation);
 	exit;
 } else if ($ret == -1) {
-	$_SESSION['last_error'] = 'Connection DB error';
+	$_SESSION['last_error'] = 'Connection DB error on check email';
 	header($prevLocation);
 	exit;
 }
@@ -57,7 +57,21 @@ if (!userRegisterDB( $connectDB, $_REQUEST['login'], $_REQUEST['passwd'], $_REQU
 	exit;
 }
 
+$confirmCode = getConfirmEmailCodeDB($connectDB, $_REQUEST['login']);
+if ($confirmCode === 'error') {
+	$_SESSION['last_error'] = 'Connection DB error on get confirm code';
+	header($prevLocation);
+	exit;
+} else if ($confirmCode == '') {
+	$_SESSION['last_error'] = 'This login isnt exists in DB';
+	header($prevLocation);
+	exit;
+}
 
-echo 'И вот тут перенаправление на страничку валидации email</br>'.PHP_EOL;
+sendConfirmMail($_REQUEST['login'], $_REQUEST['email'], $confirmCode);
+
+$_SESSION['last_error'] = '<span style="color: green;">Please confirm your e-mail</span>';
+$_SESSION['to_confirm'] = $_REQUEST['login'];
+header('Location: ../mailConfirm.php');
 
 ?>

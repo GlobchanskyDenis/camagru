@@ -31,10 +31,6 @@ try {
     userRegisterDB($connectDB, 'admin', 'admin', 'globchansky.denis@gmail.com', 'superUser');
     userRegisterDB($connectDB, 'bsabre', 'Den23@', 'skinnyman23@yandex.ru', 'user');
     userRegisterDB($connectDB, 'simpleUser', 'User1!', 'skinnyman89@yandex.ru', 'user');
-    // $date = date("Y-m-d");
-    // echo $date.PHP_EOL;
-    $date = new DateTime();
-    echo $date->getTimestamp().PHP_EOL;
 } catch (PDOException $e) {
 	echo 'Cannot connect to Database'.PHP_EOL;
 	exit;

@@ -1,0 +1,102 @@
+#content {
+	max-width:					600px;
+	margin:						0 auto 0 auto;
+	text-align:					center;
+	display:					block;
+}
+
+#mailConfirmBody {
+	width:						350px;
+	text-align:					center;
+	display:					block;
+	margin:						0 auto 0 auto;
+	padding: 					0;
+	background-color: 			rgb(235, 245, 255);
+	box-shadow:					0 0 10px rgba(0,0,0,0.4);
+	border:						1px solid rgb(150, 150, 150);
+	border-radius:				5px;
+}
+
+form {
+	width:						100%;
+	margin:						30px auto 30px auto;
+	padding:					0;
+}
+
+.inputHeader	{
+	display:					block;
+	width:						300px;
+	margin:						8px auto 3px auto;
+	height:						20px;
+	text-align:					center;
+	color:						rgb(70, 100, 120);
+	font-size:					1.6em;
+	font-style:					normal;
+	font-weight:				100;
+	font-family:				'Pacifico', cursive;
+}
+
+#code {
+	display:					inline-block;
+	width:						270px;
+	margin:						5px auto 5px auto;
+	height:						25px;
+	background-color: 			white;
+	text-align:					center;
+	font-size:					1.2em;
+	font-style:					normal;
+	font-weight:				300;
+	font-family:				'Montserrat', sans-serif;
+	box-shadow:					0 0 10px rgba(0,0,0,0.4);
+	border:						1px solid rgb(150, 150, 150);
+	border-radius:				5px;
+}
+
+#email {
+	display:					inline-block;
+	width:						270px;
+	margin:						5px 5px 5px 25px;
+	height:						25px;
+	background-color: 			white;
+	text-align:					center;
+	font-size:					1.2em;
+	font-style:					normal;
+	font-weight:				300;
+	font-family:				'Montserrat', sans-serif;
+	box-shadow:					0 0 10px rgba(0,0,0,0.4);
+	border:						1px solid rgb(150, 150, 150);
+	border-radius:				5px;
+}
+
+.submit		{
+	display:					inline-block;
+	width:						150px;
+	height:						35px;
+	background-color:			white;
+	border:						1px solid rgb(132, 174, 200);
+	border-radius:				5px;
+	margin:						8px auto;
+	color:						rgb(70, 100, 120);
+	font-size:					1.6em;
+	font-style:					normal;
+	font-weight:				100;
+	font-family:				'Pacifico', cursive;
+}
+
+.submit:hover	{
+	background-color:			rgb(215, 235, 250);
+}
+
+.submit:active	{
+	background-color:			rgb(200, 220, 240);
+}
+
+.emailMarker	{
+	display:					inline-block;
+	width:						15px;
+	height:						15px;
+	margin:						0;
+	border-radius:				50%;
+	opacity:					0;
+	background-color:			red;
+}

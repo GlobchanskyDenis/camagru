@@ -4,14 +4,16 @@ session_start();
 
 $errors = [
 	'request' => '',
-	'login' => '',
-	'passwd' => '',
-	'passwdConfirm' => '',
 	'email' => ''
 ];
 
-if (!isset($_SESSION['loggued_on_user'])) {
-	$errors['request'] = 'You are not logged in';
+if (isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user'] != '') {
+	$errors['request'] = 'You are already logged as ' . xmlDefense($_SESSION['loggued_on_user']);
+	echo json_encode($errors);
+	exit;
+}
+if (!isset($_SESSION['to_confirm']) || $_SESSION['to_confirm'] == '') {
+	$errors['request'] = 'Authorize or sign up first';
 	echo json_encode($errors);
 	exit;
 }
@@ -42,27 +44,6 @@ try {
 	echo json_encode($errors);
 	exit;
 }
-
-if ( ($ret = checkRegLogin()) != '' )	{
-	$errors['login'] = $ret;
-}
-
-$ret = checkLoginInDB( $connectDB, $_REQUEST['login'] );
-if ( $ret == 1 ) {
-	$errors['login'] .= 'This login is already taken';
-} else if ( $ret == -1 ) {
-	$errors['request'] .= 'Connection DB error';
-	echo json_encode($errors);
-	exit;
-}
-
-if ( ($ret = checkRegPasswd()) != '' )	{ 
-	$errors['passwd'] = $ret;
-}
-
-if ( ($ret = checkRegPasswdConfirm()) != '' )	{ 
-	$errors['passwdConfirm'] = $ret;
-} 
 
 if ( ($ret = checkRegEmail()) != '' )	{ 
 	$errors['email'] = $ret;

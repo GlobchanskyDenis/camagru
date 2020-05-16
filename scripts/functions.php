@@ -77,7 +77,7 @@ function checkEmailInDB($connectDB, $email) : int {
 		$stmt = $connectDB->prepare($query);
 		$stmt->execute($params);
 		$results = $stmt->fetch(PDO::FETCH_ASSOC);
-		if ($results && $results['email'] == $email) {
+		if ($results && isset($results['email']) && $results['email']) {
 			return 1;
 		}
 	} catch(PDOException $e) {
@@ -153,6 +153,22 @@ function updateEmail($connectDB, $login, $newEmail) : bool {
 	return false;
 }
 
+function updateUserStatusDB($connectDB, $login, $newStatus) {
+	$params = [
+		':login'	=> $login,
+		':Status'	=> $newStatus,
+	];
+	$query = 'UPDATE users SET status=:Status WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
+		return false;
+	}
+	return false;
+}
+
 function updatePasswd($connectDB, $login, $passwd) : bool {
 	$params = [
 		':login'	=> $login,
@@ -187,6 +203,42 @@ function getNotifications($connectDB, $login) : int {
 	return (-1);
 }
 
+function getConfirmEmailCodeDB($connectDB, $login) : string {
+	$params = [
+		':login'	=> $login,
+	];
+	$query = 'SELECT id, passwd FROM users WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results && isset($results['id']) && isset($results['passwd'])) {
+			return md5($results['id'].$results['passwd']);
+		}
+	} catch(PDOException $e) {
+		return 'error';
+	}
+	return '';
+}
+
+function getEmailDB($connectDB, $login) : string {
+	$params = [
+		':login'	=> $login,
+	];
+	$query = 'SELECT email FROM users WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results && isset($results['email'])) {
+			return $results['email'];
+		}
+	} catch(PDOException $e) {
+		return 'error';
+	}
+	return '';
+}
+
 function updateNotifications($connectDB, $login, $notif) : bool {
 	$params = [
 		':login'	=> $login,
@@ -211,6 +263,16 @@ function checkAuthRequest() : string {
 	if ($_REQUEST['passwd'] === '')				{ return 'Password is empty'; }
 	if ($_REQUEST['submit'] !== 'signIn')		{ return 'You didnt push submit'; }
     return '';
+}
+
+function checkValidationRequest() : string {
+	if (isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user'] != '') {
+		return 'You are already logged as ' . xmlDefense($_SESSION['loggued_on_user']);
+	}
+	if (!isset($_SESSION['to_confirm']) || $_SESSION['to_confirm'] == '') {
+		return 'Authorize or sign up first';
+	}
+	return '';
 }
 
 function checkRegLogin() : string {
@@ -294,5 +356,28 @@ function regRequestErrors() : string {
 	if ( ($ret = checkRegEmail()) != '' )			{ return $ret; }
 
 	return '';
+}
+
+function sendConfirmMail($login, $email, $confirmCode) {
+	$subject = 'Registration in Camagru';
+	$message = "<html><body>
+	<p><span style='font-size: 1.5em; color: green;'>Hello, <b>$login</b></span></br></p>
+	<p>you must confirm your registration by entering this confirm code:</p>
+	<p><span style='background-color: light-blue;'>$confirmCode</span></p>
+	<p>or you can simply push <a href='192.168.0.197:8080/scripts/validate.php?code=$confirmCode'>here</a></p>
+	<p><form action='192.168.0.197:8080/scripts/validate.php' method='POST'>
+	<input type='text' name='code' value='$confirmCode' hidden>
+	<input type='submit'>
+	</form></p>
+	</body></html>";
+
+	$message = '<html><body style="font-size: 1.4em;"><p><span style="font-size: 1.3em; color: green;">Hello, <b>'.$login.'</b></span></p>'.PHP_EOL;
+	$message .= '<p>you must confirm your registration by entering this confirm code:</p>';
+	$message .= '<p><span style="color: white; background-color: black; font-size:1.3em;">'.$confirmCode.'</span></p>';
+	$message .= '</body></html>';
+
+	$headers  = 'MIME-Version: 1.0' . PHP_EOL;
+	$headers .= 'Content-type: text/html; charset=utf8' . PHP_EOL;
+	mail($email, $subject, $message, $headers);
 }
 ?>
