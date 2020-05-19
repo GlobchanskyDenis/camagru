@@ -6,6 +6,7 @@
 	<title>Autentication</title>
 	<link rel="stylesheet" href="css/headerFooter.css">
 	<link rel="stylesheet" href="css/mailConfirm.css">
+	<script src="view/menu.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="view/mailConfirmAjaxify.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;1,200;1,400;1,600&display=swap" rel="stylesheet">

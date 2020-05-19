@@ -47,13 +47,13 @@ function ajaxCheckReg() {
 		else
 			message.innerHTML = '';
 
-		console.log( "rx: "+data['other']+' '+ 
-							data['login']+' '+
-							data['passwd']+' '+
-							data['passwdConfirm']+' '+
-							data['email']+' '+
-							data['request']
-					);
+		// console.log( "rx: "+data['other']+' '+ 
+		// 					data['login']+' '+
+		// 					data['passwd']+' '+
+		// 					data['passwdConfirm']+' '+
+		// 					data['email']+' '+
+		// 					data['request']
+		// 			);
 
 		if (document.forms['signUpMenu']['login'].value != '' && data['login'] != '')
 			loginMarker.style.opacity = 1;
@@ -82,7 +82,7 @@ function ajaxCheckReg() {
 				'&passwd=' + document.forms['signUpMenu']['passwd'].value +
 				'&passwdConfirm=' + document.forms['signUpMenu']['passwdConfirm'].value +
 				'&email=' + document.forms['signUpMenu']['email'].value;
-	console.log( "tx: " + newQuery );
+	// console.log( "tx: " + newQuery );
 
 	$.ajax({
 		method: "POST",

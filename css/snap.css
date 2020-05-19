@@ -1,0 +1,89 @@
+.content {
+	width:					100%;
+	margin:					0px;
+	display:				grid;
+	grid-template-columns:	7fr 3fr;
+	text-align:				left;
+}
+
+.snap {
+	width:					95%;
+	display:				block;
+	margin:					0px auto 5px auto;
+	text-align:				center;
+}
+
+#preview {
+	width:					100%;
+	display:				block;
+	margin:					0px auto 10px auto;
+	padding:				10px 0px 10px 0px;
+	background-color: 		rgb(235, 245, 255);
+	box-shadow:				0 0 10px rgba(0,0,0,0.4);
+	border-radius: 			20px;
+	opacity:				1;
+}
+
+#preview img {
+	display:				block;
+	margin:					auto auto auto auto;
+	width:					98%;
+	max-width:				480px;
+	max-height:				360px;
+	border-radius:			30px;
+}
+
+#stickers {
+	width:					100%;
+	display:				block;
+	margin:					10px auto 0px auto;
+	height:					90px;
+	background-color: 		rgb(235, 245, 255);
+	box-shadow:				0 0 10px rgba(0,0,0,0.4);
+	border-radius: 			20px;
+	opacity:				1;
+}
+
+#lastSnaps {
+	width:					95%;
+	display:				block;
+	margin:					0px auto 5px auto;
+	padding:				10px 0px 10px 0px;
+	background-color: 		rgb(235, 245, 255);
+	box-shadow:				0 0 10px rgba(0,0,0,0.4);
+	border-radius: 			20px;
+	text-align:				center;
+}
+
+#lastSnaps img {
+	display:				block;
+	width:					95%;
+	max-width:				190px;
+	margin:					10px auto 10px auto;
+	border-radius: 			20px;
+}
+
+#lastSnaps img:hover {
+	opacity:				0.85;
+}
+
+#lastSnaps img:active {
+	opacity:				0.7;
+}
+
+@media (max-width: 600px) {
+	.content	{
+		display:			block;
+	}
+
+	#lastSnaps img {
+		max-width:			500px;
+	}
+}
+
+#video {
+	max-width:				90%;
+	background-color:		black;
+	max-height:				600px;
+	border-radius:			40px;
+}

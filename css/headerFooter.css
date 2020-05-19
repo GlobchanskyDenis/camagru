@@ -20,6 +20,11 @@ html {
 	padding: 0;
 }
 
+.icon {
+	width:						30px;
+	opacity:					0.8;
+}
+
 @media (max-width: 400px) {
 	html {
 		font-size:				10px;
@@ -71,14 +76,14 @@ ul {
 	opacity:					1;
 }
 
-@media (max-width: 930px) {
+@media (max-width: 570px) {
 	#camagru {
 		margin-right:				auto;
 		margin-left:				20px;
 	}
 }
 
-@media (max-width: 530px) {
+@media (max-width: 355px) {
 	#camagru {
 		opacity:				0;
 	}
@@ -104,10 +109,8 @@ ul {
 	font-weight:				600;
 	font-style: 				italic;
 	position:					relative;
-	width:						23.1em;
-	/* margin-right:				0; */
+	width:						220px;
 	top:						-35px;
-	left:						auto;
 	margin-left:				auto;
 }
 
@@ -122,16 +125,8 @@ ul {
 .barItem {
 	background-color: 			rgb(132, 174, 200);
 	border-radius:				10px;
-	min-width:					6em;
+	min-width:					50px;
 	margin-right:				0.2em;
-	height:						40px;
-	text-align:					center;
-}
-
-.barItem:first-child {
-	background-color: 			rgb(132, 174, 200);
-	border-radius:				10px;
-	min-width:					7em;
 	height:						40px;
 	text-align:					center;
 }
@@ -139,7 +134,7 @@ ul {
 .barItem:last-child {
 	background-color: 			rgb(132, 174, 200);
 	border-radius:				10px;
-	min-width:					9.5em;
+	min-width:					60px;
 	height:						40px;
 	text-align:					center;
 	transition-delay:			0s;
@@ -163,11 +158,15 @@ ul {
 	transition-timing-function: ease;
 }
 
+.barItem:hover .icon {
+	opacity:					1;
+}
+
 .barItem:active {
 	background-color:			rgb(86, 112, 139);
 }
 
-@keyframes open {
+/* @keyframes open {
 	0%	{	top:		-999em;
 			opacity:	0;		}
 	1%	{	top:		10px;
@@ -187,13 +186,13 @@ ul {
 			opacity:	0;		}
 	100%{	top:		-999em;
 			opacity:	0;		}
-}
+} */
 
 .bar__drop	{
 	position:					absolute;
-	animation:					close 0.5s;
-	opacity:					0;
-	left:						13.4em;
+	/* animation:					close 0.5s; */
+	/* opacity:					0; */
+	right:						5px;
 	top:						-999em;
 	/* transition-property:		all; */
 	/* transition-property:		opacity;
@@ -202,17 +201,137 @@ ul {
 	transition-timing-function: ease; */
 }
 
-.barItem:hover .bar__drop {
+.notif__drop {
+	position:					absolute;
+	right:						40px;
+	top:						-1000px;
+	/* border:						1px solid red; */
+	font-family: 				'Montserrat', sans-serif;
+	text-shadow: 				1px 1px 2px rgb(116, 158, 184), 0 0 1em rgb(56, 98, 134);
+	font-weight:				600;
+	font-style: 				italic;
+	text-align:					center;
+}
+
+.notification {
+	display:					grid;
+	grid-template-columns:		200px 30px;
+	width:						230px;
+	min-height:					40px;
+	margin: 					0px 0px 3px 0px;
+	padding-left:				5px;
+	background-color: 			rgb(132, 174, 200);
+	border-radius: 				7px;
+	border:						1px solid rgb(101, 142, 169);
+	text-align:					left;
+	font-weight:				200;
+	transition-delay:			0s;
+	transition-duration:		1s;
+	transition-timing-function: ease;
+}
+
+.notification:hover {
+	background-color: 			rgb(101, 142, 169);
+	transition-delay:			0s;
+	transition-duration:		0.4s;
+	transition-timing-function: ease;
+}
+
+.notification:active {
+	background-color:			rgb(86, 112, 139);
+}
+
+.notification__body {
+	display:					flex;
+	height:						100%;
+	margin:						0;
+	padding:					0;
+	align-items:				center;
+	justify-content:			left;
+}
+
+.vertAlignator {
+	display:					flex;
+	height:						100%;
+	margin:						0;
+	padding:					0;
+	align-items:				center;
+	justify-content:			left;
+}
+
+/* .notif__dropItem {
+	background-color: 			rgb(132, 174, 200);
+	border-radius: 				7px;
+	border:						1px solid rgb(101, 142, 169);
+	width:						9.2em;
+	margin: 					3px 0px 0px 0px;
+	padding-left:				0;
+	padding: 					0;
+	height:						40px;
+	text-align:					left;
+	transition-delay:			0s;
+	transition-duration:		0.4s;
+	transition-timing-function: ease;
+} */
+
+#notifHeaderBlock {
+	width:						100%;
+	display:					block;
+	height:						32px;
+	background-color:			rgb(230, 230, 230);
+}
+
+#notifHeader {
+	display:					inline;
+	color:						rgb(96, 138, 174);
+	text-shadow: 				0, 1px 1px 2px rgb(26, 68, 104);
+	margin:						auto;
+}
+
+#notif1__body {
+	display:					flex;
+	height:						100%;
+	margin:						0;
+	padding:					0;
+	align-items:				center;
+	justify-content:			left;
+}
+
+#notif2__body {
+	display:					flex;
+	height:						100%;
+	margin:						0;
+	padding:					0;
+	align-items:				center;
+	justify-content:			left;
+}
+
+#notif3__body {
+	display:					flex;
+	height:						100%;
+	margin:						0;
+	padding:					0;
+	align-items:				center;
+	justify-content:			left;
+}
+
+#userName {
+	color:						rgb(96, 138, 174);
+	text-shadow: 				0, 1px 1px 2px rgb(26, 68, 104);
+	min-height:					30px;
+}
+
+/* .barItem:hover .bar__drop {
 	animation:					open 1s;
 	opacity:					1;
-	top:						40px;
+	top:						40px; */
 
 	/* transition-delay:			0s;
 	transition-duration:		1s;
 	transition-timing-function: ease;
 	transition-property:		opacity;
 	transition-property:		all; */
-}
+/* } */
 
 .bar__dropItem {
 	background-color: 			rgb(132, 174, 200);
@@ -246,7 +365,7 @@ ul {
 .bar__dropItem div {
 	display:					flex;
 	height:						100%;
-	margin:						0 0 0 20px;
+	margin:						0 0 0 13px;
 	padding:					0;
 	align-items:				center;
 	justify-content:			left;
@@ -256,7 +375,7 @@ ul {
 }
 
 .bar__dropItem div:hover {
-	margin-left:				27px;
+	margin-left:				20px;
 	transition-delay:			0s;
 	transition-duration:		0.6s;
 	transition-timing-function: ease;
@@ -306,5 +425,11 @@ footer div {
 @media (max-width: 400px) {
 	footer div {
 		font-size:				14px;
+	}
+}
+
+@media (max-width: 330px) {
+	footer div {
+		font-size:				12px;
 	}
 }
