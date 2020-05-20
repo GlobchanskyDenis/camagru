@@ -1,3 +1,7 @@
+/*
+
+// ===== JQUERY в проекте запрещен (внезапно). Оставлю этот код на память. Он рабочий. =====
+
 function ajaxCheckReg() {
 
 	var loginMarker = document.querySelector(".loginMarker");
@@ -94,5 +98,109 @@ function ajaxCheckReg() {
 		callbackFunc(data);
 	})
 }
+*/
 
-setInterval( ajaxCheckReg, 2000);
+function asyncRequest() {
+
+	// bind, initialize marker. check necessity for async request
+	var loginMarker = document.querySelector(".loginMarker");
+	var passwdMarker = document.querySelector(".passwdMarker");
+	var passwdConfirmMarker = document.querySelector(".passwdConfirmMarker");
+	var emailMarker = document.querySelector(".emailMarker");
+
+	if (document.forms['signUpMenu']['login'].value == '') 
+		loginMarker.style.opacity = 0;
+	if (document.forms['signUpMenu']['passwd'].value == '') 
+		passwdMarker.style.opacity = 0;
+	if (document.forms['signUpMenu']['passwdConfirm'].value == '') 
+		passwdConfirmMarker.style.opacity = 0;
+	if (document.forms['signUpMenu']['email'].value == '') 
+		emailMarker.style.opacity = 0;
+
+	if ((	document.forms['signUpMenu']['login'].value == '' &&
+			document.forms['signUpMenu']['passwd'].value == '' &&
+			document.forms['signUpMenu']['passwdConfirm'].value == '' &&
+			document.forms['signUpMenu']['email'].value == ''))		{
+		return;
+	}
+
+	// form and send request
+	console.log('');
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "scripts/ajaxCheckReg.php");
+	xhr.responseType = 'json';
+	let formData = new FormData();
+
+	formData.append("login", document.forms['signUpMenu']['login'].value);
+	formData.append("passwd", document.forms['signUpMenu']['passwd'].value);
+	formData.append("passwdConfirm", document.forms['signUpMenu']['passwdConfirm'].value);
+	formData.append("email", document.forms['signUpMenu']['email'].value);
+
+	console.log('tx: login='+document.forms['signUpMenu']['login'].value);
+	console.log('tx: passwd='+document.forms['signUpMenu']['passwd'].value);
+	console.log('tx: passwdConfirm='+document.forms['signUpMenu']['passwdConfirm'].value);
+	console.log('tx: email='+document.forms['signUpMenu']['email'].value);
+
+	xhr.send(formData);	
+
+	// in valid request case
+	xhr.onload = function() {
+		if (xhr.status != 200) {
+			console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+		} else {
+			var loginMarker = document.querySelector(".loginMarker");
+			var passwdMarker = document.querySelector(".passwdMarker");
+			var passwdConfirmMarker = document.querySelector(".passwdConfirmMarker");
+			var emailMarker = document.querySelector(".emailMarker");
+
+			var requestData= xhr.response;
+			var message = document.getElementById("errorMessage");
+
+			if (requestData.request != '')
+				message.innerHTML = requestData.request;
+			else if (document.forms['signUpMenu']['login'].value != '' && requestData.login != '')
+				message.innerHTML = requestData.login;
+			else if (document.forms['signUpMenu']['passwd'].value != '' && requestData.passwd != '')
+				message.innerHTML = requestData.passwd;
+			else if (document.forms['signUpMenu']['passwdConfirm'].value != '' && requestData.passwdConfirm != '')
+				message.innerHTML = requestData.passwdConfirm;
+			else if (requestData.email != '' && document.forms['signUpMenu']['email'].value != '')
+				message.innerHTML = requestData.email;
+			else
+				message.innerHTML = '';
+
+			if (document.forms['signUpMenu']['login'].value != '' && requestData.login != '')
+				loginMarker.style.opacity = 1;
+			else
+				loginMarker.style.opacity = 0;
+
+			if (document.forms['signUpMenu']['passwd'].value != '' && requestData.passwd != '')
+				passwdMarker.style.opacity = 1;
+			else
+				passwdMarker.style.opacity = 0;
+
+			if (document.forms['signUpMenu']['passwdConfirm'].value != '' && requestData.passwdConfirm != '')
+				passwdConfirmMarker.style.opacity = 1;
+			else
+				passwdConfirmMarker.style.opacity = 0;
+
+			if (requestData.email != '' && document.forms['signUpMenu']['email'].value != '')
+				emailMarker.style.opacity = 1;
+			else
+				emailMarker.style.opacity = 0;
+
+			console.log('rx: request='+requestData.request);
+			console.log('rx: login='+requestData.login);
+			console.log('rx: passwd='+requestData.passwd);
+			console.log('rx: passwdConfirm='+requestData.passwdConfirm);
+			console.log('rx: email='+requestData.email);
+		}
+	}
+
+	// in invalid request case
+	xhr.onerror = function() {
+		console.log("Запрос не удался");
+	};
+}
+
+setInterval( asyncRequest, 2000);
