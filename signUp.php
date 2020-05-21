@@ -6,7 +6,6 @@
 	<title>Registration</title>
 	<link rel="stylesheet" href="css/headerFooter.css">
 	<link rel="stylesheet" href="css/sign.css">
-	<!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
 	<script src="view/regAjaxify.js"></script>
 	<script src="view/menu.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;1,200;1,400;1,600&display=swap" rel="stylesheet">

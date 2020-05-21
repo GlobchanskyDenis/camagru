@@ -167,38 +167,6 @@ $(document).ready(function(){
 
 function updateNotifications() {
 
-	// var checkBox = document.querySelector(".notificationsCheckbox");
-	// var notif = document.getElementById("notifications");
-	// var data;
-	// if (checkBox.checked) {
-	// 	data = "data=0";
-	// 	notif.innerHTML = 'Email Notifications ON';
-	// } else {
-	// 	data = "data=1";
-	// 	notif.innerHTML = 'Email Notifications OFF';
-	// }
-
-	// function callbackFunc(data) {
-	// 	var message = document.getElementById("errorMessage");
-	// 	// console.log("before: "+data);
-	// 	data = jQuery.parseJSON(data);
-	// 	// console.log("after: "+data);
-	// 	if (data['error'] != '') {
-	// 		message.innerHTML = data['error'];
-	// 	}
-	// }
-
-	// // console.log(checkBox.checked);
-	// $.ajax({
-	// 	method: "POST",
-	// 	url:    "scripts/ajaxUpdateNotifications.php",
-	// 	data:   data
-	// })
-
-	// .done(function (data) {
-	// 	callbackFunc(data);
-	// })
-
 	var checkBox = document.querySelector(".notificationsCheckbox");
 	var notif = document.getElementById("notifications");
 
