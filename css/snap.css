@@ -49,7 +49,7 @@
 	text-align:				center;
 }
 
-#preview {
+.preview {
 	width:					100%;
 	display:				block;
 	margin:					0px auto 10px auto;
@@ -60,7 +60,7 @@
 	opacity:				1;
 }
 
-#preview img {
+.preview img {
 	display:				block;
 	margin:					auto auto auto auto;
 	width:					98%;
@@ -69,18 +69,18 @@
 	border-radius:			30px;
 }
 
-#stickers {
+.stickers {
 	width:					100%;
 	display:				block;
 	margin:					10px auto 0px auto;
-	height:					90px;
+	min-height:					50px;
 	background-color: 		rgb(235, 245, 255);
 	box-shadow:				0 0 10px rgba(0,0,0,0.4);
 	border-radius: 			20px;
 	opacity:				1;
 }
 
-#lastSnaps {
+.lastSnaps {
 	width:					95%;
 	display:				block;
 	margin:					0px auto 5px auto;
@@ -91,7 +91,7 @@
 	text-align:				center;
 }
 
-#lastSnaps img {
+.lastSnaps img {
 	display:				block;
 	width:					95%;
 	max-width:				190px;
@@ -99,11 +99,11 @@
 	border-radius: 			20px;
 }
 
-#lastSnaps img:hover {
+.lastSnaps img:hover {
 	opacity:				0.85;
 }
 
-#lastSnaps img:active {
+.lastSnaps img:active {
 	opacity:				0.7;
 }
 
@@ -117,12 +117,25 @@
 	}
 }
 
-#video {
-	/* max-width:				90%; */
+.videoBox {
+	position:				relative;
 	width:					90%;
 	max-width:				480px;
-	background-color:		black;
-	/* max-height:				600px; */
+	display:				block;
+	margin:					0px auto 0px auto;
+}
+
+#filter {
+	position:				absolute;
+	display:				block;
+	left:					0px;
+	right:					0px;
+	height:					100%;
+}
+
+#video {
+	width:					100%;
+	background-color:		grey;
 	border-radius:			40px;
 }
 
@@ -130,3 +143,36 @@
 	display:				none;
 	position:				absolute;
 }
+
+.stickerGrid1 {
+	display:				inline-grid;
+	grid-template-columns:	1fr 1fr 1fr 1fr;
+	width:					275px;
+	margin:					10px 0px 5px auto;
+}
+
+.stickerGrid2 {
+	display:				inline-grid;
+	grid-template-columns:	1fr 1fr 1fr;
+	width:					205px;
+	margin:					5px auto 10px -5px;
+}
+
+.sticker {
+	display:				inline-block;
+	border:					1px solid rgb(165, 175, 185);
+	width:					60px;
+	height:					60px;
+	border-radius:			10px;
+	margin:					0px auto 0px auto;
+	background-color:		rgb(205, 215, 225);
+}
+
+/* .sticker:hover {
+	background-color:		rgb(185, 195, 205);
+	background-color:		black;
+}
+
+.sticker:active {
+	background-color:		rgb(155, 165, 175);
+} */

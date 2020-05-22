@@ -24,23 +24,38 @@
 		<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
 		<section class="content">
 			<section class="snap">
-				<section id="preview">
-					<video id="video" title="Advertisement" webkit-playsinline="true" playsinline="true" muted="muted">
+				<section class="preview">
+					<div class="videoBox">
+						<canvas id="canvas">
+						</canvas>
+						<img src="img/filters/filter0.png" id="filter">
+						<video id="video" title="Advertisement" webkit-playsinline="true" playsinline="true" muted="muted">
 						<!-- autoplay -->
 						<!-- <source src="video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'> -->
 						<!-- <source src="http://youtube.com/watch?v=a5uQMwRMHcs"> -->
 						<!-- <img src="img/480_360+placeholder.png"> -->
-					</video>
-					<img src="img/beard1.png" style="position:absolute; margin-left: 230px; margin-top: -180px; width: 200px;">
-					<canvas id="canvas">
-					</canvas>
+						</video>
+					</div>
+					
 				</section>
-				<section id="stickers"></section>
+				<section class="stickers">
+					<div class="stickerGrid1">
+						<div class="sticker" id="st0" onclick="selectFilter0()"></div>
+						<img src="img/stickers/sticker1.png" class="sticker" id="st1" onclick="selectFilter1()">
+						<img src="img/stickers/sticker2.png" class="sticker" id="st2" onclick="selectFilter2()">
+						<img src="img/stickers/sticker3.png" class="sticker" id="st3" onclick="selectFilter3()">
+					</div>
+					<div class="stickerGrid2">
+						<img src="img/stickers/sticker4.png" class="sticker" id="st4" onclick="selectFilter4()">
+						<img src="img/stickers/sticker5.png" class="sticker" id="st5" onclick="selectFilter5()">
+						<img src="img/stickers/sticker6.png" class="sticker" id="st6" onclick="selectFilter6()">
+					</div>
+				</section>
 			</section>
-			<section id="lastSnaps">
+			<section class="lastSnaps">
 				<!-- placeholder_640_360.png -->
-				<img src="img/beard3.png">
-				<img src="img/beard2.png">
+				<img src="img/480_360+placeholder.png">
+				<img src="img/480_360+placeholder.png">
 				<img src="img/480_360+placeholder.png">
 			</section>
 		</section>
