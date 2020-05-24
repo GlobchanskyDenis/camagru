@@ -25,6 +25,9 @@
 		<section class="content">
 			<section class="snap">
 				<section class="preview">
+					<form>
+						<input type="text" placeholder="Name your photo here" id="snapTitle">
+					</form>
 					<div class="videoBox">
 						<canvas id="canvas">
 						</canvas>
