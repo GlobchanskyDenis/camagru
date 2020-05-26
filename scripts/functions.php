@@ -106,6 +106,34 @@ function userRegisterDB($connectDB, $login, $passwd, $email, $status) : bool {
 	return false;
 }
 
+function addPhotoDB($connectDB, $login, $fileName, $name) : bool {
+	$query = 'SELECT id FROM users WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute([':login' => $login]);
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results && isset($results['id'])) {
+			$authorID = $results['id'];
+		} else {
+			return false;
+		}
+		$params = [
+			':author'	=> $login,
+			':authorID'	=> $authorID,
+			':fileName'	=> $fileName,
+			':name'		=> $name
+		];
+		$query = 'INSERT INTO photo (filename, author, authorID, name, date)
+							VALUES (:fileName, :author, :authorID, :name, NOW())';
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch (PDOException $e) {
+		return false;
+	}
+	return false;
+}
+
 function updateUserTime($connectDB, $login) : bool {
 	$params = [
 		':login'	=> $login,
@@ -323,7 +351,7 @@ function checkRegPasswdConfirm() : string {
 	return '';
 }
 
-function checkRegEmail() {
+function checkRegEmail() : string {
 
 	$email = $_REQUEST['email'];
 
@@ -343,6 +371,22 @@ function checkRegEmail() {
 		return 'Incorrect email. Check domain';
 	}
 	
+	return '';
+}
+
+function checkCreatePhotoRequest() : string {
+	if (!isset($_SESSION['loggued_on_user']) || $_SESSION['loggued_on_user'] == '') {
+		return 'You are not logged on';
+	}
+	if ( !isset($_REQUEST['name']) || !isset($_REQUEST['img']) ) {
+		return 'invalid request';
+	}
+	if ( !isset($_REQUEST['filter']) || !is_numeric($_REQUEST['filter']) ) {
+		return 'invalid request';
+	}
+	if ( $_REQUEST['filter'] < 1 || $_REQUEST['filter'] > 6 ) {
+		return 'invalid request';
+	}
 	return '';
 }
 

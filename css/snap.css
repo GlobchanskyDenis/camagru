@@ -60,7 +60,7 @@
 	opacity:				1;
 }
 
-#snapTitle {
+.snapTitle {
 	display:				block;
 	width:					80%;
 	max-width:				450px;
@@ -160,8 +160,8 @@
 }
 
 #canvas {
-	display:				none;
-	position:				absolute;
+	/* display:				none; */
+	width: 90%;
 }
 
 .stickerGrid1 {
@@ -179,6 +179,7 @@
 }
 
 .sticker {
+	/* position:				absolute; */
 	display:				inline-block;
 	border:					1px solid rgb(165, 175, 185);
 	width:					60px;
@@ -188,11 +189,28 @@
 	background-color:		rgb(205, 215, 225);
 }
 
-/* .sticker:hover {
+.radio {
+	position:				absolute;
+	/* -webkit-appearance:		none;
+	-moz-appearance:		none;
+	appearance:				none; */
+	width:					1px;
+	height:					1px;
+	overflow:				hidden;
+	clip:					rect(0 0 0 0);
+}
+
+.sticker:hover {
 	background-color:		rgb(185, 195, 205);
-	background-color:		black;
+	/* background-color:		black; */
+}
+
+.radio:checked + .sticker{
+	/* background-color:		rgb(155, 175, 205); */
+	background-color:		rgb(155, 165, 175);
+	border-color:			rgb(125, 165, 185);
 }
 
 .sticker:active {
 	background-color:		rgb(155, 165, 175);
-} */
+}

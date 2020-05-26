@@ -1,102 +1,30 @@
-function unselectAll() {
-    var sticker0 = document.getElementById('st0');
-    var sticker1 = document.getElementById('st1');
-    var sticker2 = document.getElementById('st2');
-    var sticker3 = document.getElementById('st3');
-    var sticker4 = document.getElementById('st4');
-    var sticker5 = document.getElementById('st5');
-    var sticker6 = document.getElementById('st6');
-
-    sticker0.style.backgroundColor = 'rgb(205, 215, 225)';
-    sticker1.style.backgroundColor = 'rgb(205, 215, 225)';
-    sticker2.style.backgroundColor = 'rgb(205, 215, 225)';
-    sticker3.style.backgroundColor = 'rgb(205, 215, 225)';
-    sticker4.style.backgroundColor = 'rgb(205, 215, 225)';
-    sticker5.style.backgroundColor = 'rgb(205, 215, 225)';
-    sticker6.style.backgroundColor = 'rgb(205, 215, 225)';
-}
-
 function selectFilter0() {
-
-    unselectAll();
-
-    var sticker = document.getElementById('st0');
-    sticker.style.backgroundColor = 'rgb(165, 175, 185)';
-
-    var filter = document.getElementById('filter');
-    filter.src = "img/filters/filter0.png";
+    document.getElementById('filter').src = "img/filters/filter0.png";
 }
 
 function selectFilter1() {
-
-    unselectAll();
-    
-    var sticker = document.getElementById('st1');
-    sticker.style.backgroundColor = 'rgb(165, 175, 185)';
-
-    var filter = document.getElementById('filter');
-    filter.src = "img/filters/filter1.png";
+    document.getElementById('filter').src = "img/filters/filter1.png";
 }
 
 function selectFilter2() {
-
-    unselectAll();
-    
-    var sticker = document.getElementById('st2');
-    sticker.style.backgroundColor = 'rgb(165, 175, 185)';
-
-    var filter = document.getElementById('filter');
-    filter.src = "img/filters/filter2.png";
+    document.getElementById('filter').src = "img/filters/filter2.png";
 }
 
 function selectFilter3() {
-
-    unselectAll();
-    
-    var sticker = document.getElementById('st3');
-    sticker.style.backgroundColor = 'rgb(165, 175, 185)';
-
-    var filter = document.getElementById('filter');
-    filter.src = "img/filters/filter3.png";
+    document.getElementById('filter').src = "img/filters/filter3.png";
 }
 
 function selectFilter4() {
-
-    unselectAll();
-    
-    var sticker = document.getElementById('st4');
-    sticker.style.backgroundColor = 'rgb(165, 175, 185)';
-
-    var filter = document.getElementById('filter');
-    filter.src = "img/filters/filter4.png";
+    document.getElementById('filter').src = "img/filters/filter4.png";
 }
 
 function selectFilter5() {
-
-    unselectAll();
-    
-    var sticker = document.getElementById('st5');
-    sticker.style.backgroundColor = 'rgb(165, 175, 185)';
-
-    var filter = document.getElementById('filter');
-    filter.src = "img/filters/filter5.png";
+    document.getElementById('filter').src = "img/filters/filter5.png";
 }
 
 function selectFilter6() {
-
-    unselectAll();
-    
-    var sticker = document.getElementById('st6');
-    sticker.style.backgroundColor = 'rgb(165, 175, 185)';
-
-    var filter = document.getElementById('filter');
-    filter.src = "img/filters/filter6.png";
+    document.getElementById('filter').src = "img/filters/filter6.png";
 }
-
-window.onload = function() {
-    selectFilter0();
-};
-
 
 navigator.getUserMedia = navigator.getUserMedia ||  navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 if (navigator.getUserMedia) {
@@ -117,18 +45,34 @@ if (navigator.getUserMedia) {
 }
 
 function takeshot() {
-    var width = 320;    // We will scale the photo width to this
-    var height = 0;     // This will be computed based on the input stream
+    var width = 480;
+    var height = 0;
+    var video = document.getElementById('video');
+    var canvas = document.createElement('canvas');
+    var message = document.getElementById('errorMessage');
 
-    var streaming = false;
+    message.innerHTML = '';
 
-    var video = null;
-    var canvas = null;
-    var photo = null;
-    var startbutton = null;
+    // Определяю номер использованного фильтра
+    // var message = document.getElementById('errorMessage');
+    // var filterSrc = document.getElementById('filter').src;
+    // message.innerHTML = filterSrc[filterSrc.length - 5];
 
-    video = document.getElementById('video');
-    canvas = document.getElementById('canvas');
+    // Определяю номер использованного фильтра
+    var filter = document.querySelector('input[name = "sticker"]:checked');
+    if (!filter || filter.value == 0) {
+        message.innerHTML = 'Cannot take photo. Choose filter first.';
+        return;
+    }
+    if (document.forms['snapMetadata']['name'].value == '') {
+        message.innerHTML = 'Cannot take photo. Name your snap first.';
+        return;
+    }
+    if (document.forms['snapMetadata']['takePhotoPermission'].value != '') {
+        message.innerHTML = 'wait 1 sec dude';
+        return;
+    }
+    document.forms['snapMetadata']['takePhotoPermission'].value = 'denied';
 
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(function(stream) {
@@ -148,18 +92,45 @@ function takeshot() {
     canvas.width = width;
     canvas.height = height;
     context.drawImage(video, 0, 0, width, height);
+
     // video.setAttribute('height', oldHeight / 1.3333);
-    
     //   var data = canvas.toDataURL('image/png');
     //   photo.setAttribute('src', data);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "scripts/createPhoto.php");
+    xhr.responseType = 'json';
+    let formData = new FormData();
+    
+    formData.append("name", document.forms['snapMetadata']['name'].value);
+    formData.append("img", canvas.toDataURL('image/png'));
+    formData.append("filter", filter.value);
+    xhr.send(formData);
+    xhr.onload = function() {
+		if (xhr.status != 200) {
+			message = `Ошибка ${xhr.status}: ${xhr.statusText}`;
+		} else {
+            var requestAjax= xhr.response;
+			var message = document.getElementById("errorMessage");
+
+			if (requestAjax.error != '')
+                message.innerHTML = requestAjax.error;
+            console.log( 'rx: error='+requestAjax.error);
+            document.forms['snapMetadata']['takePhotoPermission'].value = '';
+        }
+    }
+	xhr.onerror = function() {
+          message = "Запрос не удался";
+          document.forms['snapMetadata']['takePhotoPermission'].value = '';
+	};
 }
 
-function clearphoto() {
-    canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    context.fillStyle = "#AAA";
-    context.fillRect(0, 0, canvas.width, canvas.height);
+// function clearphoto() {
+//     canvas = document.getElementById('canvas');
+//     var context = canvas.getContext('2d');
+//     context.fillStyle = "#AAA";
+//     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    // var data = canvas.toDataURL('image/png');
-    // photo.setAttribute('src', data);
-  }
+//     // var data = canvas.toDataURL('image/png');
+//     // photo.setAttribute('src', data);
+// }

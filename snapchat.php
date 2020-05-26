@@ -25,38 +25,59 @@
 		<section class="content">
 			<section class="snap">
 				<section class="preview">
-					<form>
-						<input type="text" placeholder="Name your photo here" id="snapTitle">
+					<form name="snapMetadata">
+						<input type="text" placeholder="Name your photo here" name="name" class="snapTitle">
+						<input type="text" name="takePhotoPermission" hidden>
+						<input type="text" name="offsetX" hidden>
+						<input type="text" name="offsetX" hidden>
+						<input type="text" name="srcImgPath" hidden>
 					</form>
 					<div class="videoBox">
-						<canvas id="canvas">
-						</canvas>
+						
 						<img src="img/filters/filter0.png" id="filter">
 						<video id="video" title="Advertisement" webkit-playsinline="true" playsinline="true" muted="muted">
-						<!-- autoplay -->
-						<!-- <source src="video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'> -->
-						<!-- <source src="http://youtube.com/watch?v=a5uQMwRMHcs"> -->
-						<!-- <img src="img/480_360+placeholder.png"> -->
 						</video>
 					</div>
 					
 				</section>
 				<section class="stickers">
-					<div class="stickerGrid1">
-						<div class="sticker" id="st0" onclick="selectFilter0()"></div>
-						<img src="img/stickers/sticker1.png" class="sticker" id="st1" onclick="selectFilter1()">
-						<img src="img/stickers/sticker2.png" class="sticker" id="st2" onclick="selectFilter2()">
-						<img src="img/stickers/sticker3.png" class="sticker" id="st3" onclick="selectFilter3()">
-					</div>
-					<div class="stickerGrid2">
-						<img src="img/stickers/sticker4.png" class="sticker" id="st4" onclick="selectFilter4()">
-						<img src="img/stickers/sticker5.png" class="sticker" id="st5" onclick="selectFilter5()">
-						<img src="img/stickers/sticker6.png" class="sticker" id="st6" onclick="selectFilter6()">
-					</div>
+					<form>
+						<div class="stickerGrid1">
+							<label>
+								<input type="radio" class="radio" name="sticker" value="0" onclick="selectFilter0()" checked>
+								<div class="sticker"></div>
+							</label>
+							<label>
+								<input type="radio" class="radio" name="sticker" value="1" onclick="selectFilter1()">
+								<img src="img/stickers/sticker1.png" class="sticker">
+							</label>
+							<label>
+								<input type="radio" class="radio" name="sticker" value="2" onclick="selectFilter2()">
+								<img src="img/stickers/sticker2.png" class="sticker">
+							</label>
+							<label>
+								<input type="radio" class="radio" name="sticker" value="3" onclick="selectFilter3()">
+								<img src="img/stickers/sticker3.png" class="sticker">
+							</label>
+						</div>
+						<div class="stickerGrid2">
+							<label>
+								<input type="radio" class="radio" name="sticker" value="4" onclick="selectFilter4()">
+								<img src="img/stickers/sticker4.png" class="sticker">
+							</label>
+							<label>
+								<input type="radio" class="radio" name="sticker" value="5" onclick="selectFilter5()">
+								<img src="img/stickers/sticker5.png" class="sticker">
+							</label>
+							<label>
+								<input type="radio" class="radio" name="sticker" value="6" onclick="selectFilter6()">
+								<img src="img/stickers/sticker6.png" class="sticker">
+							</label>
+						</div>
+					</form>
 				</section>
 			</section>
 			<section class="lastSnaps">
-				<!-- placeholder_640_360.png -->
 				<img src="img/480_360+placeholder.png">
 				<img src="img/480_360+placeholder.png">
 				<img src="img/480_360+placeholder.png">
