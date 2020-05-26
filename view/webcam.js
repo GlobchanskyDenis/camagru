@@ -44,36 +44,72 @@ if (navigator.getUserMedia) {
     console.log("getUserMedia not supported");
 }
 
+function getLastSnaps() {
+
+    // Выполняю пустой асинхронный запрос к скрипту из БД
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "scripts/getLastPhoto.php");
+    xhr.responseType = 'json';
+    xhr.send();
+    xhr.onload = function() {
+		if (xhr.status != 200) {
+			document.getElementById('errorMessage').innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
+        } else {
+            var requestAjax = xhr.response;
+            if (requestAjax.error != '')
+                document.getElementById('errorMessage').innerHTML = requestAjax.error;
+            console.log( 'rx: error='+requestAjax.error);
+            console.log( 'rx: img1='+requestAjax.img1.filename);
+            console.log( 'rx: img2='+requestAjax.img2.filename);
+            console.log( 'rx: img3='+requestAjax.img3.filename);
+            // Если в запросе пришла информация о картинке - вывожу ее на экран.
+            if ((requestAjax.img1)) {
+                document.getElementById('snap1').src = requestAjax.img1.filename;
+                document.getElementById('snap1').style.display = "block";
+            }
+            if ((requestAjax.img2)) {
+                document.getElementById('snap2').src = requestAjax.img2.filename;
+                document.getElementById('snap2').style.display = "block";
+            }
+            if ((requestAjax.img3)) {
+                document.getElementById('snap3').src = requestAjax.img3.filename;
+                document.getElementById('snap3').style.display = "block";
+            }
+        }
+    }
+    xhr.onerror = function() {
+        document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+        document.forms['snapMetadata']['takePhotoPermission'].value = '';
+  };
+}
+
 function takeshot() {
     var width = 480;
     var height = 0;
     var video = document.getElementById('video');
     var canvas = document.createElement('canvas');
-    var message = document.getElementById('errorMessage');
-
-    message.innerHTML = '';
-
-    // Определяю номер использованного фильтра
-    // var message = document.getElementById('errorMessage');
-    // var filterSrc = document.getElementById('filter').src;
-    // message.innerHTML = filterSrc[filterSrc.length - 5];
-
-    // Определяю номер использованного фильтра
     var filter = document.querySelector('input[name = "sticker"]:checked');
+
+    // Определяю номер использованного фильтра
     if (!filter || filter.value == 0) {
-        message.innerHTML = 'Cannot take photo. Choose filter first.';
+        document.getElementById('errorMessage').innerHTML = 'Cannot take photo. Choose filter first.';
         return;
     }
+    // Проверяю, выполнены ли условия для фотографии
     if (document.forms['snapMetadata']['name'].value == '') {
-        message.innerHTML = 'Cannot take photo. Name your snap first.';
+        document.getElementById('errorMessage').innerHTML = 'Cannot take photo. Name your snap first.';
         return;
     }
+    // Проверяю, разрешено ли фотографировать
     if (document.forms['snapMetadata']['takePhotoPermission'].value != '') {
-        message.innerHTML = 'wait 1 sec dude';
+        document.getElementById('errorMessage').innerHTML = 'wait 1 sec dude';
         return;
     }
+
+    // Запрещаю использовать кнопку до конца работы функции и очищаю окно сообщений об ошибках
     document.forms['snapMetadata']['takePhotoPermission'].value = 'denied';
 
+    // Сохраняю изображение в объекте canvas
     navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(function(stream) {
         video.srcObject = stream;
@@ -82,55 +118,41 @@ function takeshot() {
     .catch(function(err) {
         console.log("An error occurred: " + err);
     });
-    oldHeight = video.videoHeight;
     height = video.videoHeight / (video.videoWidth/width);
-      
-    // video.setAttribute('width', width);
-    // video.setAttribute('height', height);
-
     var context = canvas.getContext('2d');
     canvas.width = width;
     canvas.height = height;
     context.drawImage(video, 0, 0, width, height);
 
-    // video.setAttribute('height', oldHeight / 1.3333);
-    //   var data = canvas.toDataURL('image/png');
-    //   photo.setAttribute('src', data);
-
+    // Выполняю асинхронный запрос
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "scripts/createPhoto.php");
     xhr.responseType = 'json';
     let formData = new FormData();
     
+    // Дополняю запрос информацией
     formData.append("name", document.forms['snapMetadata']['name'].value);
     formData.append("img", canvas.toDataURL('image/png'));
     formData.append("filter", filter.value);
     xhr.send(formData);
+
     xhr.onload = function() {
 		if (xhr.status != 200) {
-			message = `Ошибка ${xhr.status}: ${xhr.statusText}`;
+			document.getElementById('errorMessage').innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
 		} else {
             var requestAjax= xhr.response;
-			var message = document.getElementById("errorMessage");
-
-			if (requestAjax.error != '')
-                message.innerHTML = requestAjax.error;
-            console.log( 'rx: error='+requestAjax.error);
+            document.getElementById('errorMessage').innerHTML = requestAjax.error;
+            getLastSnaps();
+            // Разрешаю делать новые снимки
             document.forms['snapMetadata']['takePhotoPermission'].value = '';
         }
     }
+
 	xhr.onerror = function() {
-          message = "Запрос не удался";
-          document.forms['snapMetadata']['takePhotoPermission'].value = '';
+        document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+        // Разрешаю делать новые снимки
+        document.forms['snapMetadata']['takePhotoPermission'].value = '';
 	};
 }
 
-// function clearphoto() {
-//     canvas = document.getElementById('canvas');
-//     var context = canvas.getContext('2d');
-//     context.fillStyle = "#AAA";
-//     context.fillRect(0, 0, canvas.width, canvas.height);
-
-//     // var data = canvas.toDataURL('image/png');
-//     // photo.setAttribute('src', data);
-// }
+window.onload = getLastSnaps();

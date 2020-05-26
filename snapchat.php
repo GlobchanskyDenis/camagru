@@ -78,9 +78,9 @@
 				</section>
 			</section>
 			<section class="lastSnaps">
-				<img src="img/480_360+placeholder.png">
-				<img src="img/480_360+placeholder.png">
-				<img src="img/480_360+placeholder.png">
+				<img src="img/480_360+placeholder.png" class="lastSnap" id="snap1">
+				<img src="img/480_360+placeholder.png" class="lastSnap" id="snap2">
+				<img src="img/480_360+placeholder.png" class="lastSnap" id="snap3">
 			</section>
 		</section>
 		<div style="height: 25px; width: 100%"></div> <!-- НЕ УДАЛЯТЬ!!! ЭТО ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ ПОДВАЛА -->

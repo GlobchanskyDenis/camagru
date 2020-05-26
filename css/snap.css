@@ -111,12 +111,24 @@
 	text-align:				center;
 }
 
-.lastSnaps img {
+.lastSnap {
 	display:				block;
 	width:					95%;
-	max-width:				190px;
+	max-width:				300px;
 	margin:					10px auto 10px auto;
 	border-radius: 			20px;
+}
+
+#snap1 {
+	display:				none;
+}
+
+#snap2 {
+	display:				none;
+}
+
+#snap3 {
+	display:				none;
 }
 
 .lastSnaps img:hover {

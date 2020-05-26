@@ -2,9 +2,9 @@
 
 $requestAjax = [
 	'error' => '',
-    'img1'	=> '',
-    'img2'	=> '',
-    'img3'	=> '',
+    // 'img1'	=> '',
+    // 'img2'	=> '',
+    // 'img3'	=> '',
 ];
 
 session_start();
@@ -70,6 +70,19 @@ if (!addPhotoDB($connectDB, $login, $filename, $name)) {
     echo json_encode($requestAjax);
     exit;
 }
+
+// $photoArr = get3LastPhotosfromDB($connectDB, $login);
+// if ($photoArr == false || $photoArr == null) {
+//        //  || !isset($photoArr['img1']) ||
+//        // !isset($photoArr['img2']) || !isset($photoArr['img3'])) {
+//     $requestAjax['error'] = 'cannot get old photo from database';
+//     echo json_encode($requestAjax);
+//     exit;
+// }
+
+// $requestAjax['img1'] = $photoArr['img1'];
+// $requestAjax['img2'] = $photoArr['img2'];
+// $requestAjax['img3'] = $photoArr['img3'];
 
 echo json_encode($requestAjax);
 

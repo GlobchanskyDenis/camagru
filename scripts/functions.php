@@ -134,6 +134,31 @@ function addPhotoDB($connectDB, $login, $fileName, $name) : bool {
 	return false;
 }
 
+function get3LastPhotosfromDB($connectDB, $login) {
+	$query = "SELECT * FROM photo WHERE author=:login ORDER BY id DESC LIMIT 3";
+	$dst = [
+		'img1'	=> false,
+		'img2'	=> false,
+		'img3'	=> false,
+	];
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute([':login' => $login]);
+		$i = 1;
+		while (($results = $stmt->fetch(PDO::FETCH_ASSOC)) && $i < 4) {
+			//$key = 'img'.$i;
+			$dst['img'.$i] = $results;//print_r($results, true);
+			$i++;
+		}
+		if ($dst['img1'] != false) {
+			return $dst;
+		}
+	} catch(PDOException $e) {
+		return false;
+	}
+	// return false;
+}
+
 function updateUserTime($connectDB, $login) : bool {
 	$params = [
 		':login'	=> $login,
