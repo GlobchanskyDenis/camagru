@@ -34,12 +34,14 @@ try {
     userRegisterDB($connectDB, 'simpleUser', 'User1!', 'skinnyman89@yandex.ru', 'user');
 
     $connectDB->query('CREATE TABLE photo ( id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
-                                            filename VARCHAR(60) NOT NULL, 
+                                            filename VARCHAR(60) NOT NULL,
+                                            data MEDIUMBLOB NOT NULL,
                                             author VARCHAR(35) NOT NULL,
                                             authorId INT NOT NULL, 
                                             name VARCHAR(30) NOT NULL,
                                             notifStatus BOOL DEFAULT FALSE,
-                                            date TIMESTAMP )');    
+                                            regDate TIMESTAMP,
+                                            modDate TIMESTAMP )');    
 } catch (PDOException $e) {
 	echo 'Cannot connect to Database'.PHP_EOL;
 	exit;

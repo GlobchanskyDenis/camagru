@@ -190,6 +190,7 @@ ul {
 
 .bar__drop	{
 	position:					absolute;
+	z-index:					10;
 	/* animation:					close 0.5s; */
 	/* opacity:					0; */
 	right:						5px;
@@ -203,6 +204,7 @@ ul {
 
 .notif__drop {
 	position:					absolute;
+	z-index:					10;
 	right:						40px;
 	top:						-1000px;
 	/* border:						1px solid red; */
@@ -348,6 +350,7 @@ ul {
 	transition-delay:			0s;
 	transition-duration:		0.4s;
 	transition-timing-function: ease;
+	
 }
 
 .bar__dropItem:hover {

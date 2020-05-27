@@ -78,9 +78,18 @@
 				</section>
 			</section>
 			<section class="lastSnaps">
-				<img src="img/480_360+placeholder.png" class="lastSnap" id="snap1">
-				<img src="img/480_360+placeholder.png" class="lastSnap" id="snap2">
-				<img src="img/480_360+placeholder.png" class="lastSnap" id="snap3">
+				<form>
+					<input type="submit" class="imgDeleter" id="deleter1">
+					<img src="" class="lastSnap" id="lastImg1">
+				</form>
+				<form>
+					<input type="submit" class="imgDeleter" id="deleter2">
+					<img src="" class="lastSnap" id="lastImg2">
+					</form>
+				<form>
+					<input type="submit" class="imgDeleter" id="deleter3">
+					<img src="" class="lastSnap" id="lastImg3">
+				</form>
 			</section>
 		</section>
 		<div style="height: 25px; width: 100%"></div> <!-- НЕ УДАЛЯТЬ!!! ЭТО ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ ПОДВАЛА -->

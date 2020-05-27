@@ -56,31 +56,57 @@ function getLastSnaps() {
 			document.getElementById('errorMessage').innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
         } else {
             var requestAjax = xhr.response;
+            if (!requestAjax) {
+                document.getElementById('errorMessage').innerHTML = 'empty async request';
+                return ;
+            }
             if (requestAjax.error != '')
                 document.getElementById('errorMessage').innerHTML = requestAjax.error;
+            console.log('');
             console.log( 'rx: error='+requestAjax.error);
             console.log( 'rx: img1='+requestAjax.img1.filename);
             console.log( 'rx: img2='+requestAjax.img2.filename);
             console.log( 'rx: img3='+requestAjax.img3.filename);
+
             // Если в запросе пришла информация о картинке - вывожу ее на экран.
+            // console.log("rx: img1 = " + requestAjax.img1);
             if ((requestAjax.img1)) {
-                document.getElementById('snap1').src = requestAjax.img1.filename;
-                document.getElementById('snap1').style.display = "block";
+                document.getElementById('lastImg1').src = "data:image/gif;base64," + requestAjax.img1.data;
+                document.getElementById('lastImg1').style.display = "block";
+                // console.log("rx: img1 = something");
+            } else {
+                document.getElementById('lastImg1').src = '#';
+                document.getElementById('lastImg1').style.display = 'none';
+                // console.log("rx: img1 = false");
             }
+
+            // console.log("rx: img2 = " + requestAjax.img2);
             if ((requestAjax.img2)) {
-                document.getElementById('snap2').src = requestAjax.img2.filename;
-                document.getElementById('snap2').style.display = "block";
+                document.getElementById('lastImg2').src = "data:image/gif;base64," + requestAjax.img2.data;
+                document.getElementById('lastImg2').style.display = "block";
+                // console.log("rx: img2 = something");
+            } else {
+                document.getElementById('lastImg2').src = '#';
+                document.getElementById('lastImg2').style.display = 'none';
+                // console.log("rx: img2 = false");
             }
+
+            // console.log("rx: img3 = " + requestAjax.img3);
             if ((requestAjax.img3)) {
-                document.getElementById('snap3').src = requestAjax.img3.filename;
-                document.getElementById('snap3').style.display = "block";
+                document.getElementById('lastImg3').src = "data:image/gif;base64," + requestAjax.img3.data;
+                document.getElementById('lastImg3').style.display = "block";
+                // console.log("rx: img3 = something");
+            } else {
+                document.getElementById('lastImg3').src = '#';
+                document.getElementById('lastImg3').style.display = 'none';
+                // console.log("rx: img3 = false");
             }
         }
     }
     xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос не удался";
         document.forms['snapMetadata']['takePhotoPermission'].value = '';
-  };
+    };
 }
 
 function takeshot() {
@@ -153,6 +179,24 @@ function takeshot() {
         // Разрешаю делать новые снимки
         document.forms['snapMetadata']['takePhotoPermission'].value = '';
 	};
+}
+
+function deletePhoto(id) {
+    // Выполняю пустой асинхронный запрос к скрипту из БД
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "scripts/deletePhoto.php");
+    xhr.responseType = 'json';
+    xhr.send();
+    xhr.onload = function() {
+		if (xhr.status != 200) {
+			document.getElementById('errorMessage').innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
+        } else {
+        }
+    }
+    xhr.onerror = function() {
+        document.getElementById('errorMessage').innerHTML = "Запрос удаления фото не удался";
+        document.forms['snapMetadata']['takePhotoPermission'].value = '';
+    };
 }
 
 window.onload = getLastSnaps();

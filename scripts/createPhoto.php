@@ -1,10 +1,7 @@
 <?php
 
 $requestAjax = [
-	'error' => '',
-    // 'img1'	=> '',
-    // 'img2'	=> '',
-    // 'img3'	=> '',
+	'error' => ''
 ];
 
 session_start();
@@ -65,24 +62,23 @@ if (!imagepng($cut, $filename)) {
     exit;
 }
 
-if (!addPhotoDB($connectDB, $login, $filename, $name)) {
+if (!($data = file_get_contents($filename))) {
+    $requestAjax['error'] = 'cannot open filtered photo';
+    echo json_encode($requestAjax);
+    exit;
+}
+
+if (!addPhotoDB($connectDB, $login, $filename, $name, $data)) {
     $requestAjax['error'] = 'cannot add photo to database';
     echo json_encode($requestAjax);
     exit;
 }
 
-// $photoArr = get3LastPhotosfromDB($connectDB, $login);
-// if ($photoArr == false || $photoArr == null) {
-//        //  || !isset($photoArr['img1']) ||
-//        // !isset($photoArr['img2']) || !isset($photoArr['img3'])) {
-//     $requestAjax['error'] = 'cannot get old photo from database';
-//     echo json_encode($requestAjax);
-//     exit;
-// }
-
-// $requestAjax['img1'] = $photoArr['img1'];
-// $requestAjax['img2'] = $photoArr['img2'];
-// $requestAjax['img3'] = $photoArr['img3'];
+if (!unlink($filename)) {
+    $requestAjax['error'] = 'cannot delete temp photo';
+    echo json_encode($requestAjax);
+    exit;
+}
 
 echo json_encode($requestAjax);
 

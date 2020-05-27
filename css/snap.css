@@ -163,12 +163,14 @@
 	left:					0px;
 	right:					0px;
 	height:					100%;
+	z-index:				4;
 }
 
 #video {
 	width:					100%;
 	background-color:		grey;
 	border-radius:			40px;
+	z-index:				3;
 }
 
 #canvas {

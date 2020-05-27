@@ -106,7 +106,7 @@ function userRegisterDB($connectDB, $login, $passwd, $email, $status) : bool {
 	return false;
 }
 
-function addPhotoDB($connectDB, $login, $fileName, $name) : bool {
+function addPhotoDB($connectDB, $login, $fileName, $name, $data) : bool {
 	$query = 'SELECT id FROM users WHERE login=:login';
 	try {
 		$stmt = $connectDB->prepare($query);
@@ -121,42 +121,37 @@ function addPhotoDB($connectDB, $login, $fileName, $name) : bool {
 			':author'	=> $login,
 			':authorID'	=> $authorID,
 			':fileName'	=> $fileName,
-			':name'		=> $name
+			':name'		=> $name,
+			':data'		=> $data
 		];
-		$query = 'INSERT INTO photo (filename, author, authorID, name, date)
-							VALUES (:fileName, :author, :authorID, :name, NOW())';
+		$query = 'INSERT INTO photo (filename, author, authorID, name, data, regDate, modDate)
+							VALUES (:fileName, :author, :authorID, :name, :data, NOW(), NOW())';
 		$stmt = $connectDB->prepare($query);
 		$stmt->execute($params);
 		return true;
 	} catch (PDOException $e) {
 		return false;
 	}
-	return false;
+	// return false;
 }
 
-function get3LastPhotosfromDB($connectDB, $login) {
-	$query = "SELECT * FROM photo WHERE author=:login ORDER BY id DESC LIMIT 3";
-	$dst = [
-		'img1'	=> false,
-		'img2'	=> false,
-		'img3'	=> false,
-	];
+function getLastPhotosfromDB($connectDB, $limit, $login) {
+	$query = "SELECT * FROM photo WHERE author=:login ORDER BY id DESC LIMIT ".$limit;
+	$dst = [];
 	try {
 		$stmt = $connectDB->prepare($query);
 		$stmt->execute([':login' => $login]);
 		$i = 1;
-		while (($results = $stmt->fetch(PDO::FETCH_ASSOC)) && $i < 4) {
-			//$key = 'img'.$i;
+		while (($results = $stmt->fetch(PDO::FETCH_ASSOC)) && $i <= $limit) {
+			// $key = 'img'.$i;
 			$dst['img'.$i] = $results;//print_r($results, true);
 			$i++;
 		}
-		if ($dst['img1'] != false) {
-			return $dst;
-		}
+		// $dst['meta'] = $i;
+		return $dst;
 	} catch(PDOException $e) {
 		return false;
 	}
-	// return false;
 }
 
 function updateUserTime($connectDB, $login) : bool {
