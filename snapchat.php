@@ -23,13 +23,10 @@
 		</div>
 		<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
 		<section class="content">
-			<section class="snap">
+			<section class="snapMaker">
 				<section class="preview">
 					<form name="snapMetadata">
 						<input type="text" placeholder="Name your photo here" name="name" class="snapTitle">
-						<input type="text" name="takePhotoPermission" hidden>
-						<input type="text" name="offsetX" hidden>
-						<input type="text" name="offsetX" hidden>
 						<input type="text" name="srcImgPath" hidden>
 					</form>
 					<div class="videoBox">
@@ -78,18 +75,18 @@
 				</section>
 			</section>
 			<section class="lastSnaps">
-				<form>
-					<input type="submit" class="imgDeleter" id="deleter1">
-					<img src="" class="lastSnap" id="lastImg1">
-				</form>
-				<form>
-					<input type="submit" class="imgDeleter" id="deleter2">
-					<img src="" class="lastSnap" id="lastImg2">
-					</form>
-				<form>
-					<input type="submit" class="imgDeleter" id="deleter3">
-					<img src="" class="lastSnap" id="lastImg3">
-				</form>
+				<div class="snapBox" id="snapBox1">
+					<img src="img/deleteSnap.png" class="deleteSnap" id="del1">
+					<img src="" class="snap" id="snap1">
+				</div>
+				<div class="snapBox" id="snapBox2">
+					<img src="img/deleteSnap.png" class="deleteSnap" id="del2">
+					<img src="" class="snap" id="snap2">
+				</div>
+				<div class="snapBox" id="snapBox3">
+					<img src="img/deleteSnap.png" class="deleteSnap" id="del3">
+					<img src="" class="snap" id="snap3">
+				</div>
 			</section>
 		</section>
 		<div style="height: 25px; width: 100%"></div> <!-- НЕ УДАЛЯТЬ!!! ЭТО ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ ПОДВАЛА -->

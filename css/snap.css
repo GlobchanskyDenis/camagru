@@ -42,7 +42,7 @@
 	background-color: 		rgb(150, 150, 180);
 }
 
-.snap {
+.snapMaker {
 	width:					95%;
 	display:				block;
 	margin:					0px auto 5px auto;
@@ -111,32 +111,60 @@
 	text-align:				center;
 }
 
-.lastSnap {
+.snapBox {
 	display:				block;
 	width:					95%;
 	max-width:				300px;
 	margin:					10px auto 10px auto;
+	position:				relative;
+}
+
+.snap {
+	display:				block;
+	width:					100%;
+	margin:					0px;
 	border-radius: 			20px;
+	z-index:				3;
+	transition-delay:			0s;
+	transition-duration:		0.4s;
+	transition-timing-function: ease;
 }
 
-#snap1 {
+.deleteSnap {
+	position:				absolute;
 	display:				none;
+	width:					70px;
+	height:					70px;
+	right:					5px;
+	top:					5px;
+	z-index:				4;
+	opacity:				0;
+	transition-delay:			0s;
+	transition-duration:		0.4s;
+	transition-timing-function: ease;
 }
 
-#snap2 {
-	display:				none;
+.snapBox:hover .snap {
+	opacity:				0.8;
+	transition-delay:			0s;
+	transition-duration:		0.4s;
+	transition-timing-function: ease;
 }
 
-#snap3 {
-	display:				none;
+.snapBox:hover .deleteSnap {
+	display:				block;
+	opacity:				0.4;
+	transition-delay:			0s;
+	transition-duration:		0.4s;
+	transition-timing-function: ease;
 }
 
-.lastSnaps img:hover {
-	opacity:				0.85;
+.snapBox:hover .deleteSnap:hover {
+	opacity:				0.75;
 }
 
-.lastSnaps img:active {
-	opacity:				0.7;
+.snapBox:hover .deleteSnap:active {
+	opacity:				1;
 }
 
 @media (max-width: 600px) {
@@ -145,7 +173,7 @@
 	}
 
 	#lastSnaps img {
-		max-width:			500px;
+		max-width:			480px;
 	}
 }
 
