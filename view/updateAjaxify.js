@@ -240,6 +240,7 @@ function asyncRequest() {
 	var passwdMarker = document.querySelector(".passwdMarker");
 	var passwdConfirmMarker = document.querySelector(".passwdConfirmMarker");
 	var emailMarker = document.querySelector(".emailMarker");
+	var necessity = 0;
 
 	if (document.forms['updateLogin']['login'].value == '') 
 		loginMarker.style.opacity = 0;
@@ -250,14 +251,27 @@ function asyncRequest() {
 	if (document.forms['updateEmail']['email'].value == '') 
 		emailMarker.style.opacity = 0;
 
-	if ((	document.forms['updateLogin']['login'].value == '' &&
-			document.forms['updatePasswd']['passwd'].value == '' &&
-			document.forms['updatePasswd']['passwdConfirm'].value == '' &&
-			document.forms['updateEmail']['email'].value == ''))		{
-		return;
+	if (document.forms['updateLogin']['login'].value != '' &&
+			window.gLastLogin != document.forms['updateLogin']['login'].value) {
+		necessity = 1;
+	}
+	if (document.forms['updatePasswd']['passwd'].value != '' &&
+			window.gLastPasswd != document.forms['updatePasswd']['passwd'].value) {
+		necessity = 1;
+	}
+	if (document.forms['updatePasswd']['passwdConfirm'].value != '' &&
+			window.gLastPasswdConfirm != document.forms['updatePasswd']['passwdConfirm'].value) {
+		necessity = 1;
+	}
+	if (document.forms['updateEmail']['email'].value != '' &&
+			window.gLastEmail != document.forms['updateEmail']['email'].value) {
+		necessity = 1;
+	}
+	if (necessity == 0)	{
+		return ;
 	}
 
-	// form and send request
+	// form and send request to undirstand - is valid current data in forms
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", "scripts/ajaxUpdate.php");
 	xhr.responseType = 'json';
@@ -268,15 +282,14 @@ function asyncRequest() {
 	formData.append("passwdConfirm", document.forms['updatePasswd']['passwdConfirm'].value);
 	formData.append("email", document.forms['updateEmail']['email'].value);
 
-	// console.log('');
-	// console.log('tx: login='+document.forms['updateLogin']['login'].value);
-	// console.log('tx: passwd='+document.forms['updatePasswd']['passwd'].value);
-	// console.log('tx: passwdConfirm='+document.forms['updatePasswd']['passwdConfirm'].value);
-	// console.log('tx: email='+document.forms['updateEmail']['email'].value);
+	console.log('');
+	console.log('tx: login='+document.forms['updateLogin']['login'].value);
+	console.log('tx: passwd='+document.forms['updatePasswd']['passwd'].value);
+	console.log('tx: passwdConfirm='+document.forms['updatePasswd']['passwdConfirm'].value);
+	console.log('tx: email='+document.forms['updateEmail']['email'].value);
 
 	xhr.send(formData);	
 
-	// in valid request case
 	xhr.onload = function() {
 		if (xhr.status != 200) {
 			console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
@@ -322,18 +335,28 @@ function asyncRequest() {
 			else
 				emailMarker.style.opacity = 0;
 
-			// console.log('rx: request='+requestData.request);
-			// console.log('rx: login='+requestData.login);
-			// console.log('rx: passwd='+requestData.passwd);
-			// console.log('rx: passwdConfirm='+requestData.passwdConfirm);
-			// console.log('rx: email='+requestData.email);
+			console.log('rx: request='+requestData.request);
+			console.log('rx: login='+requestData.login);
+			console.log('rx: passwd='+requestData.passwd);
+			console.log('rx: passwdConfirm='+requestData.passwdConfirm);
+			console.log('rx: email='+requestData.email);
 		}
 	};
 
-	// in invalid request case
 	xhr.onerror = function() {
 		console.log("Запрос не удался");
 	};
+
+	// This is old data for now
+	window.gLastLogin = document.forms['updateLogin']['login'].value;
+	window.gLastPasswd = document.forms['updatePasswd']['passwd'].value;
+	window.gLastPasswdConfirm = document.forms['updatePasswd']['passwdConfirm'].value;
+	window.gLastEmail = document.forms['updateEmail']['email'].value;
 }
 
-setInterval( asyncRequest, 2000);
+var gLastLogin = '';
+var gLastPasswd = '';
+var gLastPasswdConfirm = '';
+var gLastEmail = '';
+
+setInterval( asyncRequest, 1000);

@@ -31,7 +31,9 @@ function menuClick() {
 function menuMouseOver() {
 	var menu = document.querySelector(".bar__drop");
 	var notif = document.querySelector(".notif__drop");
-	notifClose(notif);
+	if (notif) {
+		notifClose(notif);
+	}
 	menuOpen(menu);
 }
 

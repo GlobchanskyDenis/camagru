@@ -86,7 +86,7 @@ if (isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user']) {
 					<div style="display: block; width: 50px;"></div><!-- Это костыль для корректного отображения меню -->
 					<li class="barItem"><div onclick="window.location.href='index.php'"><img src="img/home.png" class="icon"></div></li>
 					<li class="barItem"><div onclick="window.location.href='gallery.php'"><img src="img/gallery.png" class="icon"></div></li>
-					<li class="barItem" onclick="menuClick()"><div><img src="img/sendvich.png" class="icon"></div>
+					<li class="barItem" onclick="menuClick()"><div><img src="img/sendvich.png" class="icon" onmouseover="menuMouseOver()"></div>
 						<ul class="bar__drop">
 							<li class="bar__dropItem" onclick="window.location.href='signIn.php'"><div><img src="img/signIn.png" class="icon">Sign In</div></li>
 							<li class="bar__dropItem" onclick="window.location.href='signUp.php'"><div><img src="img/signUp.png" class="icon">Sign Up</div></li>

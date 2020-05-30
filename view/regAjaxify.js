@@ -107,6 +107,7 @@ function asyncRequest() {
 	var passwdMarker = document.querySelector(".passwdMarker");
 	var passwdConfirmMarker = document.querySelector(".passwdConfirmMarker");
 	var emailMarker = document.querySelector(".emailMarker");
+	var necessity = 0;
 
 	if (document.forms['signUpMenu']['login'].value == '') 
 		loginMarker.style.opacity = 0;
@@ -117,11 +118,24 @@ function asyncRequest() {
 	if (document.forms['signUpMenu']['email'].value == '') 
 		emailMarker.style.opacity = 0;
 
-	if ((	document.forms['signUpMenu']['login'].value == '' &&
-			document.forms['signUpMenu']['passwd'].value == '' &&
-			document.forms['signUpMenu']['passwdConfirm'].value == '' &&
-			document.forms['signUpMenu']['email'].value == ''))		{
-		return;
+	if (document.forms['signUpMenu']['login'].value != '' &&
+			window.gLastLogin != document.forms['signUpMenu']['login'].value) {
+		necessity = 1;
+	}
+	if (document.forms['signUpMenu']['passwd'].value != '' &&
+			window.gLastPasswd != document.forms['signUpMenu']['passwd'].value) {
+		necessity = 1;
+	}
+	if (document.forms['signUpMenu']['passwdConfirm'].value != '' &&
+			window.gLastPasswdConfirm != document.forms['signUpMenu']['passwdConfirm'].value) {
+		necessity = 1;
+	}
+	if (document.forms['signUpMenu']['email'].value != '' &&
+			window.gLastEmail != document.forms['signUpMenu']['email'].value) {
+		necessity = 1;
+	}
+	if (necessity == 0)	{
+		return ;
 	}
 
 	// form and send request
@@ -201,6 +215,17 @@ function asyncRequest() {
 	xhr.onerror = function() {
 		console.log("Запрос не удался");
 	};
+
+	// This is old data for now
+	window.gLastLogin = document.forms['signUpMenu']['login'].value;
+	window.gLastPasswd = document.forms['signUpMenu']['passwd'].value;
+	window.gLastPasswdConfirm = document.forms['signUpMenu']['passwdConfirm'].value;
+	window.gLastEmail = document.forms['signUpMenu']['email'].value;
 }
 
-setInterval( asyncRequest, 2000);
+var gLastLogin = '';
+var gLastPasswd = '';
+var gLastPasswdConfirm = '';
+var gLastEmail = '';
+
+setInterval( asyncRequest, 1000);
