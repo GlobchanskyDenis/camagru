@@ -18,98 +18,81 @@
 
 		<div class="categoryTitle">The Gallery of Camagru</div>
 		<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
-		<section id="galery">
-			<div class="item">
-				<div class="itemHeader">Photo that I don't want to see</div>
-				<img id="myPhoto" src="img/480_360+placeholder.png">
+		<section class="galery">
+
+			<div class="item" id="item1">
+				<img src="img/deleteSnap.png" class="delete" id="delete1">
+				<div class="itemHeader" id="itemHeader1">Photo that I don't want to see</div>
+				<img class="photo" id="photo1" src="img/480_360+placeholder.png">
 				<div class="itemFooter">
-					<div class="likeBlock">
-						<img id="like" src="img/like.png" alt="like">
-						<span id="counter">2</span>
-					</div>
-					<div class="comment">
-						-> comments here <-
-					</div>
+					<img class="like" id="like1" src="img/like.png" title="like">
+					<div class="counter" id="counter1"></div>
+					<div class="author" id="author1">author</div>
+					<img src="img/comment.png" class="comments" id="comments1" title="comments">
 				</div>
 			</div>
-			<div class="item">
-				<div class="itemHeader">Ugly</div>
-				<img id="myPhoto" src="img/480_360+placeholder.png">
+
+			<div class="item" id="item2">
+				<img src="img/deleteSnap.png" class="delete" id="delete2">
+				<div class="itemHeader" id="itemHeader2">Ugly</div>
+				<img class="photo" id="photo2" src="img/480_360+placeholder.png">
 				<div class="itemFooter">
-					<div class="likeBlock">
-						<img id="like" src="img/like.png" alt="like">
-						<span id="counter"></span>
-					</div>
-					<div class="comment">
-						-> comments here <-
-					</div>
+					<img class="like" id="like2" src="img/liked.png" title="like">
+					<div class="counter" id="counter2">1223</div>
+					<div class="author" id="author2">bsabre___012345</div>
+					<img src="img/comment.png" class="comments" id="comments2" title="comments">
 				</div>
 			</div>
-			<div class="item">
-				<div class="itemHeader">Its me?</div>
-				<img id="myPhoto" src="img/480_360+placeholder.png">
+
+			<div class="item" id="item3">
+				<img src="img/deleteSnap.png" class="delete" id="delete3">
+				<div class="itemHeader" id="itemHeader3">Photo that I don't want to see12345</div>
+				<img class="photo" id="photo3" src="img/480_360+placeholder.png">
 				<div class="itemFooter">
-					<div class="likeBlock">
-						<img id="like" src="img/like.png" alt="like">
-						<span id="counter">1</span>
-					</div>
-					<div class="comment">
-						-> comments here <-
-					</div>
+					<img class="like" id="like3" src="img/like.png" title="like">
+					<div class="counter" id="counter3">2</div>
+					<div class="author" id="author3">admin</div>
+					<img src="img/comment.png" class="comments" id="comments3" title="comments">
 				</div>
 			</div>
-			<div class="item">
-				<div class="itemHeader">Photo that I don't want to see sds sdfsd sdf sdsdfsd sdf</div>
-				<img id="myPhoto" src="img/480_360+placeholder.png">
+
+			<div class="item" id="item1">
+				<img src="img/deleteSnap.png" class="delete" id="delete1">
+				<div class="itemHeader" id="itemHeader1">Photo that I don't want to see</div>
+				<img class="photo" id="photo1" src="img/480_360+placeholder.png">
 				<div class="itemFooter">
-					<div class="likeBlock">
-						<img id="like" src="img/liked.png" alt="like">
-						<span id="counter">2</span>
-					</div>
-					<div class="comment">
-						-> comments here <-
-					</div>
+					<img class="like" id="like1" src="img/like.png" title="like">
+					<div class="counter" id="counter1"></div>
+					<div class="author" id="author1">author</div>
+					<img src="img/comment.png" class="comments" id="comments1" title="comments">
 				</div>
 			</div>
-			<div class="item">
-				<div class="itemHeader">Ugly</div>
-				<img id="myPhoto" src="img/480_360+placeholder.png">
+
+			<div class="item" id="item2">
+				<img src="img/deleteSnap.png" class="delete" id="delete2">
+				<div class="itemHeader" id="itemHeader2">Ugly</div>
+				<img class="photo" id="photo2" src="img/480_360+placeholder.png">
 				<div class="itemFooter">
-					<div class="likeBlock">
-						<img id="like" src="img/like.png" alt="like">
-						<span id="counter"></span>
-					</div>
-					<div class="comment">
-						-> comments here <-
-					</div>
+					<img class="like" id="like2" src="img/liked.png" title="like">
+					<div class="counter" id="counter2">1223</div>
+					<div class="author" id="author2">bsabre___012345</div>
+					<img src="img/comment.png" class="comments" id="comments2" title="comments">
 				</div>
 			</div>
-			<div class="item">
-				<div class="itemHeader">Its me?</div>
-				<img id="myPhoto" src="img/480_360+placeholder.png">
+
+			<div class="item" id="item3">
+				<img src="img/deleteSnap.png" class="delete" id="delete3">
+				<div class="itemHeader" id="itemHeader3">Photo that I don't want to see12345</div>
+				<img class="photo" id="photo3" src="img/480_360+placeholder.png">
 				<div class="itemFooter">
-					<div class="likeBlock">
-						<img id="like" src="img/like.png" alt="like">
-						<span id="counter">1</span>
-					</div>
-					<div class="comment">
-						-> comments here <-
-					</div>
+					<img class="like" id="like3" src="img/like.png" title="like">
+					<div class="counter" id="counter3">2</div>
+					<div class="author" id="author3">admin</div>
+					<img src="img/comment.png" class="comments" id="comments3" title="comments">
 				</div>
 			</div>
-			<div class="item">
-				<div class="itemHeader">Ugly</div>
-				<img id="myPhoto" src="img/480_360+placeholder.png">
-				<div class="itemFooter">
-					<div class="likeBlock">
-						<img id="like" src="img/like.png" alt="like">
-						<span id="counter"></span>
-					</div>
-					<div class="comment">
-						-> comments here <-
-					</div>
-				</div>
-			</div>
+
+			
 		</section>
 
 

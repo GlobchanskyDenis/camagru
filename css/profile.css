@@ -1,6 +1,6 @@
-#galery {
+.galery {
 	max-width:					1625px;
-	margin:						0 auto 0 auto;	/* Верхний правый нижний левый */
+	margin:						0 auto 0 auto;
 	text-align:					center;
 	display:					grid;
 	grid-template-columns:		repeat(5, 1fr);
@@ -8,28 +8,28 @@
 }
 
 @media (max-width: 1650px) {
-	#galery {
+	.galery {
 		width:						1280px;
 		grid-template-columns:		repeat(4, 1fr);
 	}
 }
 
 @media (max-width: 1300px) {
-	#galery {
+	.galery {
 		width:						960px;
 		grid-template-columns:		repeat(3, 1fr);
 	}
 }
 
 @media (max-width: 975px) {
-	#galery {
+	.galery {
 		width:						640px;
 		grid-template-columns:		repeat(2, 1fr);
 	}
 }
 
 @media (max-width: 650px) {
-	#galery {
+	.galery {
 		width:						320px;
 		grid-template-columns:		repeat(1, 1fr);
 	}
@@ -37,15 +37,46 @@
 
 .item	{
 	display:					inline-block;
+	position:					relative;
 	width:						300px;
 	height:						255px;
-	/* background-color:			rgba(233, 137, 115, 0.75); */
-	/* background-color: 			rgb(231, 212, 192);	 */
 	background-color:			white;
 	box-shadow:					0 0 10px rgba(0,0,0,0.4);
 	border:						1px solid rgb(150, 150, 150);
-	border-radius:				5px;
+	border-radius:				10px;
 	margin:						auto 5px auto 5px;
+}
+
+.delete {
+	display:					none;
+	width:						50px;
+	position:					absolute;
+	top:						10px;
+	right:						10px;
+	border-radius:				10px;
+	opacity:					0.7;
+	z-index:					3;
+	transition-delay:			0s;
+	transition-duration:		0.3s;
+	transition-timing-function: ease;
+}
+
+.item:hover .delete {
+	display:					block;
+	transition-delay:			0s;
+	transition-duration:		0.3s;
+	transition-timing-function: ease;
+}
+
+.delete:hover {
+	opacity:					0.9;
+	transition-delay:			0s;
+	transition-duration:		0.3s;
+	transition-timing-function: ease;
+}
+
+.delete:active {
+	opacity:					1;
 }
 
 .itemHeader	{
@@ -58,85 +89,93 @@
 	margin:						5px;
 }
 
-#myPhoto	{
+.photo	{
 	display:					block;
 	width:						290px;
-	margin:						5px;
+	border-radius:				5px;
+	margin:						0px 5px 0px 5px;
+	z-index:					1;
+	transition-delay:			0s;
+	transition-duration:		0.3s;
+	transition-timing-function: ease;
+}
+
+.item:hover .photo {
+	opacity:					0.9;
+	transition-delay:			0s;
+	transition-duration:		0.3s;
+	transition-timing-function: ease;
 }
 
 .itemFooter {
-	display:					block;
-	text-align: left;
-	/* background-color:			white; */
-	height:						20px;
-	width: 100%;
-	margin:						5px;
-}
-
-.likeBlock	{
-	display:					inline-block;
-	width:						75px;
 	text-align:					left;
-	margin:						0 auto 0 10px;
-	/* border:						1px solid red; */
+	display:					grid;
+	grid-template-columns:		28px 3.2em 1fr 30px;
+	height:						30px;
+	width:						284px;
+	margin:						0px auto 0px 7px;
 }
 
-#like		{
-	height:						20px;
-	border-radius:				3px;
+.like		{
+	display:					inline-block;
+	height:						28px;
+	margin:						1px 0px auto 0px;
+	border-radius:				5px;
+	transition-delay:			0s;
+	transition-duration:		0.3s;
+	transition-timing-function: ease;
 }
 
-#like:hover	{
+.like:hover	{
 	background-color:			rgb(136, 178, 204);
+	transition-delay:			0s;
+	transition-duration:		0.3s;
+	transition-timing-function: ease;
 }
 
-#like:active	{
+.like:active	{
 	background-color:			rgb(126, 168, 194);
 }
 
-#counter	{
+.counter	{
+	display:					inline-block;
+	margin:						7px auto auto 0.1em;
 	font-size:					1.5em;
+	height:						1em;
 	font-weight:				600;
 	font-style:					italic;
 	color:						rgb(26, 68, 94);
 }
-/* 
-.commentBlock	{
-	display:					block;
-	position:					relative;
-	top:						-5px;
-	right:						0px;
-	width:						130px;
-	height:						20px;
-	border:						1px solid red;
-	margin:						0 0 0 auto;
-	left:		40px;
-	margin:						0;
-} */
 
-.comment	{
+.author {
 	display:					inline-block;
-	position:					relative;
-	top:						-5px;
-	/* margin:						0 0 0 auto; */
-	/* right:						0px; */
 	text-align:					center;
-	height:						21px;
-	width:						200px;
-	border-radius:				10px;
+	width:						85%;
+	height:						1em;
+	margin:						7px 0px auto 0px;
 	font-size:					1.3em;
-	font-weight:				400;
+	font-weight: 				600;
 	font-style:					italic;
-	color:						white;
+	color:						rgb(70, 100, 120);
+}
+
+.comments {
+	display:					inline-block;
+	height:						30px;
+	border-radius:				5px;
+	margin:						0px;
+	transition-delay:			0s;
+	transition-duration:		0.3s;
+	transition-timing-function: ease;
+}
+
+.comments:hover {
 	background-color:			rgb(132, 174, 200);
-	text-shadow: 				1px 1px 2px rgb(116, 158, 184), 0 0 1em rgb(56, 98, 134);
-
+	transition-delay:			0s;
+	transition-duration:		0.3s;
+	transition-timing-function: ease;
 }
 
-.comment:hover	{
-	background-color:			rgb(101, 142, 169);
-}
-
-.comment:active	{
-	background-color:			rgb(86, 112, 139);
+.comments:active {
+	background-color:			rgb(100, 140, 180);
 }
