@@ -72,6 +72,7 @@ sendConfirmMail($_REQUEST['login'], $_REQUEST['email'], $confirmCode);
 
 $_SESSION['last_error'] = '<span style="color: green;">Please confirm your e-mail</span>';
 $_SESSION['to_confirm'] = $_REQUEST['login'];
+$_SESSION['status'] = 'not confirmed';
 header('Location: ../mailConfirm.php');
 
 ?>

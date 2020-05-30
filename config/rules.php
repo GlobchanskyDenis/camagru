@@ -11,4 +11,20 @@ define('PHOTO_NAME_MAX_LENGTH', 30);
 define('PHOTO_NAME_MIN_LENGTH', 1);
 define('PHOTO_MAX_LENGTH', 500000);
 
+$admin = [
+    'admin', 'superUser'
+];
+
+$registered = [
+    'user'
+];
+
+$registered = array_merge($registered, $admin);
+
+$all = [
+    'not confirmed'
+];
+
+$all = array_merge($all, $registered);
+
 ?>

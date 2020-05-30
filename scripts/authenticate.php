@@ -1,6 +1,9 @@
 <?php
 
-session_start();
+if (!isset($_SESSION)) {
+	session_start();
+}
+
 $_SESSION['last_error'] = '';
 $prevLocation = 'Location: ../signIn.php';
 
@@ -58,5 +61,8 @@ if ($ret == 0) {
 }
 
 $_SESSION['loggued_on_user'] = $_REQUEST['login'];
+// $yourStatus = getUserStatusDB($connectDB, $_REQUEST['login']);
+$_SESSION['status'] = getUserStatusDB($connectDB, $_REQUEST['login']);
+// $_SESSION['last_error'] = '<span style="color: green;">Your user status is '.$yourStatus.' login is '.$_REQUEST['login'].'</span>';
 header('Location: ../profile.php');
 ?>

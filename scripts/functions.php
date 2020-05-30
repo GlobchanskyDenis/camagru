@@ -106,6 +106,22 @@ function userRegisterDB($connectDB, $login, $passwd, $email, $status) : bool {
 	return false;
 }
 
+function getUserStatusDB($connectDB, $login) {
+	$query = 'SELECT status FROM users WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute( [':login' => $login] );
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results && isset($results['status'])) {
+			return $results['status'];
+		} else {
+			return false;
+		}
+	} catch(PDOException $e) {
+		return false;
+	}
+}
+
 function addPhotoDB($connectDB, $login, $fileName, $name, $data) : bool {
 	$query = 'SELECT id FROM users WHERE login=:login';
 	try {
@@ -137,7 +153,7 @@ function addPhotoDB($connectDB, $login, $fileName, $name, $data) : bool {
 
 function getPhotosByAuthorfromDB($connectDB, $limit, $login, $lastID) {
 	if ($lastID == 0) {
-		$query = "SELECT * FROM photo WHERE author=:login ORDER BY id DESC LIMIT :limit";
+		$query = "SELECT id, data FROM photo WHERE author=:login ORDER BY id DESC LIMIT :limit";
 		$dst = [
 			'error' => ''
 		];
@@ -159,7 +175,7 @@ function getPhotosByAuthorfromDB($connectDB, $limit, $login, $lastID) {
 			return $dst;
 		}
 	} else {
-		$query = "SELECT * FROM photo WHERE author=:login AND id<:id ORDER BY id DESC LIMIT :limit";
+		$query = "SELECT id, data FROM photo WHERE author=:login AND id<:id ORDER BY id DESC LIMIT :limit";
 		$dst = [
 			'error' => ''
 		];
