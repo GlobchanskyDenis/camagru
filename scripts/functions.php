@@ -456,6 +456,13 @@ function checkCreatePhotoRequest() : string {
 	if ( !isset($_REQUEST['name']) || !isset($_REQUEST['img']) ) {
 		return 'invalid request';
 	}
+	if ( !is_string($_REQUEST['name']) || strlen($_REQUEST['name']) > PHOTO_NAME_MAX_LENGTH ||
+			strlen($_REQUEST['name']) < PHOTO_NAME_MIN_LENGTH) {
+		return 'invalid request. Check photo title';
+	}
+	if (strlen($_REQUEST['img']) > PHOTO_MAX_LENGTH) {
+		return 'invalid request. Bad photo size';
+	}
 	if ( !isset($_REQUEST['filter']) || !is_numeric($_REQUEST['filter']) ) {
 		return 'invalid request';
 	}

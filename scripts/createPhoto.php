@@ -12,14 +12,35 @@ if (!include_once("functions.php")) {
 	exit; 
 }
 
+if (!include_once("../config/rules.php")) {
+    $requestAjax['error'] = 'cannot find important file';
+    echo json_encode($requestAjax);
+	exit; 
+}
+
 if ( ($requestAjax['error'] = checkCreatePhotoRequest()) != '' ) {
 	echo json_encode($requestAjax);
 	exit; 
 }
 
-if (!include_once('connectDB.php')) {
-	$requestAjax['error'] = 'Error: cannot find DB connection script';
-	echo json_encode($requestAjax);
+if (	!file_exists('../config') ||
+		!file_exists('../config/database.php'))	{
+    $requestAsync['error'] = 'Config file not found';
+	echo json_encode($requestAsync);
+	exit;
+}
+
+if (!include_once('../config/database.php')) {
+	$requestAsync['error'] = 'Error: cannot run one of scripts';
+	echo json_encode($requestAsync);
+	exit;
+}
+
+try {
+	$connectDB = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+} catch (PDOException $e) {
+	$requestAsync['error'] = 'Cannot connect to Database';
+	echo json_encode($requestAsync);
 	exit;
 }
 
@@ -40,7 +61,7 @@ if (!file_exists('../photoStorage')) {
     exit; 
 }
 if (file_exists($filename)) {
-    $requestAjax['error'] = 'wait 1 second dude))';
+    $requestAjax['error'] = 'wait 1 second';
     echo json_encode($requestAjax);
     exit; 
 }

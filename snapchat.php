@@ -6,6 +6,7 @@
 	<title>Gallery</title>
 	<link rel="stylesheet" href="css/headerFooter.css">
 	<link rel="stylesheet" href="css/snap.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="view/menu.js"></script>
 	<script src="view/webcam.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;1,200;1,400;1,600&display=swap" rel="stylesheet">
@@ -18,8 +19,12 @@
 		?>
 
 		<div class="categoryTitleGrid">
-			<div class="title">Push to take shot</div>
-			<img src="img/takeshot.png" class="takeshot" onclick="takeshot()">
+		<!-- onclick="chooseFile()" -->
+			<div class="title">Take photo here</div>
+			<img src="img/takeshot.png" class="takeshot" onclick="takeshot()" title="take shot">
+			<form class="takeshot" id="upload" title="choose your file">
+				<input type="file" accept="image/*" onchange="readURL(this);">
+			</form>
 		</div>
 		<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
 		<section class="content">
@@ -30,7 +35,7 @@
 						<input type="text" name="srcImgPath" hidden>
 					</form>
 					<div class="videoBox">
-						
+						<img id="uploadPhoto">
 						<img src="img/filters/filter0.png" id="filter">
 						<video id="video" title="Advertisement" webkit-playsinline="true" playsinline="true" muted="muted">
 						</video>

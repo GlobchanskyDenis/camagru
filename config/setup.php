@@ -36,7 +36,7 @@ try {
     $connectDB->query('CREATE TABLE photo ( id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
                                             filename VARCHAR(60) NOT NULL,
                                             data MEDIUMBLOB NOT NULL,
-                                            author VARCHAR(35) NOT NULL,
+                                            author VARCHAR(15) NOT NULL,
                                             authorId INT NOT NULL, 
                                             name VARCHAR(30) NOT NULL,
                                             notifStatus BOOL DEFAULT FALSE,

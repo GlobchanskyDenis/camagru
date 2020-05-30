@@ -1,29 +1,35 @@
 function selectFilter0() {
-    document.getElementById('filter').src = "img/filters/filter0.png";
+    document.getElementById('filter').style.display = "none";
 }
 
 function selectFilter1() {
     document.getElementById('filter').src = "img/filters/filter1.png";
+    document.getElementById('filter').style.display = "block";
 }
 
 function selectFilter2() {
     document.getElementById('filter').src = "img/filters/filter2.png";
+    document.getElementById('filter').style.display = "block";
 }
 
 function selectFilter3() {
     document.getElementById('filter').src = "img/filters/filter3.png";
+    document.getElementById('filter').style.display = "block";
 }
 
 function selectFilter4() {
     document.getElementById('filter').src = "img/filters/filter4.png";
+    document.getElementById('filter').style.display = "block";
 }
 
 function selectFilter5() {
     document.getElementById('filter').src = "img/filters/filter5.png";
+    document.getElementById('filter').style.display = "block";
 }
 
 function selectFilter6() {
     document.getElementById('filter').src = "img/filters/filter6.png";
+    document.getElementById('filter').style.display = "block";
 }
 
 function getSnapsFromDB() {
@@ -88,6 +94,7 @@ function takeshot() {
     var width = 480;
     var height = 0;
     var video = document.getElementById('video');
+    var image = document.getElementById('uploadPhoto');
     var canvas = document.createElement('canvas');
     var filter = document.querySelector('input[name = "sticker"]:checked');
 
@@ -123,7 +130,11 @@ function takeshot() {
     var context = canvas.getContext('2d');
     canvas.width = width;
     canvas.height = height;
-    context.drawImage(video, 0, 0, width, height);
+    if (image.style.display != "block") {
+        context.drawImage(video, 0, 0, width, height);
+    } else {
+        context.drawImage(image, 0, 0, width, height);
+    }
 
     // Make async request to DB - to create new photo
     let xhr = new XMLHttpRequest();
@@ -195,6 +206,9 @@ function takeshot() {
 	xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос не удался";
     };
+
+    image.style.display = "none";
+    video.style.opacity = 1;
     
     // Enable work permission for all function that listen extern events
     window.gWorkPermission = '';
@@ -270,7 +284,6 @@ function deletePhoto(i) {
                                 document.getElementById('snap'+i).src = "data:image/gif;base64," + requestAsync.img1.data;
                                 document.getElementById('snapBox'+i).style.display = "block";
                                 window.gSnapID[i] = requestAsync.img1.id;
-                                console.log("id"+i+" = " + requestAsync.img1.id);
                             } else {
                                 document.getElementById('snap'+i).src = '#';
                                 document.getElementById('snapBox'+i).style.display = 'none';
@@ -330,4 +343,18 @@ window.onload = function() {
     setVideoON();
     getSnapsFromDB();
     hangEventListeners();
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        image = document.getElementById('uploadPhoto');
+        image.style.display = "block";
+        document.getElementById('video').style.opacity = 0;
+        reader.onload = function(e) {
+            image.setAttribute('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+    image_statut = true;
 }

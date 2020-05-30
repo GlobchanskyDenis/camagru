@@ -19,7 +19,7 @@ if (isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user']) {
 					<li class="barItem" onclick="notifClick()"><div><img src="img/notifications1.png" class="icon"></div>
 						<!-- Тут меню уведомлений. Оно описано чуть ниже -->
 					</li>
-					<li class="barItem" onclick="menuClick()"><div><img src="img/sendvich.png" class="icon"></div>
+					<li class="barItem" onclick="menuClick()"><div><img src="img/sendvich.png" class="icon" onmouseover="menuMouseOver()"></div>
 						<ul class="bar__drop">
 							<div id="userName"><?php echo $_SESSION['loggued_on_user'] ?></div>
 							<li class="bar__dropItem" onclick="window.location.href='settings.php'"><div><img src="img/settings.png" class="icon">Settings</div></li>

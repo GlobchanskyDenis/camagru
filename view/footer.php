@@ -1,5 +1,5 @@
 	<footer>
 		<div>
-			made by Bsabre-c&copy;&nbsp;&nbsp;skinnyman23@yandex.ru
+			made by GlobchanskyDenis&copy;&nbsp;&nbsp;
 		</div>
 	</footer>

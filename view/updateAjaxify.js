@@ -2,6 +2,37 @@
 
 // ===== JQUERY в проекте запрещен (внезапно). Оставлю этот код на память. Он рабочий. =====
 
+// $(document).ready(function(){
+
+// 	function callbackFunc(data) {
+// 		var checkBox = document.querySelector(".notificationsCheckbox");
+// 		var message = document.getElementById("errorMessage");
+// 		var notif = document.getElementById("notifications");
+// 		// console.log("before: "+data);
+// 		data = jQuery.parseJSON(data);
+// 		// console.log("after: "+data);
+// 		if (data['error'] != '') {
+// 			message.innerHTML = data['error'];
+// 		}
+// 		if (data['data']) {
+// 			checkBox.setAttribute('checked', true);
+// 			notif.innerHTML = 'Email Notifications ON';
+// 		} else {
+// 			notif.innerHTML = 'Email Notifications OFF';
+// 		}
+// 	}
+
+// 	$.ajax({
+// 		method: "POST",
+// 		url:    "scripts/ajaxGetNotifications.php",
+// 		data:   ''
+// 	})
+
+// 	.done(function (data) {
+// 		callbackFunc(data);
+// 	})
+// })
+
 function ajaxCheckReg() {
 
 	var loginMarker = document.querySelector(".loginMarker");
@@ -133,55 +164,52 @@ function updateNotifications() {
 }
 */
 
-$(document).ready(function(){
-	var checkBox = document.querySelector(".notificationsCheckbox");
+window.onload = function() {
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "scripts/ajaxGetNotifications.php");
+	xhr.responseType = 'json';
+	xhr.send();
 
-	function callbackFunc(data) {
-		var checkBox = document.querySelector(".notificationsCheckbox");
-		var message = document.getElementById("errorMessage");
-		var notif = document.getElementById("notifications");
-		// console.log("before: "+data);
-		data = jQuery.parseJSON(data);
-		// console.log("after: "+data);
-		if (data['error'] != '') {
-			message.innerHTML = data['error'];
-		}
-		if (data['data']) {
-			checkBox.setAttribute('checked', true);
-			notif.innerHTML = 'Email Notifications ON';
+	xhr.onload = function() {
+		if (xhr.status != 200) {
+			console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
 		} else {
-			notif.innerHTML = 'Email Notifications OFF';
+			if (!xhr.response) {
+				document.getElementById("errorMessage").innerHTML = "response isnt exist";
+			}
+			document.getElementById("errorMessage").innerHTML = xhr.response.error;
+			if (!xhr.response.error) {
+				if (xhr.response.data) {
+					document.querySelector(".notificationsCheckbox").setAttribute('checked', true);
+					document.getElementById("notifications").innerHTML = 'Email Notifications ON';
+				} else {
+					document.getElementById("notifications").innerHTML = 'Email Notifications OFF';
+				}
+			}
 		}
-	}
-
-	$.ajax({
-		method: "POST",
-		url:    "scripts/ajaxGetNotifications.php",
-		data:   ''
-	})
-
-	.done(function (data) {
-		callbackFunc(data);
-	})
-})
+	};
+	
+	xhr.onerror = function() {
+		console.log("Запрос не удался");
+	};
+};
 
 function updateNotifications() {
 
 	var checkBox = document.querySelector(".notificationsCheckbox");
 	var notif = document.getElementById("notifications");
 
-	console.log('');
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", "scripts/ajaxUpdateNotifications.php");
 	xhr.responseType = 'json';
 	let formData = new FormData();
 	if (checkBox.checked) {
 		formData.append("data", 0);
-		console.log('tx: data=0');
+		// console.log('tx: data=0');
 		notif.innerHTML = 'Email Notifications ON';
 	} else {
 		formData.append("data", 1);
-		console.log('tx: data=1');
+		// console.log('tx: data=1');
 		notif.innerHTML = 'Email Notifications OFF';
 	}
 	xhr.send(formData);
@@ -191,13 +219,13 @@ function updateNotifications() {
 			console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
 		} else {
 			var message = document.getElementById("errorMessage");
-			var requestData= xhr.response;
-			console.log("rx: error="+requestData.error);
+			var requestData = xhr.response;
+			// console.log("rx: error=" + requestData.error);
 			if (requestData.error != '') {
 				message.innerHTML = requestData.error;
 			}
 		}
-	}
+	};
 
 	// in invalid request case
 	xhr.onerror = function() {
@@ -230,7 +258,6 @@ function asyncRequest() {
 	}
 
 	// form and send request
-	console.log('');
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", "scripts/ajaxUpdate.php");
 	xhr.responseType = 'json';
@@ -241,10 +268,11 @@ function asyncRequest() {
 	formData.append("passwdConfirm", document.forms['updatePasswd']['passwdConfirm'].value);
 	formData.append("email", document.forms['updateEmail']['email'].value);
 
-	console.log('tx: login='+document.forms['updateLogin']['login'].value);
-	console.log('tx: passwd='+document.forms['updatePasswd']['passwd'].value);
-	console.log('tx: passwdConfirm='+document.forms['updatePasswd']['passwdConfirm'].value);
-	console.log('tx: email='+document.forms['updateEmail']['email'].value);
+	// console.log('');
+	// console.log('tx: login='+document.forms['updateLogin']['login'].value);
+	// console.log('tx: passwd='+document.forms['updatePasswd']['passwd'].value);
+	// console.log('tx: passwdConfirm='+document.forms['updatePasswd']['passwdConfirm'].value);
+	// console.log('tx: email='+document.forms['updateEmail']['email'].value);
 
 	xhr.send(formData);	
 
@@ -294,13 +322,13 @@ function asyncRequest() {
 			else
 				emailMarker.style.opacity = 0;
 
-			console.log('rx: request='+requestData.request);
-			console.log('rx: login='+requestData.login);
-			console.log('rx: passwd='+requestData.passwd);
-			console.log('rx: passwdConfirm='+requestData.passwdConfirm);
-			console.log('rx: email='+requestData.email);
+			// console.log('rx: request='+requestData.request);
+			// console.log('rx: login='+requestData.login);
+			// console.log('rx: passwd='+requestData.passwd);
+			// console.log('rx: passwdConfirm='+requestData.passwdConfirm);
+			// console.log('rx: email='+requestData.email);
 		}
-	}
+	};
 
 	// in invalid request case
 	xhr.onerror = function() {

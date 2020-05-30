@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			<div class="item">
-				<div class="itemHeader">Photo that I don't want to see</div>
+				<div class="itemHeader">Photo that I don't want to see sds sdfsd sdf sdsdfsd sdf</div>
 				<img id="myPhoto" src="img/480_360+placeholder.png">
 				<div class="itemFooter">
 					<div class="likeBlock">
