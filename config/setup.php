@@ -40,6 +40,7 @@ try {
                                             authorId INT NOT NULL, 
                                             name VARCHAR(30) NOT NULL,
                                             notifStatus BOOL DEFAULT FALSE,
+                                            likeCounter INT DEFAULT 0,
                                             regDate TIMESTAMP,
                                             modDate TIMESTAMP )');    
 } catch (PDOException $e) {

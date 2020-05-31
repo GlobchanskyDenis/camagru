@@ -163,7 +163,7 @@ function getPuckOfImages() {
                     img = requestAsync['img' + i];
                     window.gImgAmount = gImgAmount + 1;
                     createNewItem(  window.gImgAmount,
-                                    1, // isAuthor - redact it in future (only in galery)
+                                    img['isAuthor'],
                                     img['name'],
                                     'data:image/gif;base64,' + img['data'],
                                     0, // is Liked - redact it in future
@@ -171,6 +171,8 @@ function getPuckOfImages() {
                                     img['author']
                                     );
                     window.gSnapID[window.gImgAmount] = img['id'];
+                } else {
+                    document.getElementById('getPhotos').style.display = 'none';
                 }
             }
         }
@@ -218,7 +220,6 @@ function deletePhoto(i) {
             if (requestAsync.error == '') {
 
                 while ( document.getElementById( 'item' + (i + 1) ) ) {
-                    console.log('shift item ' + (i + 1));
                     shiftItemUp(i);
                     window.gSnapID[i] = window.gSnapID[i + 1];
                     i++;
@@ -256,21 +257,18 @@ function deletePhoto(i) {
                             if ((requestAsync.img1)) {
                                 window.gImgAmount = window.gImgAmount + 1;
                                 createNewItem(  window.gImgAmount, 
-                                                1, // isAuthor - redact it in future (only in galery)
+                                                requestAsync.img1.isAuthor, // isAuthor - redact it in future (only in galery)
                                                 requestAsync.img1.name, 
                                                 'data:image/gif;base64,' + requestAsync.img1.data, 
                                                 1, // isLiked - redact it in future (only in galery)
                                                 2, // likeCount - redact it in future (only in galery)
                                                 requestAsync.img1.author
                                                 );
-                                // document.getElementById('snap'+i).src = "data:image/gif;base64," + requestAsync.img1.data;
-                                // document.getElementById('snapBox'+i).style.display = "block";
                                 window.gSnapID[i] = requestAsync.img1.id;
                             } 
-                            // else {
-                            //     document.getElementById('snap'+i).src = '#';
-                            //     document.getElementById('snapBox'+i).style.display = 'none';
-                            // }
+                            else {
+                                document.getElementById('getPhotos').style.display = 'none';
+                            }
                         } else {
                             document.getElementById('errorMessage').innerHTML = 'empty async request';
                         }
@@ -292,22 +290,10 @@ function deletePhoto(i) {
 }
 
 window.onload = function() {
-    // createNewItem(1, 1, "header", "img/480_360+placeholder.png", 1, 2, "bsabre-c");
-    // window.gImgAmount = 1;
     getPuckOfImages();
-    // for (i = 1; i < 11; i++) {
-    //     var isAuthor = i % 2;
-    //     createNewItem(i, isAuthor, "header", "img/480_360+placeholder.png", !(isAuthor), i * 2, "bsabre-c");
-    // }
+    document.getElementById('getPhotos').addEventListener("click", getPuckOfImages);
 }
 
 var gWorkPermission = '';
 var gImgAmount = 0;
 var gSnapID = [];
-
-// setInterval( function() {
-//     createNewItem(1, 1, "header", "img/480_360+placeholder.png", 1, 2, "bsabre-c");
-//     window.gImgAmount = window.gImgAmount + 1;
-//     getPuckOfImages();
-//     // document.getElementById("errorMessage").innerHTML = howMuchImgPerLine();
-// }, 15000);

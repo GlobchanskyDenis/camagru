@@ -55,6 +55,8 @@
 		<section id="galery">
 		</section>
 
+		<img src="img/getPhotos.png" id="getPhotos">
+
 		<div style="height: 25px; width: 100%"></div> <!-- НЕ УДАЛЯТЬ!!! ЭТО ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ ПОДВАЛА -->
 	</div>
 
