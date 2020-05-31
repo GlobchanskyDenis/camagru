@@ -61,8 +61,22 @@ function createNewItem(itemNbr, isAuthor, headerData, photoSrc, isLiked, likeCou
 
     if (!isAuthor) {
         document.getElementById('delete' + itemNbr).style.display = 'none';
+        document.getElementById('author' + itemNbr).style.color = 'rgb(70, 100, 120)';
+    } else {
+        document.getElementById('author' + itemNbr).style.color = 'rgb(255, 80, 80)';
     }
-};
+    document.getElementById( 'delete' + itemNbr ).addEventListener("click", deletePhoto.bind(null, itemNbr));
+}
+
+function shiftItemUp(i) {
+    document.getElementById('itemHeader' + i).innerHTML = document.getElementById('itemHeader' + (i + 1)).innerHTML;
+    document.getElementById('photo' + i).src = document.getElementById('photo' + (i + 1)).src;
+    document.getElementById('like' + i).src = document.getElementById('like' + (i + 1)).src;
+    document.getElementById('counter' + i).innerHTML = document.getElementById('counter' + (i + 1)).innerHTML;
+    document.getElementById('author' + i).innerHTML = document.getElementById('author' + (i + 1)).innerHTML;
+    document.getElementById('delete' + i).style.display = document.getElementById('delete' + (i + 1)).style.display;
+    document.getElementById('author' + i).style.color = document.getElementById('author' + (i + 1)).style.color;
+}
 
 function howMuchImgPerLine() {
     // more 1650px 1300px 975px 650px
@@ -101,7 +115,7 @@ function getPuckOfImages() {
     // Calc - how much images do we need
     var imgPerLine = howMuchImgPerLine();
     var imgAmount = imgPerLine - window.gImgAmount % imgPerLine;
-    var tmp = imgPerLine * ( 5 / imgPerLine );
+    var tmp = imgPerLine * ( 2 / imgPerLine );
     // console.log('');
     // console.log('imgPerLine = ' + imgPerLine);
     // console.log('current images in document = ' + window.gImgAmount);
@@ -164,6 +178,113 @@ function getPuckOfImages() {
 
     xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+    };
+
+    // Enable work permission for all function that listen extern events
+    window.gWorkPermission = '';
+}
+
+function deletePhoto(i) {
+
+    // Checking permission for function work
+    if (window.gWorkPermission != '') {
+        document.getElementById('errorMessage').innerHTML = 'wait 1 second';
+        return ;
+    }
+
+    // Disable work permission for all function that listen extern events
+    window.gWorkPermission = 'denied';
+
+    // Make async request to DB -  
+    // we need delete photo by its ID
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "scripts/asyncDeletePhoto.php");
+    xhr.responseType = 'json';
+    let formData = new FormData();
+    formData.append("id", window.gSnapID[i]);
+    xhr.send(formData);
+    xhr.onload = function() {
+		if (xhr.status != 200) {
+            document.getElementById('errorMessage').innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
+        } else {
+            var requestAsync = xhr.response;
+            if (!requestAsync) {
+                document.getElementById('errorMessage').innerHTML = 'empty async request';
+                // Enable work permission for all function that listen extern events
+                window.gWorkPermission = '';
+                return ;
+            }
+            document.getElementById('errorMessage').innerHTML = requestAsync.error;
+            if (requestAsync.error == '') {
+
+                while ( document.getElementById( 'item' + (i + 1) ) ) {
+                    console.log('shift item ' + (i + 1));
+                    shiftItemUp(i);
+                    window.gSnapID[i] = window.gSnapID[i + 1];
+                    i++;
+                }
+                document.getElementById( 'item' + i ).style.display = "none";
+                document.getElementById( 'galery' ).removeChild( document.getElementById( 'item' + i ) );
+                window.gSnapID.pop();
+                window.gImgAmount = window.gImgAmount - 1;
+
+
+                // Make async request to DB -  
+                // Get one photo, to pushback it as last element of current photo list
+                let newXhr = new XMLHttpRequest();
+                newXhr.open("POST", "scripts/getPhotosByAuthor.php");
+                newXhr.responseType = 'json';
+                let requestData = new FormData();
+                requestData.append("photoAmount", 1);
+
+                // If there is no elements in current photo list - send '' as lastID
+                if ((window.gImgAmount) != 0) {
+                    requestData.append("lastID", window.gSnapID[window.gImgAmount]);
+                } else {
+                    requestData.append("lastID", "");
+                }
+                
+                newXhr.send(requestData);
+
+                newXhr.onload = function() {
+                    if (newXhr.status != 200) {
+                        document.getElementById('errorMessage').innerHTML = `Ошибка ${newXhr.status}: ${newXhr.statusText}`;
+                    } else {
+                        var requestAsync = newXhr.response;
+                        if (requestAsync) {
+                            document.getElementById('errorMessage').innerHTML = requestAsync.error;
+                            if ((requestAsync.img1)) {
+                                window.gImgAmount = window.gImgAmount + 1;
+                                createNewItem(  window.gImgAmount, 
+                                                1, // isAuthor - redact it in future (only in galery)
+                                                requestAsync.img1.name, 
+                                                'data:image/gif;base64,' + requestAsync.img1.data, 
+                                                1, // isLiked - redact it in future (only in galery)
+                                                2, // likeCount - redact it in future (only in galery)
+                                                requestAsync.img1.author
+                                                );
+                                // document.getElementById('snap'+i).src = "data:image/gif;base64," + requestAsync.img1.data;
+                                // document.getElementById('snapBox'+i).style.display = "block";
+                                window.gSnapID[i] = requestAsync.img1.id;
+                            } 
+                            // else {
+                            //     document.getElementById('snap'+i).src = '#';
+                            //     document.getElementById('snapBox'+i).style.display = 'none';
+                            // }
+                        } else {
+                            document.getElementById('errorMessage').innerHTML = 'empty async request';
+                        }
+                    }
+                };
+
+                newXhr.onerror = function() {
+                    document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+                };
+            }
+        }
+    }
+    xhr.onerror = function() {
+        document.getElementById('errorMessage').innerHTML = "Запрос удаления фото не удался";
     };
 
     // Enable work permission for all function that listen extern events
