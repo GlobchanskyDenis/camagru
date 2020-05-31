@@ -55,7 +55,7 @@ function getSnapsFromDB() {
 		if (xhr.status != 200) {
             document.getElementById('errorMessage').innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
         } else {
-            var requestAjax= JSON.parse(xhr.response);
+            var requestAjax = JSON.parse(xhr.response);
 
             if (!requestAjax) {
                 document.getElementById('errorMessage').innerHTML = 'empty async request';

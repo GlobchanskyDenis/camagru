@@ -61,7 +61,7 @@ if ($_REQUEST['lastID'] == "") {
 
     // Это выполняется в случае, если фото нужны начиная с самого последнего
     $photoArr = getPhotosByAuthorfromDB($connectDB, $photoAmount, $_SESSION['loggued_on_user'], 0);
-    //if ($photoArr == false || $photoArr == null) {
+
     if ($photoArr['error'] != '') {
         $requestAjax['error'] = 'cannot get photo from database';//. Ercode = '.$photoArr['error'];
         echo json_encode($requestAjax);
@@ -71,6 +71,8 @@ if ($_REQUEST['lastID'] == "") {
     for ($i=1; $i <= $photoAmount && isset($photoArr['img'.$i]); $i++) {
         $img = $photoArr['img'.$i];
         if ($img != false) {
+            $img['name'] = xmlDefense($img['name']);
+            $img['author'] = xmlDefense($img['author']);
             $img['data'] = base64_encode($img['data']);
             $requestAjax['img'.$i] = $img;
         }
@@ -79,8 +81,7 @@ if ($_REQUEST['lastID'] == "") {
 
     // Это выполняется в случае, если фото нужны начиная НЕ с самого последнего
     $photoArr = getPhotosByAuthorfromDB($connectDB, $photoAmount, $_SESSION['loggued_on_user'], $_REQUEST['lastID']);
-    //if ($photoArr == false || $photoArr == null) {
-    //    $requestAjax['error'] = 'cannot get old photo from database';
+
     if ($photoArr['error'] != '') {
         $requestAjax['error'] = 'cannot get photo from database';//. Ercode = '.$photoArr['error'];
         echo json_encode($requestAjax);
@@ -90,6 +91,8 @@ if ($_REQUEST['lastID'] == "") {
     for ($i=1; $i <= $photoAmount && isset($photoArr['img'.$i]); $i++) {
         $img = $photoArr['img'.$i];
         if ($img != false) {
+            $img['name'] = xmlDefense($img['name']);
+            $img['author'] = xmlDefense($img['author']);
             $img['data'] = base64_encode($img['data']);
             $requestAjax['img'.$i] = $img;
         }

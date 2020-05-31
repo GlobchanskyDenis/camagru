@@ -1,6 +1,6 @@
 <?php
 
-function xmlDefense($str) {
+function xmlDefense($str) : string {
 	if (!is_string($str))
 		return 'Sory, but bad string';
 	$str = htmlspecialchars($str, ENT_QUOTES, ini_get("default_charset"), false);
@@ -153,7 +153,7 @@ function addPhotoDB($connectDB, $login, $fileName, $name, $data) : bool {
 
 function getPhotosByAuthorfromDB($connectDB, $limit, $login, $lastID) {
 	if ($lastID == 0) {
-		$query = "SELECT id, data FROM photo WHERE author=:login ORDER BY id DESC LIMIT :limit";
+		$query = "SELECT id, data, author, name FROM photo WHERE author=:login ORDER BY id DESC LIMIT :limit";
 		$dst = [
 			'error' => ''
 		];
@@ -175,7 +175,7 @@ function getPhotosByAuthorfromDB($connectDB, $limit, $login, $lastID) {
 			return $dst;
 		}
 	} else {
-		$query = "SELECT id, data FROM photo WHERE author=:login AND id<:id ORDER BY id DESC LIMIT :limit";
+		$query = "SELECT id, data, author, name FROM photo WHERE author=:login AND id<:id ORDER BY id DESC LIMIT :limit";
 		$dst = [
 			'error' => ''
 		];
