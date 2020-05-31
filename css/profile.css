@@ -1,4 +1,4 @@
-.galery {
+#galery {
 	max-width:					1625px;
 	margin:						0 auto 0 auto;
 	text-align:					center;
@@ -8,28 +8,28 @@
 }
 
 @media (max-width: 1650px) {
-	.galery {
+	#galery {
 		width:						1280px;
 		grid-template-columns:		repeat(4, 1fr);
 	}
 }
 
 @media (max-width: 1300px) {
-	.galery {
+	#galery {
 		width:						960px;
 		grid-template-columns:		repeat(3, 1fr);
 	}
 }
 
 @media (max-width: 975px) {
-	.galery {
+	#galery {
 		width:						640px;
 		grid-template-columns:		repeat(2, 1fr);
 	}
 }
 
 @media (max-width: 650px) {
-	.galery {
+	#galery {
 		width:						320px;
 		grid-template-columns:		repeat(1, 1fr);
 	}
@@ -45,6 +45,7 @@
 	border:						1px solid rgb(150, 150, 150);
 	border-radius:				10px;
 	margin:						auto 5px auto 5px;
+	/* border:						1px solid red; */
 }
 
 .delete {
@@ -114,6 +115,7 @@
 	height:						30px;
 	width:						284px;
 	margin:						0px auto 0px 7px;
+	/* border:						1px solid red; */
 }
 
 .like		{
@@ -124,6 +126,7 @@
 	transition-delay:			0s;
 	transition-duration:		0.3s;
 	transition-timing-function: ease;
+	/* border:						1px solid blue; */
 }
 
 .like:hover	{
@@ -145,6 +148,7 @@
 	font-weight:				600;
 	font-style:					italic;
 	color:						rgb(26, 68, 94);
+	/* border:						1px solid green; */
 }
 
 .author {
@@ -157,6 +161,7 @@
 	font-weight: 				600;
 	font-style:					italic;
 	color:						rgb(70, 100, 120);
+	/* border:						1px solid blue; */
 }
 
 .comments {
@@ -167,6 +172,7 @@
 	transition-delay:			0s;
 	transition-duration:		0.3s;
 	transition-timing-function: ease;
+	/* border:						1px solid green; */
 }
 
 .comments:hover {
