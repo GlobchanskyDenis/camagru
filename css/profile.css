@@ -114,7 +114,6 @@
 	height:						30px;
 	width:						284px;
 	margin:						0px auto 0px 7px;
-	/* border:						1px solid red; */
 }
 
 .like		{
@@ -125,7 +124,6 @@
 	transition-delay:			0s;
 	transition-duration:		0.3s;
 	transition-timing-function: ease;
-	/* border:						1px solid blue; */
 }
 
 .like:hover	{
@@ -147,7 +145,6 @@
 	font-weight:				600;
 	font-style:					italic;
 	color:						rgb(26, 68, 94);
-	/* border:						1px solid green; */
 }
 
 .author {
@@ -160,7 +157,6 @@
 	font-weight: 				600;
 	font-style:					italic;
 	color:						rgb(70, 100, 120);
-	/* border:						1px solid blue; */
 }
 
 .comments {
@@ -171,7 +167,6 @@
 	transition-delay:			0s;
 	transition-duration:		0.3s;
 	transition-timing-function: ease;
-	/* border:						1px solid green; */
 }
 
 .comments:hover {

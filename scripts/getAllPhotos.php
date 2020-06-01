@@ -10,14 +10,14 @@ $requestAjax = [
 session_start();
 
 if (!isset($_SESSION['loggued_on_user'])) {
-    $requestAjax['error'] = 'You are not logged';
-    echo json_encode($requestAjax);
-	exit; 
+    $user = '';
+} else {
+    $user = $_SESSION['loggued_on_user'];
 }
 
 if (!isset($_REQUEST['photoAmount']) || !is_numeric($_REQUEST['photoAmount']) ||
         $_REQUEST['photoAmount'] <= 0 || $_REQUEST['photoAmount'] > 100) {
-    $requestAjax['error'] = 'Invalid request in getPhotosByAuthor 1';
+    $requestAjax['error'] = 'Invalid request';
     echo json_encode($requestAjax);
 	exit;
 }
@@ -66,7 +66,7 @@ try {
 if ($_REQUEST['lastID'] == "") {
 
     // Это выполняется в случае, если фото нужны начиная с самого последнего
-    $photoArr = getPhotosByAuthorFromDB($connectDB, $photoAmount, $_SESSION['loggued_on_user'], 0);
+    $photoArr = getAllPhotosFromDB($connectDB, $photoAmount, 0);
 
     if ($photoArr['error'] != '') {
         $requestAjax['error'] = 'cannot get photo from database';//. Ercode = '.$photoArr['error'];
@@ -81,15 +81,15 @@ if ($_REQUEST['lastID'] == "") {
             $img['author'] = xmlDefense($img['author']);
             $img['data'] = base64_encode($img['data']);
             $img['likeCount'] = $img['likeCounter'];
-            $img['isLiked'] = isUserLikedPhoto($connectDB, $_SESSION['loggued_on_user'], $img['id']);
-            $img['isAuthor'] = ($_SESSION['loggued_on_user'] === $img['author']) ? 1 : 0;
+            $img['isLiked'] = isUserLikedPhoto($connectDB, $user, $img['id']);
+            $img['isAuthor'] = ($user === $img['author']) ? 1 : 0;
             $requestAjax['img'.$i] = $img;
         }
     }
 } else {
 
     // Это выполняется в случае, если фото нужны начиная НЕ с самого последнего
-    $photoArr = getPhotosByAuthorFromDB($connectDB, $photoAmount, $_SESSION['loggued_on_user'], $_REQUEST['lastID']);
+    $photoArr = getAllPhotosFromDB($connectDB, $photoAmount, $_REQUEST['lastID']);
 
     if ($photoArr['error'] != '') {
         $requestAjax['error'] = 'cannot get photo from database';//. Ercode = '.$photoArr['error'];
@@ -104,8 +104,8 @@ if ($_REQUEST['lastID'] == "") {
             $img['author'] = xmlDefense($img['author']);
             $img['data'] = base64_encode($img['data']);
             $img['likeCount'] = $img['likeCounter'];
-            $img['isLiked'] = isUserLikedPhoto($connectDB, $_SESSION['loggued_on_user'], $img['id']);
-            $img['isAuthor'] = ($_SESSION['loggued_on_user'] === $img['author']) ? 1 : 0;
+            $img['isLiked'] = isUserLikedPhoto($connectDB, $user, $img['id']);
+            $img['isAuthor'] = ($user === $img['author']) ? 1 : 0;
             $requestAjax['img'.$i] = $img;
         }
     }

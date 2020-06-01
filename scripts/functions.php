@@ -151,7 +151,7 @@ function addPhotoDB($connectDB, $login, $fileName, $name, $data) : bool {
 	// return false;
 }
 
-function getPhotosByAuthorfromDB($connectDB, $limit, $login, $lastID) {
+function getPhotosByAuthorFromDB($connectDB, $limit, $login, $lastID) {
 	if ($lastID == 0) {
 		$query = "SELECT id, data, author, name, likeCounter FROM photo WHERE author=:login ORDER BY id DESC LIMIT :limit";
 		$dst = [
@@ -182,6 +182,53 @@ function getPhotosByAuthorfromDB($connectDB, $limit, $login, $lastID) {
 		try {
 			$stmt = $connectDB->prepare($query);
 			$stmt->bindValue(':login', $login);
+			$stmt->bindValue(':id', $lastID);
+			// Mysql prepared statements хочет чтобы LIMIT был только тип INT
+			// Поэтому вот эти танцы с бубном
+			$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+			$stmt->execute();
+			$i = 1;
+			while (($results = $stmt->fetch(PDO::FETCH_ASSOC)) && $i <= $limit) {
+				$dst['img'.$i] = $results;
+				$i++;
+			}
+			return $dst;
+		} catch(PDOException $e) {
+			$dst['error'] = $e->getMessage();
+			return $dst;
+		}
+	}
+}
+
+function getAllPhotosFromDB($connectDB, $limit, $lastID) {
+	if ($lastID == 0) {
+		$query = "SELECT id, data, author, name, likeCounter FROM photo ORDER BY id DESC LIMIT :limit";
+		$dst = [
+			'error' => ''
+		];
+		try {
+			$stmt = $connectDB->prepare($query);
+			// Mysql prepared statements хочет чтобы LIMIT был только тип INT
+			// Поэтому вот эти танцы с бубном
+			$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+			$stmt->execute();
+			$i = 1;
+			while (($results = $stmt->fetch(PDO::FETCH_ASSOC)) && $i <= $limit) {
+				$dst['img'.$i] = $results;
+				$i++;
+			}
+			return $dst;
+		} catch(PDOException $e) {
+			$dst['error'] = $e->getMessage();
+			return $dst;
+		}
+	} else {
+		$query = "SELECT id, data, author, name, likeCounter FROM photo WHERE id<:id ORDER BY id DESC LIMIT :limit";
+		$dst = [
+			'error' => ''
+		];
+		try {
+			$stmt = $connectDB->prepare($query);
 			$stmt->bindValue(':id', $lastID);
 			// Mysql prepared statements хочет чтобы LIMIT был только тип INT
 			// Поэтому вот эти танцы с бубном

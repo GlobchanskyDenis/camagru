@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="css/headerFooter.css">
 	<link rel="stylesheet" href="css/gallery.css">
 	<script src="view/menu.js"></script>
+	<script src="view/gallery.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;1,200;1,400;1,600&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
@@ -18,9 +19,9 @@
 
 		<div class="categoryTitle">The Gallery of Camagru</div>
 		<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
-		<section class="galery">
+		<section id="galery">
 
-			<div class="item" id="item1">
+			<!-- <div class="item" id="item1">
 				<img src="img/deleteSnap.png" class="delete" id="delete1">
 				<div class="itemHeader" id="itemHeader1">Photo that I don't want to see</div>
 				<img class="photo" id="photo1" src="img/480_360+placeholder.png">
@@ -90,10 +91,11 @@
 					<div class="author" id="author3">admin</div>
 					<img src="img/comment.png" class="comments" id="comments3" title="comments">
 				</div>
-			</div>
+			</div> -->
 
 			
 		</section>
+		<img src="img/getPhotos.png" id="getPhotos">
 
 
 		<div style="height: 25px; width: 100%"></div> <!-- НЕ УДАЛЯТЬ!!! ЭТО ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ ПОДВАЛА -->
