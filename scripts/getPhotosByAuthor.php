@@ -74,6 +74,8 @@ if ($_REQUEST['lastID'] == "") {
             $img['name'] = xmlDefense($img['name']);
             $img['author'] = xmlDefense($img['author']);
             $img['data'] = base64_encode($img['data']);
+            $img['likeCount'] = $img['likeCounter'];
+            $img['isLiked'] = isUserLikedPhoto($connectDB, $_SESSION['loggued_on_user'], $img['id']);
             $img['isAuthor'] = ($_SESSION['loggued_on_user'] === $img['author']) ? 1 : 0;
             $requestAjax['img'.$i] = $img;
         }
@@ -95,6 +97,8 @@ if ($_REQUEST['lastID'] == "") {
             $img['name'] = xmlDefense($img['name']);
             $img['author'] = xmlDefense($img['author']);
             $img['data'] = base64_encode($img['data']);
+            $img['likeCount'] = $img['likeCounter'];
+            $img['isLiked'] = isUserLikedPhoto($connectDB, $_SESSION['loggued_on_user'], $img['id']);
             $img['isAuthor'] = ($_SESSION['loggued_on_user'] === $img['author']) ? 1 : 0;
             $requestAjax['img'.$i] = $img;
         }

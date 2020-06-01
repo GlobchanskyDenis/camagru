@@ -22,6 +22,8 @@
 			<p>Camagru is my own instagram. You can register here, make photo on webcam 
 				or simply upload them whith superposable images, browse gallery of a previous 
 				photo's, like and comment them.</p>
+			<p>At the moment, the site does not have a user deletion function.
+				Be careful with your personal data.</p>
 			<p>I use PHP, JavaScript, CSS, AJAX and MySQL</p>
 		</div>
 

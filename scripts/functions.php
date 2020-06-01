@@ -153,7 +153,7 @@ function addPhotoDB($connectDB, $login, $fileName, $name, $data) : bool {
 
 function getPhotosByAuthorfromDB($connectDB, $limit, $login, $lastID) {
 	if ($lastID == 0) {
-		$query = "SELECT id, data, author, name FROM photo WHERE author=:login ORDER BY id DESC LIMIT :limit";
+		$query = "SELECT id, data, author, name, likeCounter FROM photo WHERE author=:login ORDER BY id DESC LIMIT :limit";
 		$dst = [
 			'error' => ''
 		];
@@ -175,7 +175,7 @@ function getPhotosByAuthorfromDB($connectDB, $limit, $login, $lastID) {
 			return $dst;
 		}
 	} else {
-		$query = "SELECT id, data, author, name FROM photo WHERE author=:login AND id<:id ORDER BY id DESC LIMIT :limit";
+		$query = "SELECT id, data, author, name, likeCounter FROM photo WHERE author=:login AND id<:id ORDER BY id DESC LIMIT :limit";
 		$dst = [
 			'error' => ''
 		];
@@ -197,6 +197,26 @@ function getPhotosByAuthorfromDB($connectDB, $limit, $login, $lastID) {
 			$dst['error'] = $e->getMessage();
 			return $dst;
 		}
+	}
+}
+
+function isUserLikedPhoto($connectDB, $login, $photoID) {
+	$query = "SELECT * FROM likeTable WHERE photoID=:photoID AND whoLikedLogin=:login";
+	$params = [
+		':photoID'	=> $photoID,
+		':login'	=> $login
+	];
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		if ( ($results = $stmt->fetch(PDO::FETCH_ASSOC)) && 
+			 isset($results['whoLikedLogin']) && 
+			 $results['whoLikedLogin'] == $login ) {
+			return true;
+		}
+		return false;
+	} catch(PDOException $e) {
+		return false;
 	}
 }
 

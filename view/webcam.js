@@ -80,14 +80,15 @@ function getSnapsFromDB() {
                 }
             }
         }
+        // Enable work permission for all function that listen extern events
+        window.gWorkPermission = '';
     };
 
     xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+        // Enable work permission for all function that listen extern events
+        window.gWorkPermission = '';
     };
-
-    // Enable work permission for all function that listen extern events
-    window.gWorkPermission = '';
 }
 
 function takeshot() {
@@ -178,6 +179,8 @@ function takeshot() {
                     var requestAjax = newXhr.response;
                     if (!requestAjax) {
                         document.getElementById('errorMessage').innerHTML = 'empty async request';
+                        // Enable work permission for all function that listen extern events
+                        window.gWorkPermission = '';
                         return ;
                     }
                     if (requestAjax.img1) {
@@ -193,25 +196,27 @@ function takeshot() {
                         document.getElementById('snapBox1').style.display = "block";
                         window.gSnapID[1] = requestAjax.img1.id;
                     }
-                    
                 }
+                // Enable work permission for all function that listen extern events
+                window.gWorkPermission = '';
             }
 
             newXhr.onerror = function() {
                 document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+                // Enable work permission for all function that listen extern events
+                window.gWorkPermission = '';
             };
         }
     }
 
 	xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+        // Enable work permission for all function that listen extern events
+        window.gWorkPermission = '';
     };
 
     image.style.display = "none";
     video.style.opacity = 1;
-    
-    // Enable work permission for all function that listen extern events
-    window.gWorkPermission = '';
 }
 
 function deletePhoto(i) {
@@ -292,20 +297,23 @@ function deletePhoto(i) {
                             document.getElementById('errorMessage').innerHTML = 'empty async request';
                         }
                     }
+                    // Enable work permission for all function that listen extern events
+                    window.gWorkPermission = '';
                 };
 
                 newXhr.onerror = function() {
                     document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+                    // Enable work permission for all function that listen extern events
+                    window.gWorkPermission = '';
                 };
             }
         }
     }
     xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос удаления фото не удался";
+        // Enable work permission for all function that listen extern events
+        window.gWorkPermission = '';
     };
-
-    // Enable work permission for all function that listen extern events
-    window.gWorkPermission = '';
 }
 
 function hangEventListeners() {

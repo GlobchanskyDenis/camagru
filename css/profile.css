@@ -186,7 +186,7 @@
 }
 
 #getPhotos {
-	display:					block;
+	display:					none;
 	width:						80px;
 	margin:						0px auto 0px auto;
 	opacity:					0.6;

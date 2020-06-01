@@ -1,4 +1,4 @@
-function createNewItem(itemNbr, isAuthor, headerData, photoSrc, isLiked, likeCount, photoAuthor) {
+function createNewItem(itemNbr, isAuthor, headerData, photoSrc, isLiked, likeCounter, photoAuthor) {
 
     var galery = document.getElementById('galery');
     var item = document.createElement('div');
@@ -39,7 +39,7 @@ function createNewItem(itemNbr, isAuthor, headerData, photoSrc, isLiked, likeCou
 
     counter.setAttribute("class", "counter");
     counter.setAttribute("id", 'counter' + itemNbr);
-    counter.innerHTML = likeCount;
+    counter.innerHTML = likeCounter;
 
     author.setAttribute("class", "author");
     author.setAttribute("id", 'author' + itemNbr);
@@ -115,14 +115,8 @@ function getPuckOfImages() {
     // Calc - how much images do we need
     var imgPerLine = howMuchImgPerLine();
     var imgAmount = imgPerLine - window.gImgAmount % imgPerLine;
-    var tmp = imgPerLine * ( 2 / imgPerLine );
-    // console.log('');
-    // console.log('imgPerLine = ' + imgPerLine);
-    // console.log('current images in document = ' + window.gImgAmount);
-    // console.log('to end line we need = ' + imgAmount);
-    // console.log('new images we need = ' + tmp);
-    imgAmount += tmp;
-    // console.log('total images we need = ' + imgAmount);
+    imgAmount += imgPerLine * parseInt( 8 / imgPerLine );
+    var isNeedToDisplayGetPhotosBlock = 1;
 
 
     // Make async request to DB -  
@@ -149,6 +143,8 @@ function getPuckOfImages() {
 
             if (!requestAsync) {
                 document.getElementById('errorMessage').innerHTML = 'empty async request';
+                // This trick is only to be pretty. To not see this when pictures is loading
+                document.getElementById('getPhotos').style.opacity = 0.6;
                 // Enable work permission for all function that listen extern events
                 window.gWorkPermission = '';
                 return ;
@@ -166,24 +162,39 @@ function getPuckOfImages() {
                                     img['isAuthor'],
                                     img['name'],
                                     'data:image/gif;base64,' + img['data'],
-                                    0, // is Liked - redact it in future
-                                    2, // likeCount - redact it in future
+                                    img['isLiked'],
+                                    img['likeCounter'],
                                     img['author']
                                     );
                     window.gSnapID[window.gImgAmount] = img['id'];
                 } else {
-                    document.getElementById('getPhotos').style.display = 'none';
+                    isNeedToDisplayGetPhotosBlock = 0;
                 }
             }
+
+            // display block 'getPhotos' if we need it
+            if (isNeedToDisplayGetPhotosBlock) {
+                document.getElementById('getPhotos').style.display = 'block';
+            } else {
+                document.getElementById('getPhotos').style.display = 'none';
+            }
+
+            // Enable work permission for all function that listen extern events
+            window.gWorkPermission = '';
         }
     }
 
     xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+        // display block 'getPhotos' if we need it
+        if (isNeedToDisplayGetPhotosBlock) {
+            document.getElementById('getPhotos').style.display = 'block';
+        } else {
+            document.getElementById('getPhotos').style.display = 'none';
+        }
+        // Enable work permission for all function that listen extern events
+        window.gWorkPermission = '';
     };
-
-    // Enable work permission for all function that listen extern events
-    window.gWorkPermission = '';
 }
 
 function deletePhoto(i) {
@@ -257,11 +268,11 @@ function deletePhoto(i) {
                             if ((requestAsync.img1)) {
                                 window.gImgAmount = window.gImgAmount + 1;
                                 createNewItem(  window.gImgAmount, 
-                                                requestAsync.img1.isAuthor, // isAuthor - redact it in future (only in galery)
+                                                requestAsync.img1.isAuthor,
                                                 requestAsync.img1.name, 
                                                 'data:image/gif;base64,' + requestAsync.img1.data, 
-                                                1, // isLiked - redact it in future (only in galery)
-                                                2, // likeCount - redact it in future (only in galery)
+                                                requestAsync.img1.isLiked,
+                                                requestAsync.img1.likeCounter,
                                                 requestAsync.img1.author
                                                 );
                                 window.gSnapID[i] = requestAsync.img1.id;
@@ -273,20 +284,23 @@ function deletePhoto(i) {
                             document.getElementById('errorMessage').innerHTML = 'empty async request';
                         }
                     }
+                    // Enable work permission for all function that listen extern events
+                    window.gWorkPermission = '';
                 };
 
                 newXhr.onerror = function() {
                     document.getElementById('errorMessage').innerHTML = "Запрос не удался";
+                    // Enable work permission for all function that listen extern events
+                    window.gWorkPermission = '';
                 };
             }
         }
     }
     xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос удаления фото не удался";
+        // Enable work permission for all function that listen extern events
+        window.gWorkPermission = '';
     };
-
-    // Enable work permission for all function that listen extern events
-    window.gWorkPermission = '';
 }
 
 window.onload = function() {
