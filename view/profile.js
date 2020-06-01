@@ -66,6 +66,7 @@ function createNewItem(itemNbr, isAuthor, headerData, photoSrc, isLiked, likeCou
         document.getElementById('author' + itemNbr).style.color = 'rgb(255, 80, 80)';
     }
     document.getElementById( 'delete' + itemNbr ).addEventListener("click", deletePhoto.bind(null, itemNbr));
+    document.getElementById( 'like' + itemNbr ).addEventListener("click", likePhoto.bind(null, itemNbr));
 }
 
 function shiftItemUp(i) {
@@ -296,6 +297,57 @@ function deletePhoto(i) {
             }
         }
     }
+    xhr.onerror = function() {
+        document.getElementById('errorMessage').innerHTML = "Запрос удаления фото не удался";
+        // Enable work permission for all function that listen extern events
+        window.gWorkPermission = '';
+    };
+}
+
+function likePhoto(i) {
+    // Checking permission for function work
+    if (window.gWorkPermission != '') {
+        document.getElementById('errorMessage').innerHTML = 'wait 1 second';
+        return ;
+    }
+
+    // Disable work permission for all function that listen extern events
+    window.gWorkPermission = 'denied';
+
+    // Make async request to DB -  
+    // we need like photo by its ID
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "scripts/asyncLikePhoto.php");
+    xhr.responseType = 'json';
+    let formData = new FormData();
+    formData.append("id", window.gSnapID[i]);
+    xhr.send(formData);
+
+    xhr.onload = function() {
+		if (xhr.status != 200) {
+            document.getElementById('errorMessage').innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
+        } else {
+            var requestAsync = xhr.response;
+            if (!requestAsync) {
+                document.getElementById('errorMessage').innerHTML = 'empty async request';
+                // Enable work permission for all function that listen extern events
+                window.gWorkPermission = '';
+                return ;
+            }
+            document.getElementById('errorMessage').innerHTML = requestAsync.error;
+            if (!requestAsync.error) {
+                if (requestAsync.isLiked) {
+                    document.getElementById('like' + i).src = "img/liked.png";
+                } else {
+                    document.getElementById('like' + i).src = "img/like.png";
+                }
+                document.getElementById('counter' + i).innerHTML = requestAsync.newLikeCounter;
+            }
+            // Enable work permission for all function that listen extern events
+            window.gWorkPermission = '';
+        }
+    }
+
     xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос удаления фото не удался";
         // Enable work permission for all function that listen extern events

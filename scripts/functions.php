@@ -220,6 +220,80 @@ function isUserLikedPhoto($connectDB, $login, $photoID) {
 	}
 }
 
+function setLikePhotoByID($connectDB, $photoID, $login) {
+	$query = 'INSERT INTO likeTable (photoID, whoLikedLogin, date) VALUES (:photoID, :login, NOW())';
+	$params = [
+		':photoID'	=> $photoID,
+		':login'	=> $login
+	];
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
+		return false;
+	}
+}
+
+function unsetLikePhotoByID($connectDB, $photoID, $login) {
+	$query = 'DELETE FROM likeTable WHERE whoLikedLogin=:login AND photoID=:photoID';
+	$params = [
+		':login'	=> $login,
+		':photoID'	=> $photoID
+	];
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
+		return false;
+	}
+}
+
+function reduceLikeCountByPhotoID($connectDB, $photoID) {
+	$query = "SELECT likeCounter FROM photo WHERE id=:photoID";
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute([':photoID' => $photoID]);
+		if ( ($results = $stmt->fetch(PDO::FETCH_ASSOC)) && isset($results['likeCounter']) ) {
+			$newLikeCounter = (int)($results['likeCounter']) - 1;
+			$query = 'UPDATE photo SET likeCounter=:newLikeCounter WHERE id=:photoID';
+			$params = [
+				':newLikeCounter' => $newLikeCounter,
+				':photoID' => $photoID
+			];
+			$newstmt = $connectDB->prepare($query);
+			$newstmt->execute($params);
+			return $newLikeCounter;
+		}
+	} catch(PDOException $e) {
+		return false;
+	}
+	return false;
+}
+
+function increaseLikeCountByPhotoID($connectDB, $photoID) {
+	$query = "SELECT likeCounter FROM photo WHERE id=:photoID";
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute([':photoID' => $photoID]);
+		if ( ($results = $stmt->fetch(PDO::FETCH_ASSOC)) && isset($results['likeCounter']) ) {
+			$newLikeCounter = (int)($results['likeCounter']) + 1;
+			$query = 'UPDATE photo SET likeCounter=:newLikeCounter WHERE id=:photoID';
+			$params = [
+				':newLikeCounter' => $newLikeCounter,
+				':photoID' => $photoID
+			];
+			$newstmt = $connectDB->prepare($query);
+			$newstmt->execute($params);
+			return $newLikeCounter;
+		}
+	} catch(PDOException $e) {
+		return false;
+	}
+	return false;
+}
+
 function getAuthorByPhotoID($connectDB, $id) : string {
 	$query = "SELECT author FROM photo WHERE id=:id";
 	try {
