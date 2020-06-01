@@ -313,6 +313,12 @@ function deletePhotoByID($connectDB, $id) : bool {
 	try {
 		$stmt = $connectDB->prepare($query);
 		$stmt->execute([':id' => $id]);
+		$query = 'DELETE FROM likeTable WHERE photoID=:id';
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute([':id' => $id]);
+		$query = 'DELETE FROM notifTable WHERE photoID=:id';
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute([':id' => $id]);
 		return true;
 	} catch(PDOException $e) {
 		return false;
