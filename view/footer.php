@@ -1,5 +1,5 @@
 	<footer>
 		<div>
-			made by GlobchanskyDenis&copy;&nbsp;&nbsp;
+			made by GlobchanskyDenis&copy;
 		</div>
 	</footer>

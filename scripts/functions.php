@@ -122,6 +122,25 @@ function getUserStatusDB($connectDB, $login) {
 	}
 }
 
+function getUserMail_ifNotifStatus($connectDB, $login) {
+	$query = 'SELECT notifications, email FROM users WHERE login=:login';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute( [':login' => $login] );
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($results && isset($results['notifications']) && isset($results['email'])) {
+			if ($results['notifications'] == true) {
+				return $results['email'];
+			} else {
+				return '';
+			}
+		}
+		return false;
+	} catch(PDOException $e) {
+		return false;
+	}
+}
+
 function addPhotoDB($connectDB, $login, $fileName, $name, $data) : bool {
 	$query = 'SELECT id FROM users WHERE login=:login';
 	try {
@@ -293,6 +312,84 @@ function unsetLikePhotoByID($connectDB, $photoID, $login) {
 		$stmt->execute($params);
 		return true;
 	} catch(PDOException $e) {
+		return $e->getMessage();
+		return false;
+	}
+}
+
+function setNotificationToDB($connectDB, $authorLogin, $photoID, $userNotifier, $message, $isLike) {
+	$query = 'INSERT INTO notifTable (author, photoID, userNotifier, message, islikeNotif, date) 
+							VALUES (:author, :photoID, :userNotifier, :message, :isLike, NOW())';
+	$params = [
+		':author'		=> $authorLogin,
+		':photoID'		=> $photoID,
+		':userNotifier'	=> $userNotifier,
+		':message'		=> $message,
+		'isLike'		=> $isLike
+	];
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
+		return false;
+	}
+}
+
+function getNotifID($connectDB, $photoID, $userNotifier, $isLikeNotif) {
+	$query = 'SELECT id FROM notifTable WHERE photoID=:photoID AND userNotifier=:userNotifier AND isLikeNotif=:isLikeNotif';
+	$params = [
+		':photoID'		=> $photoID,
+		':userNotifier'	=> $userNotifier,
+		'isLikeNotif'	=> $isLikeNotif
+	];
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		if ( ($results = $stmt->fetch(PDO::FETCH_ASSOC)) && isset($results['id']) ) {
+			return $results['id'];
+		}
+		return false;
+	} catch(PDOException $e) {
+		return false;
+	}
+}
+
+function getNotificationsByAuthorDB($connectDB, $authorLogin, $limit) {
+	$query = "SELECT id, photoID, userNotifier, message FROM notifTable 
+			WHERE author=:author AND activeStatus=TRUE ORDER BY id DESC LIMIT :limit";
+	$dst = [];
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->bindValue(':author', $authorLogin);
+		// Mysql prepared statements хочет чтобы LIMIT был только тип INT
+		// Поэтому вот эти танцы с бубном
+		$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+		$stmt->execute();
+		$i = 1;
+		while ( ($results = $stmt->fetch(PDO::FETCH_ASSOC)) && 
+			isset($results['id']) && isset($results['userNotifier']) && 
+			isset($results['photoID'])  && isset($results['message']) ) {
+			$dst['notif'.$i] = $results;
+			$i++;
+		}
+		return $dst;
+	} catch(PDOException $e) {
+		return false;
+	}
+}
+
+function updateNotificationStatusByID($connectDB, $notifID, $newStatus) {
+	$query = 'UPDATE notifTable SET activeStatus=:newStatus WHERE id=:id';
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->bindValue(':newStatus', $newStatus, PDO::PARAM_BOOL);
+		// Mysql prepared statements хочет чтобы LIMIT был только тип INT
+		// Поэтому вот эти танцы с бубном
+		$stmt->bindValue(':id', $notifID);
+		$stmt->execute();
+		return true;
+	} catch(PDOException $e) {
 		return false;
 	}
 }
@@ -347,12 +444,26 @@ function getAuthorByPhotoID($connectDB, $id) : string {
 		$stmt = $connectDB->prepare($query);
 		$stmt->execute([':id' => $id]);
 		if ( ($results = $stmt->fetch(PDO::FETCH_ASSOC)) && isset($results['author']) ) {
-			return $results['author'];//print_r($results, true);
+			return $results['author'];
 		}
 	} catch(PDOException $e) {
 		return '';
 	}
 	return '';
+}
+
+function getAuthorByNotifID($connectDB, $id) {
+	$query = "SELECT author FROM notifTable WHERE id=:id";
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute([':id' => $id]);
+		if ( ($results = $stmt->fetch(PDO::FETCH_ASSOC)) && isset($results['author']) ) {
+			return $results['author'];
+		}
+	} catch(PDOException $e) {
+		return false;
+	}
+	return false;
 }
 
 function deletePhotoByID($connectDB, $id) : bool {
@@ -649,16 +760,16 @@ function regRequestErrors() : string {
 
 function sendConfirmMail($login, $email, $confirmCode) {
 	$subject = 'Registration in Camagru';
-	$message = "<html><body>
-	<p><span style='font-size: 1.5em; color: green;'>Hello, <b>$login</b></span></br></p>
-	<p>you must confirm your registration by entering this confirm code:</p>
-	<p><span style='background-color: light-blue;'>$confirmCode</span></p>
-	<p>or you can simply push <a href='192.168.0.197:8080/scripts/validate.php?code=$confirmCode'>here</a></p>
-	<p><form action='192.168.0.197:8080/scripts/validate.php' method='POST'>
-	<input type='text' name='code' value='$confirmCode' hidden>
-	<input type='submit'>
-	</form></p>
-	</body></html>";
+	// $message = "<html><body>
+	// <p><span style='font-size: 1.5em; color: green;'>Hello, <b>$login</b></span></br></p>
+	// <p>you must confirm your registration by entering this confirm code:</p>
+	// <p><span style='background-color: light-blue;'>$confirmCode</span></p>
+	// <p>or you can simply push <a href='192.168.0.197:8080/scripts/validate.php?code=$confirmCode'>here</a></p>
+	// <p><form action='192.168.0.197:8080/scripts/validate.php' method='POST'>
+	// <input type='text' name='code' value='$confirmCode' hidden>
+	// <input type='submit'>
+	// </form></p>
+	// </body></html>";
 
 	$message = '<html><body style="font-size: 1.4em;"><p><span style="font-size: 1.3em; color: green;">Hello, <b>'.$login.'</b></span></p>'.PHP_EOL;
 	$message .= '<p>you must confirm your registration by entering this confirm code:</p>';

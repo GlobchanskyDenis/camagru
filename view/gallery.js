@@ -342,6 +342,12 @@ function likePhoto(i) {
                     document.getElementById('like' + i).src = "img/like.png";
                 }
                 document.getElementById('counter' + i).innerHTML = requestAsync.newLikeCounter;
+                if (requestAsync['meta1']) {
+                    console.log(requestAsync['meta1']);
+                }
+                if (requestAsync['meta2']) {
+                    console.log(requestAsync['meta2']);
+                }
             }
             // Enable work permission for all function that listen extern events
             window.gWorkPermission = '';
@@ -358,6 +364,8 @@ function likePhoto(i) {
 window.onload = function() {
     getPuckOfImages();
     document.getElementById('getPhotos').addEventListener("click", getPuckOfImages);
+    //getNotifications();
+    console.log('gallery');
 }
 
 var gWorkPermission = '';

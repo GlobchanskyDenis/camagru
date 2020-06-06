@@ -16,7 +16,7 @@ if (isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user']) {
 				<ul id="bar">
 					<li class="barItem"><div onclick="window.location.href='snapchat.php'"><img src="img/snapshot.png" class="icon"></div></li>
 					<li class="barItem"><div onclick="window.location.href='gallery.php'"><img src="img/gallery.png" class="icon"></div></li>
-					<li class="barItem" onclick="notifClick()"><div><img src="img/notifications1.png" class="icon"></div>
+					<li class="barItem" onclick="notifClick()"><div><img src="img/notifications_off.png" class="icon" id='notificationsIcon'></div>
 						<!-- Тут меню уведомлений. Оно описано чуть ниже -->
 					</li>
 					<li class="barItem" onclick="menuClick()"><div><img src="img/sendvich.png" class="icon" onmouseover="menuMouseOver()"></div>
@@ -31,43 +31,35 @@ if (isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user']) {
 			</div>
 
 			<div class="notif__drop">
-				<div id="notifHeaderBlock">
+				<div class="notifHeader">
+					<div id="notifHeader">
+						No notifications found
+					</div>
+				</div>
+				<!-- <div class='notif' id='notif1'>
+					<div class="notifBody" id="notifBody1">
+						123456789012345 has liked your snap
+					</div>
 					<div class="vertAlignator">
-						<div id="notifHeader">
-							Notifications:
-						</div>
+						<img src="img/delete.png" class="icon" id="notifDel1">
 					</div>
 				</div>
-				<div id="notif1">
-					<div class="notification">
-						<div class="notification__body" id="notif1__body" onclick="">
-							123456789012345 has liked your snap
-						</div>
-						<div class="vertAlignator">
-							<img src="img/delete.png" class="icon">
-						</div>
+				<div class='notif' id='notif2'>
+					<div class="notifBody" id="notifBody2">
+						notification 2
 					</div>
-				</div>
-				<div id="notif2">
-					<div class="notification">
-						<div class="notification__body" id="notif2__body" onclick="">
-							notification 2
-						</div>
-						<div class="vertAlignator">
-							<img src="img/delete.png" class="icon">
-						</div>
+					<div class="vertAlignator">
+						<img src="img/delete.png" class="icon">
 					</div>
-				</div>
-				<div id="notif3">
-					<div class="notification">
-						<div class="notification__body" id="notif3__body" onclick="">
-							notification 3
-						</div>
-						<div class="vertAlignator">
-							<img src="img/delete.png" class="icon">
-						</div>
+				</div> -->
+				<!-- <div class='notif' id='notif3'>
+					<div class="notifBody" id="notifBody3">
+						notification 3
 					</div>
-				</div>
+					<div class="vertAlignator">
+						<img src="img/delete.png" class="icon">
+					</div>
+				</div> -->
 			</div>
 		</header>
 

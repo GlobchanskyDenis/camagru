@@ -204,6 +204,7 @@ ul {
 
 .notif__drop {
 	position:					absolute;
+	width:						237px;
 	z-index:					10;
 	right:						40px;
 	top:						-1000px;
@@ -213,9 +214,10 @@ ul {
 	font-weight:				600;
 	font-style: 				italic;
 	text-align:					center;
+	/* border:					1px solid red; */
 }
 
-.notification {
+.notif {
 	display:					grid;
 	grid-template-columns:		200px 30px;
 	width:						230px;
@@ -232,24 +234,25 @@ ul {
 	transition-timing-function: ease;
 }
 
-.notification:hover {
+.notif:hover {
 	background-color: 			rgb(101, 142, 169);
 	transition-delay:			0s;
 	transition-duration:		0.4s;
 	transition-timing-function: ease;
 }
 
-.notification:active {
+.notif:active {
 	background-color:			rgb(86, 112, 139);
 }
 
-.notification__body {
+.notifBody {
 	display:					flex;
 	height:						100%;
 	margin:						0;
 	padding:					0;
 	align-items:				center;
 	justify-content:			left;
+	/* border:		1px solid green; */
 }
 
 .vertAlignator {
@@ -259,6 +262,7 @@ ul {
 	padding:					0;
 	align-items:				center;
 	justify-content:			left;
+	/* border:		1px solid red; */
 }
 
 /* .notif__dropItem {
@@ -276,21 +280,20 @@ ul {
 	transition-timing-function: ease;
 } */
 
-#notifHeaderBlock {
+.notifHeader {
 	width:						100%;
 	display:					block;
-	height:						32px;
-	background-color:			rgb(230, 230, 230);
+	background-color:			rgba(230, 230, 230, 0.8);
 }
 
 #notifHeader {
-	display:					inline;
+	display:					inline-block;
 	color:						rgb(96, 138, 174);
 	text-shadow: 				0, 1px 1px 2px rgb(26, 68, 104);
-	margin:						auto;
+	margin:						7px auto 7px auto;
 }
 
-#notif1__body {
+/* #notif1__body {
 	display:					flex;
 	height:						100%;
 	margin:						0;
@@ -315,12 +318,13 @@ ul {
 	padding:					0;
 	align-items:				center;
 	justify-content:			left;
-}
+} */
 
 #userName {
 	color:						rgb(96, 138, 174);
 	text-shadow: 				0, 1px 1px 2px rgb(26, 68, 104);
-	min-height:					30px;
+	margin:						7px auto 7px auto;
+	/* min-height:					30px; */
 }
 
 /* .barItem:hover .bar__drop {
@@ -417,6 +421,9 @@ footer {
 footer div {
 	display:					block;
 	color:						white;
+	width:						15em;
+	margin-right:				10px;
+	text-align:					right;
 	position:					absolute;
 	top:						2px;
 	right:						0px;

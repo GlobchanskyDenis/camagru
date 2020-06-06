@@ -54,7 +54,9 @@ try {
     $connectDB->query('CREATE TABLE IF NOT EXISTS notifTable ( id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                                             author VARCHAR(15) NOT NULL, 
                                             photoID INT NOT NULL,
-                                            whoLikedLogin VARCHAR(15),
+                                            userNotifier VARCHAR(15) NOT NULL,
+                                            message VARCHAR(40) NOT NULL,
+                                            islikeNotif BOOL NOT NULL,
                                             activeStatus BOOL DEFAULT TRUE,
                                             date TIMESTAMP )');
 
