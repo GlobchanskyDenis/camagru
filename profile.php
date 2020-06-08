@@ -25,7 +25,7 @@
 		}
 	}
 	if (!$accessPermission) {
-		$_SESSION['last_error'] = 'You have no rights to go there';
+		$_SESSION['last_error'] = 'You have no rights to go there '.$_SESSION['status'];
 		header('Location: signIn.php');
 		exit;
 	}
@@ -36,7 +36,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Home page</title>
+	<title>User Profile</title>
 	<link rel="stylesheet" href="css/headerFooter.css">
 	<link rel="stylesheet" href="css/profile.css">
 	<script src="view/menu.js"></script>
@@ -56,7 +56,7 @@
 		<section id="galery">
 		</section>
 
-		<img src="img/getPhotos.png" id="getPhotos">
+		<img src="img/more.png" id="more">
 
 		<div style="height: 25px; width: 100%"></div> <!-- НЕ УДАЛЯТЬ!!! ЭТО ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ ПОДВАЛА -->
 	</div>

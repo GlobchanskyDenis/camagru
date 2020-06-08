@@ -44,6 +44,27 @@ if ($confirmCode === 'error') {
 	exit;
 }
 
+// $mailRequest = [
+// 	'login'         => $_SESSION['to_confirm'],
+// 	'email'         => $email,
+// 	'confirmCode'	=> $confirmCode
+// ];
+// $urlEncodedMailRequest = http_build_query($mailRequest);
+// $headers = [
+// 	'Content-type: application/x-www-form-urlencoded',
+// 	'Content-length: '.strlen($urlEncodedMailRequest)
+// ];
+
+// $ch = curl_init();
+// curl_setopt($ch, CURLOPT_URL, 'http://'.$MAIL_HOST.':'.$MAIL_PORT.'/scripts/sendConfirmEmail.php');
+// curl_setopt($ch, CURLOPT_POST, true);
+// curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+// curl_setopt($ch, CURLOPT_TIMEOUT_MS, 50);
+// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+// curl_setopt($ch, CURLOPT_POSTFIELDS, $urlEncodedMailRequest);
+// curl_exec($ch);
+// curl_close($ch);
+
 sendConfirmMail($_SESSION['to_confirm'], $email, $confirmCode);
 
 $_SESSION['last_error'] = '<span style="color: green;">'.$_SESSION['to_confirm'].' '.$email.';';

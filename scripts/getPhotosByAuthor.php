@@ -25,7 +25,7 @@ if (!isset($_REQUEST['photoAmount']) || !is_numeric($_REQUEST['photoAmount']) ||
 if ( !isset($_REQUEST['lastID']) ||
         !( is_numeric($_REQUEST['lastID']) || $_REQUEST['lastID'] == false ) || 
         ( is_numeric($_REQUEST['lastID']) && $_REQUEST['lastID'] <= 0) ) {
-    $requestAjax['error'] = 'Invalid request in getPhotosByAuthor 2 Request='.$_REQUEST['lastID'];
+    $requestAjax['error'] = 'Invalid request 2';
     echo json_encode($requestAjax);
 	exit;
 }

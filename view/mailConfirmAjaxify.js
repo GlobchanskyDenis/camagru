@@ -48,7 +48,6 @@ function ajaxCheckReg() {
 }
 */
 
-
 function asyncRequest() {
 
 	// bind, initialize marker. check necessity for async request
@@ -59,20 +58,30 @@ function asyncRequest() {
 		return;
 	}
 
+	// Check necessity for async request
+	var necessity = 0;
+	if (document.forms['updateEmail']['email'].value != '' &&
+			window.gLastEmail != document.forms['updateEmail']['email'].value) {
+		necessity = 1;
+	}
+	if (necessity == 0)	{
+		return ;
+	}
+
 	// form and send request
-	console.log('');
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", "scripts/ajaxUpdateMail.php");
 	xhr.responseType = 'json';
 	let formData = new FormData();
 	formData.append("email", document.forms['updateEmail']['email'].value);
-	console.log('tx: email='+document.forms['updateEmail']['email'].value);
+	// console.log('');
+	// console.log('tx: email='+document.forms['updateEmail']['email'].value);
 	xhr.send(formData);
 
 	// in valid request case
 	xhr.onload = function() {
 		if (xhr.status != 200) {
-			console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+			document.getElementById("errorMessage").innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
 		} else {
 			var emailMarker = document.querySelector(".emailMarker");
 			var requestData= xhr.response;
@@ -90,14 +99,17 @@ function asyncRequest() {
 			else
 				emailMarker.style.opacity = 0;
 
-			console.log( 'rx: request='+requestData.request+' email='+requestData.email);
+			// console.log( 'rx: request='+requestData.request+' email='+requestData.email);
 		}
+		window.gLastEmail = document.forms['updateEmail']['email'].value;
 	}
 
 	// in invalid request case
 	xhr.onerror = function() {
-		console.log("Запрос не удался");
+		document.getElementById("errorMessage").innerHTML = "Запрос не удался";
 	};
 }
 
-setInterval( asyncRequest, 2000);
+var gLastEmail = '';
+
+setInterval( asyncRequest, 1000);

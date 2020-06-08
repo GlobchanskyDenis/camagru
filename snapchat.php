@@ -36,7 +36,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Gallery</title>
+	<title>Snapchat</title>
 	<link rel="stylesheet" href="css/headerFooter.css">
 	<link rel="stylesheet" href="css/snap.css">
 	<script src="view/menu.js"></script>

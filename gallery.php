@@ -6,6 +6,7 @@
 	<title>Gallery</title>
 	<link rel="stylesheet" href="css/headerFooter.css">
 	<link rel="stylesheet" href="css/gallery.css">
+	<!-- <script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script> -->
 	<script src="view/menu.js"></script>
 	<script src="view/gallery.js"></script>
 	<script src="view/notifications.js"></script>
@@ -22,8 +23,9 @@
 		<div id="errorMessage"><?php if (isset($_SESSION['last_error'])) {echo $_SESSION['last_error']; $_SESSION['last_error'] = '';} ?></div>
 		<section id="galery">
 		</section>
+		
 
-		<img src="img/getPhotos.png" id="getPhotos">
+		<img src="img/more.png" id="more">
 
 
 		<div style="height: 25px; width: 100%"></div> <!-- НЕ УДАЛЯТЬ!!! ЭТО ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ ПОДВАЛА -->

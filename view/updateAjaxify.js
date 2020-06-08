@@ -172,7 +172,7 @@ window.onload = function() {
 
 	xhr.onload = function() {
 		if (xhr.status != 200) {
-			console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+			document.getElementById("errorMessage").innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
 		} else {
 			if (!xhr.response) {
 				document.getElementById("errorMessage").innerHTML = "response isnt exist";
@@ -190,7 +190,7 @@ window.onload = function() {
 	};
 	
 	xhr.onerror = function() {
-		console.log("Запрос не удался");
+		document.getElementById("errorMessage").innerHTML = "Запрос не удался";
 	};
 };
 
@@ -216,7 +216,7 @@ function updateNotifications() {
 
 	xhr.onload = function() {
 		if (xhr.status != 200) {
-			console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+			document.getElementById("errorMessage").innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
 		} else {
 			var message = document.getElementById("errorMessage");
 			var requestData = xhr.response;
@@ -229,7 +229,7 @@ function updateNotifications() {
 
 	// in invalid request case
 	xhr.onerror = function() {
-		console.log("Запрос не удался");
+		document.getElementById("errorMessage").innerHTML = "Запрос не удался";
 	};
 }
 
@@ -282,17 +282,17 @@ function asyncRequest() {
 	formData.append("passwdConfirm", document.forms['updatePasswd']['passwdConfirm'].value);
 	formData.append("email", document.forms['updateEmail']['email'].value);
 
-	console.log('');
-	console.log('tx: login='+document.forms['updateLogin']['login'].value);
-	console.log('tx: passwd='+document.forms['updatePasswd']['passwd'].value);
-	console.log('tx: passwdConfirm='+document.forms['updatePasswd']['passwdConfirm'].value);
-	console.log('tx: email='+document.forms['updateEmail']['email'].value);
+	// console.log('');
+	// console.log('tx: login='+document.forms['updateLogin']['login'].value);
+	// console.log('tx: passwd='+document.forms['updatePasswd']['passwd'].value);
+	// console.log('tx: passwdConfirm='+document.forms['updatePasswd']['passwdConfirm'].value);
+	// console.log('tx: email='+document.forms['updateEmail']['email'].value);
 
 	xhr.send(formData);	
 
 	xhr.onload = function() {
 		if (xhr.status != 200) {
-			console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+			document.getElementById("errorMessage").innerHTML = `Ошибка ${xhr.status}: ${xhr.statusText}`;
 		} else {
 			var loginMarker = document.querySelector(".loginMarker");
 			var passwdMarker = document.querySelector(".passwdMarker");
@@ -335,16 +335,16 @@ function asyncRequest() {
 			else
 				emailMarker.style.opacity = 0;
 
-			console.log('rx: request='+requestData.request);
-			console.log('rx: login='+requestData.login);
-			console.log('rx: passwd='+requestData.passwd);
-			console.log('rx: passwdConfirm='+requestData.passwdConfirm);
-			console.log('rx: email='+requestData.email);
+			// console.log('rx: request='+requestData.request);
+			// console.log('rx: login='+requestData.login);
+			// console.log('rx: passwd='+requestData.passwd);
+			// console.log('rx: passwdConfirm='+requestData.passwdConfirm);
+			// console.log('rx: email='+requestData.email);
 		}
 	};
 
 	xhr.onerror = function() {
-		console.log("Запрос не удался");
+		document.getElementById("errorMessage").innerHTML = "Запрос не удался";
 	};
 
 	// This is old data for now

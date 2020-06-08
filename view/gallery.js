@@ -9,7 +9,9 @@ function createNewItem(itemNbr, isAuthor, headerData, photoSrc, isLiked, likeCou
     var like = document.createElement('img');
     var counter = document.createElement('div');
     var author = document.createElement('div');
-    var comment = document.createElement('img');
+    var commentForm = document.createElement('form');
+    var comment = document.createElement('input');
+    var hid = document.createElement('input');
 
     item.setAttribute("class", "item");
     item.setAttribute("id", 'item' + itemNbr);
@@ -45,14 +47,24 @@ function createNewItem(itemNbr, isAuthor, headerData, photoSrc, isLiked, likeCou
     author.setAttribute("id", 'author' + itemNbr);
     author.innerHTML = photoAuthor;
 
-    comment.setAttribute("class", "comments");
-    comment.setAttribute("id", 'comments' + itemNbr);
-    comment.src = "img/comment.png";
+    comment.type = 'submit';
 
+    hid.type = "hidden";
+    hid.name = "photoID";
+    hid.value = window.gSnapID[itemNbr];
+    hid.setAttribute("id", 'hid' + itemNbr);
+
+    commentForm.method = "GET";
+    commentForm.action = "snapPage.php";//?photoID=" + itemNbr;
+    commentForm.setAttribute("class", "comments");
+
+    
+    commentForm.appendChild(comment);
+    commentForm.appendChild(hid);
     footer.appendChild(like);
     footer.appendChild(counter);
     footer.appendChild(author);
-    footer.appendChild(comment);
+    footer.appendChild(commentForm);
     item.appendChild(del);
     item.appendChild(header);
     item.appendChild(photo);
@@ -77,6 +89,7 @@ function shiftItemUp(i) {
     document.getElementById('author' + i).innerHTML = document.getElementById('author' + (i + 1)).innerHTML;
     document.getElementById('delete' + i).style.display = document.getElementById('delete' + (i + 1)).style.display;
     document.getElementById('author' + i).style.color = document.getElementById('author' + (i + 1)).style.color;
+    document.getElementById('hid' + i).value = document.getElementById('hid' + (i + 1)).value;
 }
 
 function howMuchImgPerLine() {
@@ -117,7 +130,7 @@ function getPuckOfImages() {
     var imgPerLine = howMuchImgPerLine();
     var imgAmount = imgPerLine - window.gImgAmount % imgPerLine;
     imgAmount += imgPerLine * parseInt( 8 / imgPerLine );
-    var isNeedToDisplayGetPhotosBlock = 1;
+    var isNeedToDisplayMoreBlock = 1;
 
 
     // Make async request to DB -  
@@ -145,7 +158,7 @@ function getPuckOfImages() {
             if (!requestAsync) {
                 document.getElementById('errorMessage').innerHTML = 'empty async request';
                 // This trick is only to be pretty. To not see this when pictures is loading
-                document.getElementById('getPhotos').style.opacity = 0.6;
+                // document.getElementById('more').style.opacity = 0.6;
                 // Enable work permission for all function that listen extern events
                 window.gWorkPermission = '';
                 return ;
@@ -159,6 +172,7 @@ function getPuckOfImages() {
                     var img;
                     img = requestAsync['img' + i];
                     window.gImgAmount = gImgAmount + 1;
+                    window.gSnapID[window.gImgAmount] = img['id'];
                     createNewItem(  window.gImgAmount,
                                     img['isAuthor'],
                                     img['name'],
@@ -167,17 +181,16 @@ function getPuckOfImages() {
                                     img['likeCounter'],
                                     img['author']
                                     );
-                    window.gSnapID[window.gImgAmount] = img['id'];
                 } else {
-                    isNeedToDisplayGetPhotosBlock = 0;
+                    isNeedToDisplayMoreBlock = 0;
                 }
             }
 
-            // display block 'getPhotos' if we need it
-            if (isNeedToDisplayGetPhotosBlock) {
-                document.getElementById('getPhotos').style.display = 'block';
+            // display block 'more' if we need it
+            if (isNeedToDisplayMoreBlock) {
+                document.getElementById('more').style.display = 'block';
             } else {
-                document.getElementById('getPhotos').style.display = 'none';
+                document.getElementById('more').style.display = 'none';
             }
 
             // Enable work permission for all function that listen extern events
@@ -187,11 +200,11 @@ function getPuckOfImages() {
 
     xhr.onerror = function() {
         document.getElementById('errorMessage').innerHTML = "Запрос не удался";
-        // display block 'getPhotos' if we need it
-        if (isNeedToDisplayGetPhotosBlock) {
-            document.getElementById('getPhotos').style.display = 'block';
+        // display block 'more' if we need it
+        if (isNeedToDisplayMoreBlock) {
+            document.getElementById('more').style.display = 'block';
         } else {
-            document.getElementById('getPhotos').style.display = 'none';
+            document.getElementById('more').style.display = 'none';
         }
         // Enable work permission for all function that listen extern events
         window.gWorkPermission = '';
@@ -268,6 +281,7 @@ function deletePhoto(i) {
                             document.getElementById('errorMessage').innerHTML = requestAsync.error;
                             if ((requestAsync.img1)) {
                                 window.gImgAmount = window.gImgAmount + 1;
+                                window.gSnapID[i] = requestAsync.img1.id;
                                 createNewItem(  window.gImgAmount, 
                                                 requestAsync.img1.isAuthor,
                                                 requestAsync.img1.name, 
@@ -276,10 +290,9 @@ function deletePhoto(i) {
                                                 requestAsync.img1.likeCounter,
                                                 requestAsync.img1.author
                                                 );
-                                window.gSnapID[i] = requestAsync.img1.id;
                             } 
                             else {
-                                document.getElementById('getPhotos').style.display = 'none';
+                                document.getElementById('more').style.display = 'none';
                             }
                         } else {
                             document.getElementById('errorMessage').innerHTML = 'empty async request';
@@ -363,7 +376,7 @@ function likePhoto(i) {
 
 window.onload = function() {
     getPuckOfImages();
-    document.getElementById('getPhotos').addEventListener("click", getPuckOfImages);
+    document.getElementById('more').addEventListener("click", getPuckOfImages);
     //getNotifications();
     console.log('gallery');
 }

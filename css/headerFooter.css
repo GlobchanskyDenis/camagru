@@ -418,11 +418,18 @@ footer {
 	width:						100%;
 }
 
-footer div {
+/* .socNetwork {
+	display:					block;
+	position:					absolute;
+	top:						0px;
+	left:						10px;
+	height:						25px;
+} */
+
+.copyright {
 	display:					block;
 	color:						white;
 	width:						15em;
-	margin-right:				10px;
 	text-align:					right;
 	position:					absolute;
 	top:						2px;

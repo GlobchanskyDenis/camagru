@@ -60,6 +60,12 @@ try {
                                             activeStatus BOOL DEFAULT TRUE,
                                             date TIMESTAMP )');
 
+    $connectDB->query('CREATE TABLE IF NOT EXISTS commentTable ( id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                                            author VARCHAR(15) NOT NULL, 
+                                            photoID INT NOT NULL,
+                                            text VARCHAR(500) NOT NULL,
+                                            date TIMESTAMP )');
+
 } catch (PDOException $e) {
 	echo 'Cannot connect to Database'.PHP_EOL;
 	exit;

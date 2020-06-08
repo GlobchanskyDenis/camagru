@@ -46,6 +46,7 @@ if (!updateUserStatusDB($connectDB, $_SESSION['to_confirm'], 'user')) {
 }
 
 $_SESSION['loggued_on_user'] = $_SESSION['to_confirm'];
+$_SESSION['status'] = 'user';
 
 if (!updateUserTime($connectDB, $_SESSION['loggued_on_user'])) {
 	$_SESSION['last_error'] = 'Connection DB error';

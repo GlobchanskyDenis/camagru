@@ -167,7 +167,129 @@ function addPhotoDB($connectDB, $login, $fileName, $name, $data) : bool {
 	} catch (PDOException $e) {
 		return false;
 	}
-	// return false;
+}
+
+function getPhotoByIdFromDB($connectDB, $photoID) {
+	$query = "SELECT data, author, name, likeCounter FROM photo WHERE id=:photoID";
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute([':photoID' => $photoID]);
+		// $stmt->execute();
+		if (($results = $stmt->fetch(PDO::FETCH_ASSOC)) && isset($results['data'])) {
+			return $results;
+		}
+		return false;
+	} catch(PDOException $e) {
+		return false;
+	}
+}
+
+function addCommentToDB($connectDB, $login, $photoID, $text) {
+	$query = "INSERT INTO commentTable (author, photoID, text, date) VALUES (:login, :photoID, :text, NOW())";
+	$params = [
+		':login'	=> $login,
+		':photoID'	=> $photoID,
+		':text'		=> $text
+	];
+	try {
+		$stmt = $connectDB->prepare($query);
+		$stmt->execute($params);
+		return true;
+	} catch(PDOException $e) {
+		return false;
+	}
+}
+
+function getNewCommentsByPhotoIdFromDB($connectDB, $photoID, $lastID) {
+	if ($lastID == 0) {
+		$query = "SELECT id, author, text, date FROM commentTable WHERE photoID=:photoID ORDER BY id ASC";
+		$dst = [
+			'error' => ''
+		];
+		try {
+			$stmt = $connectDB->prepare($query);
+			$stmt->bindValue(':photoID', $photoID);
+			$stmt->execute();
+			$i = 1;
+			while (($results = $stmt->fetch(PDO::FETCH_ASSOC))) {
+				$dst['comment'.$i] = $results;
+				$i++;
+			}
+			return $dst;
+		} catch(PDOException $e) {
+			$dst['error'] = $e->getMessage();
+			return $dst;
+		}
+	} else {
+		$query = "SELECT id, author, text, date FROM commentTable WHERE photoID=:photoID AND id>:id ORDER BY id ASC";
+		$dst = [
+			'error' => ''
+		];
+		try {
+			$stmt = $connectDB->prepare($query);
+			$stmt->bindValue(':photoID', $photoID);
+			$stmt->bindValue(':id', $lastID);
+			$stmt->execute();
+			$i = 1;
+			while (($results = $stmt->fetch(PDO::FETCH_ASSOC))) {
+				$dst['comment'.$i] = $results;
+				$i++;
+			}
+			return $dst;
+		} catch(PDOException $e) {
+			$dst['error'] = $e->getMessage();
+			return $dst;
+		}
+	}
+}
+
+function getCommentsByPhotoIdFromDB($connectDB, $limit, $photoID, $lastID) {
+	if ($lastID == 0) {
+		$query = "SELECT id, author, text, date FROM commentTable WHERE photoID=:photoID ORDER BY id DESC LIMIT :limit";
+		$dst = [
+			'error' => ''
+		];
+		try {
+			$stmt = $connectDB->prepare($query);
+			$stmt->bindValue(':photoID', $photoID);
+			// Mysql prepared statements хочет чтобы LIMIT был только тип INT
+			// Поэтому вот эти танцы с бубном
+			$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+			$stmt->execute();
+			$i = 1;
+			while (($results = $stmt->fetch(PDO::FETCH_ASSOC)) && $i <= $limit) {
+				$dst['comment'.$i] = $results;
+				$i++;
+			}
+			return $dst;
+		} catch(PDOException $e) {
+			$dst['error'] = $e->getMessage();
+			return $dst;
+		}
+	} else {
+		$query = "SELECT id, author, text, date FROM commentTable WHERE photoID=:photoID AND id<:id ORDER BY id DESC LIMIT :limit";
+		$dst = [
+			'error' => ''
+		];
+		try {
+			$stmt = $connectDB->prepare($query);
+			$stmt->bindValue(':photoID', $photoID);
+			$stmt->bindValue(':id', $lastID);
+			// Mysql prepared statements хочет чтобы LIMIT был только тип INT
+			// Поэтому вот эти танцы с бубном
+			$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+			$stmt->execute();
+			$i = 1;
+			while (($results = $stmt->fetch(PDO::FETCH_ASSOC)) && $i <= $limit) {
+				$dst['comment'.$i] = $results;
+				$i++;
+			}
+			return $dst;
+		} catch(PDOException $e) {
+			$dst['error'] = $e->getMessage();
+			return $dst;
+		}
+	}
 }
 
 function getPhotosByAuthorFromDB($connectDB, $limit, $login, $lastID) {
@@ -325,13 +447,20 @@ function setNotificationToDB($connectDB, $authorLogin, $photoID, $userNotifier, 
 		':photoID'		=> $photoID,
 		':userNotifier'	=> $userNotifier,
 		':message'		=> $message,
-		'isLike'		=> $isLike
+		// ':isLike'		=> $isLike
 	];
 	try {
 		$stmt = $connectDB->prepare($query);
-		$stmt->execute($params);
+		$stmt->bindValue(':author', $authorLogin);
+		$stmt->bindValue(':photoID', $photoID);
+		$stmt->bindValue(':userNotifier', $userNotifier);
+		$stmt->bindValue(':message', $message);
+		$stmt->bindValue(':isLike', $isLike, PDO::PARAM_BOOL);
+		
+		$stmt->execute();
 		return true;
 	} catch(PDOException $e) {
+		// return $e->getMessage();
 		return false;
 	}
 }
@@ -760,20 +889,22 @@ function regRequestErrors() : string {
 
 function sendConfirmMail($login, $email, $confirmCode) {
 	$subject = 'Registration in Camagru';
-	// $message = "<html><body>
-	// <p><span style='font-size: 1.5em; color: green;'>Hello, <b>$login</b></span></br></p>
-	// <p>you must confirm your registration by entering this confirm code:</p>
-	// <p><span style='background-color: light-blue;'>$confirmCode</span></p>
-	// <p>or you can simply push <a href='192.168.0.197:8080/scripts/validate.php?code=$confirmCode'>here</a></p>
-	// <p><form action='192.168.0.197:8080/scripts/validate.php' method='POST'>
-	// <input type='text' name='code' value='$confirmCode' hidden>
-	// <input type='submit'>
-	// </form></p>
-	// </body></html>";
 
 	$message = '<html><body style="font-size: 1.4em;"><p><span style="font-size: 1.3em; color: green;">Hello, <b>'.$login.'</b></span></p>'.PHP_EOL;
 	$message .= '<p>you must confirm your registration by entering this confirm code:</p>';
 	$message .= '<p><span style="color: white; background-color: black; font-size:1.3em;">'.$confirmCode.'</span></p>';
+	$message .= '</body></html>';
+
+	$headers  = 'MIME-Version: 1.0' . PHP_EOL;
+	$headers .= 'Content-type: text/html; charset=utf8' . PHP_EOL;
+	mail($email, $subject, $message, $headers);
+}
+
+function sendChangeMail($login, $email) {
+	$subject = 'Change mail in Camagru';
+
+	$message = '<html><body style="font-size: 1.4em;"><p><span style="font-size: 1.3em; color: green;">Hello, <b>'.$login.'</b></span></p>'.PHP_EOL;
+	$message .= '<p>Your mail has been changed</p>'.PHP_EOL;
 	$message .= '</body></html>';
 
 	$headers  = 'MIME-Version: 1.0' . PHP_EOL;

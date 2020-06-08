@@ -190,6 +190,8 @@
 	height:						30px;
 	border-radius:				5px;
 	margin:						0px;
+	background-image: 			url(../img/comment.png);
+	background-size:			105%;
 	transition-delay:			0s;
 	transition-duration:		0.3s;
 	transition-timing-function: ease;
@@ -206,7 +208,13 @@
 	background-color:			rgb(100, 140, 180);
 }
 
-#getPhotos {
+input[type=submit] {
+	opacity:					0;
+	width:						100%;
+	height:						100%;
+}
+
+#more {
 	display:					none;
 	width:						80px;
 	margin:						0px auto 0px auto;
@@ -216,13 +224,13 @@
 	transition-timing-function: ease;
 }
 
-#getPhotos:hover {
+#more:hover {
 	opacity:					0.95;
 	transition-delay:			0s;
 	transition-duration:		0.3s;
 	transition-timing-function: ease;
 }
 
-#getPhotos:active {
+#more:active {
 	opacity:					1;
 }
