@@ -1,3 +1,3 @@
 #!/bin/bash
-mysql < setup.sql
+mysql -u root < setup.sql
 php setup.php

@@ -67,7 +67,7 @@ try {
                                             date TIMESTAMP )');
 
 } catch (PDOException $e) {
-	echo 'Cannot connect to Database'.PHP_EOL;
+	echo 'Cannot connect to Database '.$e->getmessage().PHP_EOL;
 	exit;
 }
 
