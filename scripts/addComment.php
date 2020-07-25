@@ -6,6 +6,7 @@ $requestAjax = [
 	// 'text'	=> false,
 	// 'id'	=> false
 ];
+file_put_contents("log.txt" , "session start");
 
 session_start();
 
@@ -70,7 +71,7 @@ if (!include_once('../config/database.php')) {
 	echo json_encode($requestAsync);
 	exit;
 }
-
+file_put_contents("log.txt" , "start to work with database");
 try {
 	$connectDB = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 } catch (PDOException $e) {
