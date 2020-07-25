@@ -6,7 +6,7 @@ $requestAjax = [
 	// 'text'	=> false,
 	// 'id'	=> false
 ];
-file_put_contents("log.txt" , "session start");
+// file_put_contents("log.txt" , "session start");
 
 session_start();
 
@@ -71,7 +71,7 @@ if (!include_once('../config/database.php')) {
 	echo json_encode($requestAsync);
 	exit;
 }
-file_put_contents("log.txt" , "start to work with database");
+// file_put_contents("log.txt" , "start to work with database");
 try {
 	$connectDB = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 } catch (PDOException $e) {
@@ -98,26 +98,26 @@ if (!($commentArr = getNewCommentsByPhotoIdFromDB($connectDB, $photoID, $lastID)
 	exit;
 }
 
-file_put_contents("log.txt" , "place1");
+// file_put_contents("log.txt" , "place1");
 
 if ($login != $author) {
-	file_put_contents("log.txt" , "place2");
+	// file_put_contents("log.txt" , "place2");
 	if ( !($ret = setNotificationToDB($connectDB, $author, $photoID, $login, 'commented your photo', false))) {
 		$requestAsync['error'] = 'cannot set notification '.$ret;
 		echo json_encode($requestAsync);
-		file_put_contents("log.txt" , "err1");
+		// file_put_contents("log.txt" , "err1");
 		exit;
 	}
-	file_put_contents("log.txt" , "place3");
+	// file_put_contents("log.txt" , "place3");
 	if ( ($mail = getUserMail_ifNotifStatus($connectDB, $author)) === false ) {
 		$requestAsync['error'] = 'cannot get user mail notification status';
 		echo json_encode($requestAsync);
-		file_put_contents("log.txt" , "err2");
+		// file_put_contents("log.txt" , "err2");
 		exit;
 	}
-	file_put_contents("log.txt" , "place4");
+	// file_put_contents("log.txt" , "place4");
 	if ($mail) {
-		file_put_contents("log.txt" , "place5");
+		// file_put_contents("log.txt" , "place5");
 		$mailRequest = [
 			'login'         => $author,
 			'email'         => $mail,
@@ -139,7 +139,7 @@ if ($login != $author) {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $urlEncodedMailRequest);
 		curl_exec($ch);
 		curl_close($ch);
-		file_put_contents("log.txt" , "place6");
+		// file_put_contents("log.txt" , "place6");
 	}  
 }
 
