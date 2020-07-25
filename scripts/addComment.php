@@ -127,7 +127,7 @@ if ($login != $author) {
 		curl_setopt($ch, CURLOPT_URL, 'http://'.$MAIL_HOST.':'.$MAIL_PORT.'/scripts/sendNotifEmail.php');
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-		curl_setopt($ch, CURLOPT_TIMEOUT_MS, 50);
+		curl_setopt($ch, CURLOPT_TIMEOUT_MS, 500);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $urlEncodedMailRequest);
 		curl_exec($ch);
