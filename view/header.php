@@ -1,7 +1,7 @@
 <?php
-// if (!isset($_SESSION)) {
-// 	session_start();
-// }
+if (!isset($_SESSION)) {
+	session_start();
+}
 
 if (isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user']) {
 ?>
@@ -36,30 +36,6 @@ if (isset($_SESSION['loggued_on_user']) && $_SESSION['loggued_on_user']) {
 						No notifications found
 					</div>
 				</div>
-				<!-- <div class='notif' id='notif1'>
-					<div class="notifBody" id="notifBody1">
-						123456789012345 has liked your snap
-					</div>
-					<div class="vertAlignator">
-						<img src="img/delete.png" class="icon" id="notifDel1">
-					</div>
-				</div>
-				<div class='notif' id='notif2'>
-					<div class="notifBody" id="notifBody2">
-						notification 2
-					</div>
-					<div class="vertAlignator">
-						<img src="img/delete.png" class="icon">
-					</div>
-				</div> -->
-				<!-- <div class='notif' id='notif3'>
-					<div class="notifBody" id="notifBody3">
-						notification 3
-					</div>
-					<div class="vertAlignator">
-						<img src="img/delete.png" class="icon">
-					</div>
-				</div> -->
 			</div>
 		</header>
 
