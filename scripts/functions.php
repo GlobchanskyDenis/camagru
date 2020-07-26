@@ -890,13 +890,21 @@ function regRequestErrors() : string {
 function sendConfirmMail($login, $email, $confirmCode) {
 	$subject = 'Registration in Camagru';
 
-	$message = '<html><body style="font-size: 1.4em;"><p><span style="font-size: 1.3em; color: green;">Hello, <b>'.$login.'</b></span></p>'.PHP_EOL;
-	$message .= '<p>you must confirm your registration by entering this confirm code:</p>';
-	$message .= '<p><span style="color: white; background-color: black; font-size:1.3em;">'.$confirmCode.'</span></p>';
-	$message .= '</body></html>';
+	$message = PHP_EOL.'Hello, '.$login.PHP_EOL.PHP_EOL;
+	$message .= 'you can go by the link to validate your email:'.PHP_EOL.PHP_EOL;
+	$message .= 'https://localhost:8443/scripts/validata.php?code='.$confirmCode.PHP_EOL.PHP_EOL;
+	$message .= 'Or just copy paste this code:'.PHP_EOL.PHP_EOL;
+	$message .= ' '.$confirmCode.' '.PHP_EOL;
 
-	$headers  = 'MIME-Version: 1.0' . PHP_EOL;
-	$headers .= 'Content-type: text/html; charset=utf8' . PHP_EOL;
+
+	// $message = '<html><body style="font-size: 1.4em;"><p><span style="font-size: 1.3em; color: green;">Hello, <b>'.$login.'</b></span></p>'.PHP_EOL;
+	// $message .= '<p>you must confirm your registration by entering this confirm code:</p>';
+	// $message .= '<p><span style="color: white; background-color: black; font-size:1.3em;">'.$confirmCode.'</span></p>';
+	// $message .= '</body></html>';
+
+	// $headers  = 'MIME-Version: 1.0' . PHP_EOL;
+	// $headers .= 'Content-type: text/html; charset=utf8' . PHP_EOL;
+	$headers = "From: info@camagru.com";
 	mail($email, $subject, $message, $headers);
 }
 
