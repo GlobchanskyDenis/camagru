@@ -1,34 +1,34 @@
 <?php
-	// if (!include_once('config/rules.php')) {
-	// 	$_SESSION['last_error'] = 'cant find one of files';
-	// 	header('Location: signIn.php');
-	// 	exit;
-	// }
-	// if (!isset($_SESSION)) {
-	// 	session_start();
-	// }
+	if (!include_once('config/rules.php')) {
+		$_SESSION['last_error'] = 'cant find one of files';
+		header('Location: signIn.php');
+		exit;
+	}
+	if (!isset($_SESSION)) {
+		session_start();
+	}
 
-	// if (!isset($_SESSION['loggued_on_user'])) {
-	// 	$_SESSION['last_error'] = 'You are not logged';
-	// 	header('Location: signIn.php');
-	// 	exit;
-	// }
-	// if (!isset($_SESSION['status'])) {
-	// 	$_SESSION['last_error'] = 'Cant find your user status';
-	// 	header('Location: signIn.php');
-	// 	exit;
-	// }
-	// $accessPermission = false;
-	// foreach ($registered as $permittedStatus) {
-	// 	if ($permittedStatus == $_SESSION['status']) {
-	// 		$accessPermission = true;
-	// 	}
-	// }
-	// if (!$accessPermission) {
-	// 	$_SESSION['last_error'] = 'You have no rights to go there '.$_SESSION['status'];
-	// 	header('Location: signIn.php');
-	// 	exit;
-	// }
+	if (!isset($_SESSION['loggued_on_user'])) {
+		$_SESSION['last_error'] = 'You are not logged';
+		header('Location: signIn.php');
+		exit;
+	}
+	if (!isset($_SESSION['status'])) {
+		$_SESSION['last_error'] = 'Cant find your user status';
+		header('Location: signIn.php');
+		exit;
+	}
+	$accessPermission = false;
+	foreach ($registered as $permittedStatus) {
+		if ($permittedStatus == $_SESSION['status']) {
+			$accessPermission = true;
+		}
+	}
+	if (!$accessPermission) {
+		$_SESSION['last_error'] = 'You have no rights to go there '.$_SESSION['status'];
+		header('Location: signIn.php');
+		exit;
+	}
 ?>
 
 <!DOCTYPE html>

@@ -20,8 +20,9 @@ try {
     $connectDB = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     $connectDB->query('DROP TABLE IF EXISTS users');
     $connectDB->query('DROP TABLE IF EXISTS photo');
-    $connectDB->query('DROP TABLE IF EXISTS likes');
-    $connectDB->query('DROP TABLE IF EXISTS notif');
+    $connectDB->query('DROP TABLE IF EXISTS likeTable');
+    $connectDB->query('DROP TABLE IF EXISTS notifTable');
+    $connectDB->query('DROP TABLE IF EXISTS commentTable');
     $connectDB->query('CREATE TABLE IF NOT EXISTS users ( id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
                                             login VARCHAR(15) NOT NULL, 
                                             passwd VARCHAR(35) NOT NULL, 
